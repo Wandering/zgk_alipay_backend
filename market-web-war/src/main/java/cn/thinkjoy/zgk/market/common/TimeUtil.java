@@ -1,6 +1,7 @@
 package cn.thinkjoy.zgk.market.common;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -12,5 +13,14 @@ public class TimeUtil
     {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.format(new Date());
+    }
+
+    public static String getEndTimeStamp(String format)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.MONTH,2);
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        return formatter.format(new Date(calendar.getTimeInMillis()));
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class AliCardSceneData
 {
-    private String title;
+    private String title;//废弃
     private String icon;
     private String send_time;
     private String content;
@@ -23,8 +23,41 @@ public class AliCardSceneData
     private String img9_source_url;
     private String target_url;
     private String link_url;
+    private String link_img_url;
+    private String link_title;
     private String sender;
     private String img_url;
+    private String source;
+
+    public String getLink_title()
+    {
+        return link_title;
+    }
+
+    public void setLink_title(String link_title)
+    {
+        this.link_title = link_title;
+    }
+
+    public String getLink_img_url()
+    {
+        return link_img_url;
+    }
+
+    public void setLink_img_url(String link_img_url)
+    {
+        this.link_img_url = link_img_url;
+    }
+
+    public String getSource()
+    {
+        return source;
+    }
+
+    public void setSource(String source)
+    {
+        this.source = source;
+    }
 
     public String getTitle()
     {

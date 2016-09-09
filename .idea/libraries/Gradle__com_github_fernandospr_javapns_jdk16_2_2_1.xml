@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.fernandospr:javapns-jdk16:2.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fernandospr/javapns-jdk16/2.2.1/420a631175f54b28c92c12507166a152614f36c4/javapns-jdk16-2.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fernandospr/javapns-jdk16/2.2.1/b8d05c40f19900c5ea2ec92c5b70f5f59c0f72a4/javapns-jdk16-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: :alipay-sdk-java-DEV20160822105354:">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/market-web-war/libs/alipay-sdk-java-DEV20160822105354.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

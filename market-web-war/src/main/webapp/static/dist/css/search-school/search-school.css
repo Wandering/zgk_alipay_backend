@@ -1,0 +1,115 @@
+#search-school-main {
+  padding: 52px 26px;
+  color: #707070;
+  font-size: 14px;
+}
+
+#search-school-main .form-group {
+  margin-bottom: 23px;
+}
+
+#search-school-main .form-group label {
+  font-weight: bold;
+}
+
+#search-school-main .form-group .options {
+  display: flex;
+  margin-top: 7px;
+  height: 34px;
+  line-height: 34px;
+}
+
+#search-school-main .form-group .options span {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #979797;
+  border-radius: 3px;
+}
+
+#search-school-main .form-group .options span.active {
+  color: #fff;
+  background-color: #D80C18;
+  border-color: #D80C18;
+}
+
+#search-school-main .form-group .options span:first-child {
+  margin-right: 15px;
+}
+
+#search-school-main .form-group .input {
+  margin-top: 7px;
+}
+
+#search-school-main .form-group .input input {
+  width: 100%;
+  padding: 9px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #979797;
+  outline: none;
+}
+
+#search-school-main .calculate-btn {
+  width: 100%;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  background-color: #B81C22;
+  color: #fff;
+  margin-top: 63px;
+  border-radius: 3px;
+}
+
+#search-school-main .info {
+  font-size: 12px;
+  border-top: 1px solid #D8D8D8;
+  margin-top: 68px;
+  padding: 27px 12px;
+}
+
+.container-header {
+  font-size: 13px;
+  padding: 22px 20px 0;
+  color: #707070;
+}
+
+.container-header .info {
+  margin-bottom: 12px;
+}
+
+.container-header .info label:nth-child(3) {
+  margin-left: 16px;
+}
+
+.container-header .info span {
+  color: #D80C18;
+}
+
+.container-content {
+  padding: 10px 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background-color: #D80C18;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px 0px;
+  border: 1px solid #D80C18;
+}
+
+table th:not(:last-child) {
+  border-right-color: #960810;
+}
+
+table td {
+  font-size: 12px;
+  text-align: center;
+  color: #707070;
+  border: 1px solid #CFCFCF;
+}

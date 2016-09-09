@@ -1,0 +1,110 @@
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+header .header-title {
+  padding-left: 46px;
+}
+
+header .header-btn {
+  position: absolute;
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+body {
+  background: #ececec;
+}
+
+.container {
+  padding: 38px 18px;
+}
+.container .wrapper {
+  width: 100%;
+  position: relative;
+}
+.container .wrapper img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.container .wrapper .page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 18px;
+}
+.container .wrapper .page h1 {
+  font-size: 20px;
+  text-align: center;
+  color: #D80C18;
+  margin: 20px 0;
+  padding: 0;
+}
+.container .wrapper .page h4 {
+  color: #575757;
+  font-size: 18px;
+  font-weight: 100;
+  text-align: center;
+  margin: 20px 0;
+  padding: 0;
+}
+.container .wrapper .page .order-number {
+  width: 100%;
+  height: 60px;
+  display: table;
+  text-align: center;
+  border: 1px solid #D80C18;
+  margin: 20px 0;
+  color: #d80c18;
+  font-size: 14px;
+}
+.container .wrapper .page .order-number span {
+  display: table-cell;
+  vertical-align: middle;
+}
+.container .wrapper .page p {
+  margin-top: 20px;
+  line-height: 1.5;
+  color: #575757;
+  font-size: 14px;
+}
+.container .wrapper .page .phone {
+  color: #575757;
+  font-size: 14px;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.container .wrapper .page .phone span {
+  color: #D80C18;
+}
+.container .wrapper .page .address-lable {
+  color: #575757;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.container .wrapper .page .address {
+  color: #d80c18;
+  font-size: 14px;
+  line-height: 1;
+}

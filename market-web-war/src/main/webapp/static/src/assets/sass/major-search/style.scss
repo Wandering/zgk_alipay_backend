@@ -1,0 +1,242 @@
+//header bar
+header {
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+
+  .header-title {
+    padding-left: 46px;
+  }
+  .header-btn {
+    position: absolute;
+    &:first-child {
+      height: 25px;
+      top: 6px;
+      left: 9px;
+    }
+
+    &:last-child {
+      height: 25px;
+      top: 7px;
+      right: 13px;
+      left: auto;
+    }
+  }
+
+  .header-btn.header-close{
+    top: 6px;
+    left: 9px;
+  }
+  .location {
+    font-size: 12px;
+    vertical-align: 2px;
+    margin-left: 1px;
+    &.location-icon:before {
+      vertical-align: -6px;
+      margin-right: 4px;
+    }
+  }
+}
+.tab-list {
+  display: flex;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  color: #8C8C8C;
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    border-bottom: 1px solid #E8E8E8;
+    position: relative;
+
+    &:first-child:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 23px;
+      background-color: #E8E8E8;
+      top: 5px;
+      right: 0;
+    }
+
+    &.active {
+      color: #D80C18;
+      border-bottom-color: #D80C18;
+    }
+  }
+}
+.tab-content {
+  .content {
+    position: relative;
+  }
+  .menu-list > li {
+    width: 159px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 12px;
+    color: #8C8C8C;
+    background-color: #F7F7F7;
+    border-right: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+    position: relative;
+    &:after {
+      content: "";
+      display: block;
+      border-right: none;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 5px solid #8C8C8C;
+      position: absolute;
+      z-index: 1;
+      top: 16px;
+      right: 8px;
+    }
+    &:before {
+      content: "";
+      display: block;
+      border-right: none;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 5px solid #f7f7f7;
+      position: absolute;
+      z-index: 2;
+      top: 16px;
+      right: 9px;
+    }
+    &.active {
+      background-color: #fff;
+      border-right-color: #fff;
+      color: #D80C18;
+      &:after {
+        border-left: none;
+        border-right: 5px solid #D80C18;
+      }
+      &:before {
+        border-left: none;
+        border-right: 5px solid #fff;
+        right: 7px;
+      }
+    }
+  }
+  .menu-inner-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    width: calc(100% - 160px);
+  }
+  .menu-inner-list > li {
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 12px;
+    color: #8C8C8C;
+    border-bottom: 1px dashed #DCDCDC;
+    margin: 0 10px;
+
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &.active {
+      color: #D80C18;
+    }
+  }
+}
+
+.search-modal {
+  position: absolute;
+  z-index: 999;
+  background-color: #D80C18;
+  top: 0;
+  height: 46px;
+  line-height: 46px;
+  width: 100%;
+  color: #fff;
+  font-size: 15px;
+  input {
+    outline: none;
+    border-radius: 30px;
+    border: none;
+    padding: 5px 5px 5px 27px;
+    width: calc(100% - 95px);
+    height: 25px;
+    line-height: 25px;
+    margin-top: 6px;
+    margin-left:10px;
+  }
+  span {
+    margin-left: 10px;
+  }
+  i {
+    position: absolute;
+    right: 62px;
+    top: 9px;
+  }
+}
+
+
+
+
+.search-result{
+  list-style: none;
+  width:100%;
+  margin:0;
+  border: 1px solid #8C8C8C;
+  li{
+    list-style: none;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #8C8C8C;
+    background: #fff;
+    color: #8C8C8C;
+    padding:0 10px;
+    &:hover {
+      color: #D80C18;
+    }
+    &.active{
+      color: #D80C18;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+}
+
+
+.search-result-c{
+  margin:0 10px;
+}
+
+
+
+
+
+
+
+
+
+.backdrop,.backdrop1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: #000;
+  opacity: .6;
+}
+.backdrop{
+  z-index: 2;
+}
+
+.no-data{
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}

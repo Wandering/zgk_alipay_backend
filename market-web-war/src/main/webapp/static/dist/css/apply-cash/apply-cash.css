@@ -1,0 +1,131 @@
+html {
+  height: 100%;
+  background-color: #F6F6F6;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+}
+header .header-title {
+  padding-left: 46px;
+}
+header .header-btn {
+  position: absolute;
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
+
+.container-header {
+  margin-bottom: 20px;
+}
+.container-header .right {
+  margin-right: 10px;
+  margin-top: 8px;
+}
+.container-header .right img {
+  width: 17px;
+  vertical-align: bottom;
+}
+.container-header .right a {
+  font-size: 12px;
+  color: #707070;
+}
+.container-header .count {
+  text-align: center;
+  color: #575757;
+  margin-top: 14px;
+  font-size: 18px;
+}
+.container-header .link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+}
+.container-header .link a {
+  color: #D80C18;
+}
+
+.wrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+.wrapper .btns {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #D80C18;
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.wrapper .cash-rule {
+  margin-top: 37px;
+  width: 100%;
+  color: #7F7F7F;
+  font-size: 14px;
+}
+.wrapper .cash-rule p {
+  margin: 0;
+  padding: 0;
+  margin: 5px 0;
+}
+.wrapper .line {
+  width: 100%;
+  height: 1px;
+  background: #E9E4E4;
+  margin: 20px 0;
+}
+.wrapper .form-horizontal {
+  width: 100%;
+}
+.wrapper .form-horizontal .form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.wrapper .form-horizontal .control-label {
+  display: inline-block;
+  width: 25%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #7F7F7F;
+}
+.wrapper .form-horizontal .form-control {
+  font-size: 14px;
+  color: #7F7F7F;
+  width: 68%;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  outline: none;
+  border: 1px solid #E9E4E4;
+  border-radius: 4px;
+  background-color: #F6F6F6;
+  margin-left: 8px;
+}
+.wrapper .form-horizontal .form-control.cash {
+  width: 64%;
+}
+
+.tip-p {
+  padding: 2px 0;
+  margin: 0;
+}

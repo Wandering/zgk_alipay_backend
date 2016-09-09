@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>成绩输入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/results-analyse.css">
+</head>
+
+<body>
+<header class="header-title" id="header-title"><a href="./results-confirm.html"><i class="icon-go-back"></i></a>分析结果
+</header>
+<!--我的成绩-->
+<div class="result-section">
+    <div class="section-title">
+        我的成绩
+    </div>
+    <div class="flex-block setion-content analyse-base-info">
+        <div class="img-avatar">
+            <span class="img-total-score"></span>
+            <img src="" class="analyse-legend">
+        </div>
+        <div class="col-1">
+            <div class="analyse-info">
+                <span class="subject-type"></span> 总分：
+                <span class="score"></span>分
+            </div>
+            <div class="anlyse-subject">
+                <!-- <div class="col-1">
+                    <span class="list-subjct">英语</span>：<span class="list-score">145</span>
+                </div> -->
+            </div>
+            <div class="analyse-infomation">你在全省预估排名<span class="rank-num-text"></span>,已经击败了全省<span
+                    class="over-percent"></span>的小伙伴!再多考1分,还将超越<span class="over-num"></span>!
+            </div>
+        </div>
+    </div>
+</div>
+<!--成绩统计-->
+<div class="result-section" id="score-account">
+    <div class="section-title">
+        成绩统计
+    </div>
+    <div class="flex-block chart-tab">
+        <div class="col-1 tab mrP3">当前成绩：<span id="new-score"></span>分</div>
+        <div class="col-1 tab">预估排名：<span id="forcast-Rank"></span>分</div>
+    </div>
+    <div class="sub-small-title">
+        趋势
+    </div>
+    <!--折线图-->
+    <div class="line-chart">
+        <!-- <canvas id="myChart" width="400" height="200"></canvas> -->
+        <div id="myLineChart" style="width: 100%;height:300px;"></div>
+    </div>
+
+    <div class="sub-small-title">
+        分析
+    </div>
+    <!--雷达图-->
+    <div class="Radar-chart flex-block">
+        <div class="col-1">
+            《图一》
+            <p>你的物理已经超神了，需要 投入更多精力在语文学科上！</p>
+        </div>
+        <div class="col-1">
+            《图二》
+            <span>奋斗20分，质的飞跃！</span>
+            <p>智学堂全部课程，欢迎使用</p>
+        </div>
+    </div>
+    <div class="sub-small-title">
+        推荐院校
+        <p class="intro-txt">如果明天高考，你可以进入的大学有：</p>
+    </div>
+    <!--table-->
+    <div class="recommond-school">
+        <table>
+            <thead>
+            <tr>
+                <th>院校名称</th>
+                <th>批次</th>
+                <th>人数</th>
+                <th>2015年平均分</th>
+                <th>院校差距</th>
+            </tr>
+            </thead>
+            <tbody id="r-school-list">
+            <!-- <tr>
+                <td>西安电子科技大学</td>
+                <td>二批</td>
+                <td>23</td>
+                <td>565</td>
+                <td><i class="icon-type-0"></i><span class="type-0">持平</span></td>
+            </tr>-->
+            </tbody>
+        </table>
+        <p class="prompt-txt">注：院校差距依据的是考生分数院校平均分和省批次线等数据，经过智高考科学算法给出，作为报考该院校的重要参考值
+        </p>
+    </div>
+</div>
+
+<!--梦想距离-->
+<div class="result-section mb">
+    <div class="section-title">
+        梦想距离
+        <p class="intro-txt">测一测你离心仪的大学有多远</p>
+    </div>
+    <div class="select-itme flex-block">
+        <div class="col-3">
+            <input type="text" class="input-school" value="北京大学">
+            <ul class="on-input">
+                <li>北京大学</li>
+                <li>北京航天大学</li>
+                <li>北京邮电大学</li>
+            </ul>
+        </div>
+        <div class="col-2 select-batch">
+            <select id="select-batch">
+                <option value="00">选择批次</option>
+            </select>
+            <i class="icon-bottom-arrow-0"></i>
+        </div>
+        <div class="btn-confirm col-1">确认</div>
+    </div>
+    <div class="how-dream-result">
+        <div class="flex-block">
+            <i class="icon-gcmj col-1"></i>
+            <div class="col-5">
+                <a class="dream-school-name" href="javascript:void(0)">北京大学</a>
+                <span class="dream-batch">一批本科</span>
+                <p class="dream-txt">再提升<span class="live-up">98分</span>，超越<span class="over-height">3456人</span>，你的梦想就会实现！
+                </p>
+            </div>
+        </div>
+        <div class="">《直线图》</div>
+        <b class="dream-tips">树立目标，你里梦想就更近一步哦！</b>
+    </div>
+    <div class="instructions-text">
+        说明：以上结果是智高考独家算法通过整合2016年最新数据给出，结论仅供参考。
+    </div>
+</div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/echart-zfb.js"></script>
+<script src="./js/echarts.all.js"></script>
+<script src="js/results-analyse.js"></script>
+</body>
+
+</html>

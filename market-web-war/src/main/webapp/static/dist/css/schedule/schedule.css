@@ -1,0 +1,129 @@
+header {
+  position: relative;
+  overflow: hidden;
+}
+header .header-title {
+  padding-left: 46px;
+}
+header .header-btn {
+  position: absolute;
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
+
+.container {
+  position: relative;
+}
+.container .header {
+  text-align: center;
+  font-size: 12px;
+  position: relative;
+  height: 33px;
+  line-height: 33px;
+  color: #8C8C8C;
+  border-bottom: 1px solid #E8E8E8;
+}
+.container .header i {
+  position: absolute;
+  right: 13px;
+  top: 3px;
+  height: 30px;
+}
+.container .content {
+  padding: 15px 20px;
+}
+.container .content .title {
+  color: #575757;
+  text-align: center;
+  font-size: 16px;
+  line-height: 22.5px;
+  font-weight: bold;
+}
+.container .content .date {
+  color: #8C8C8C;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+.container .content .detail p {
+  color: #707070 !important;
+  font-size: 14px;
+  line-height: 24px;
+  text-indent: 24px;
+}
+
+.calendar-drop-down {
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+  right: 0;
+  top: 34px;
+  width: 144px;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 12px;
+  box-shadow: -2px 3px 10px #B5AEAE;
+}
+.calendar-drop-down:before {
+  content: "";
+  border-top: none;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-bottom: 8px solid #E8E8E8;
+  position: absolute;
+  top: -8px;
+  right: 20px;
+}
+.calendar-drop-down:after {
+  content: "";
+  border-top: none;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-bottom: 8px solid #fff;
+  position: absolute;
+  top: -6px;
+  right: 20px;
+}
+.calendar-drop-down .month-list {
+  padding-bottom: 5px;
+}
+.calendar-drop-down .month-list:after {
+  content: "";
+  display: block;
+  width: 115px;
+  height: 1px;
+  background-color: #B4B4B4;
+  margin-left: 5px;
+  position: relative;
+  bottom: -2px;
+}
+.calendar-drop-down li {
+  float: left;
+  color: #979797;
+  border: 1px solid #979797;
+  border-radius: 2px;
+  margin: 7px;
+  width: 26px;
+  height: 17px;
+  line-height: 17px;
+  text-align: center;
+}
+.calendar-drop-down li.active {
+  background-color: #D80C18;
+  color: #fff;
+  border-color: #D80C18;
+}
+.calendar-drop-down .title {
+  color: #D80C18;
+  padding: 4px 5px;
+}

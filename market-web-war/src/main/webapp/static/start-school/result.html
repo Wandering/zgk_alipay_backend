@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/setWinSize.js"></script>
+    <meta name="screen-orientation" content="portrait/landscape">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=yes"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>开学特刊</title>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div class="hb-page-box">
+    <div class="page-main" id="page-main">
+        <div class="block">
+            <img id="result-img" src="" alt="">
+            <p class="user-name" id="user-name"></p>
+            <a href="http://zgkser.zhigaokao.cn/static/start-school/index.html" class="pos again-btn" id="again-btn">
+                <img src="img/again.png">
+            </a>
+            <a href="http://mp.weixin.qq.com/s?__biz=MzA3OTAwNzU1NA==&mid=2654593551&idx=2&sn=a20fef1db3c644e6efbc1cfb16450311&scene=4#wechat_redirect" class="pos links-btn" id="links-btn" style="">
+                <img src="img/links.png">
+            </a>
+            <a href="javascript:;" class="pos share-btn" id="share-btn" style="">
+                <img src="img/share.png">
+            </a>
+        </div>
+    </div>
+</div>
+<div id="share" class="share" onclick="document.getElementById('share').style.display='none';">
+    <div class="arron"></div>
+</div>
+<script src="js/jquery.min.1.7.js" charset="utf-8"></script>
+<script src="js/jweixin/jweixin-1.0.0.js" charset="utf-8"></script>
+<script src="js/sha1/sha1.js" charset="utf-8"></script>
+<script src="js/result.js" charset="utf-8"></script>
+</body>
+</html>

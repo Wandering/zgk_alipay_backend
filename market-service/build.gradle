@@ -1,0 +1,29 @@
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile "org.springframework:spring-test:$springVersion"
+
+    compile group: "cn.thinkjoy.common", name: "thinkjoy-mus-common", version: "$thinkjoyCommonVersion", changing: true
+    //自动注册自己到cmc
+    compile group: "cn.thinkjoy.cloudstack", name: "cs-clustermanager-client", version: "$thinkjoyCloudstackVersion", changing: true
+    compile ("cn.thinkjoy.ucm:ucm-api:$thinkjoyUCMVersion"){
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mus-common'
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
+    }
+    compile "cn.thinkjoy.cloudstack:cs-spring-redis:$thinkjoyCloudstackVersion"
+
+    // 智高考专有短信服务
+    compile ("cn.thinkjoy.sms:sms-api:$zgkSmsVersion"){
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
+        exclude group: 'org.springframework'
+    }
+    compile ("cn.thinkjoy.sms:sms-domain:$zgkSmsVersion"){
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
+        exclude group: 'org.springframework'
+    }
+
+    compile "apache-httpclient:commons-httpclient:3.1"
+
+    compile project(':market-api')
+
+    compile group:"cn.thinkjoy.zgk.zgksystem",name:"zgksystem-api",version:"0.0.25-SNAPSHOT", changing: true
+}

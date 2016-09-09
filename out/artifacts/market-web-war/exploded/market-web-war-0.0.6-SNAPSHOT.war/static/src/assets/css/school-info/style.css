@@ -1,0 +1,236 @@
+html {
+  height: 100%;
+  background-color: #F6F6F6;
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+}
+header .header-title {
+  padding-left: 46px;
+}
+header .header-btn {
+  position: absolute;
+}
+header .header-btn:first-child {
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+header .header-btn:last-child {
+  height: 25px;
+  top: 7px;
+  right: 13px;
+}
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
+
+.filter-list {
+  background-color: #fff;
+  display: flex;
+  font-size: 12px;
+  color: #8C8C8C;
+  border-bottom: 1px solid #CFCFCF;
+}
+.filter-list .location,
+.filter-list .category,
+.filter-list .level,
+.filter-list .feature {
+  flex: 1;
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
+  position: relative;
+}
+.filter-list .location span,
+.filter-list .category span,
+.filter-list .level span,
+.filter-list .feature span {
+  padding: 5px 15px;
+  border-right: 1px solid #CFCFCF;
+}
+.filter-list .location .feature span,
+.filter-list .category .feature span,
+.filter-list .level .feature span,
+.filter-list .feature .feature span {
+  border-right: none;
+}
+.filter-list .location:after,
+.filter-list .category:after,
+.filter-list .level:after,
+.filter-list .feature:after {
+  content: "";
+  border-top: 6px solid #8C8C8C;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-bottom: none;
+  position: absolute;
+  top: 13px;
+  right: 5px;
+}
+.filter-list .location:before,
+.filter-list .category:before,
+.filter-list .level:before,
+.filter-list .feature:before {
+  content: "";
+  border-top: 6px solid #fff;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-bottom: none;
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  z-index: 1;
+}
+
+.info {
+  font-size: 12px;
+  color: #575757;
+  padding: 6px 11px;
+}
+.info span {
+  color: #D51323;
+}
+
+.container li {
+  padding: 7px;
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.container .img,
+.summary {
+  display: inline-block;
+}
+
+.container .img {
+  width: 72px;
+  vertical-align: top;
+  border-radius: 3px;
+  height: 70px;
+}
+.container .img img {
+  width: 100%;
+}
+
+.summary {
+  margin-left: 3px;
+  width: calc(100% - 150px);
+}
+.summary .title {
+  cursor: pointer;
+  font-size: 15px;
+  color: #575757;
+  font-weight: bold;
+  margin-top: 3px;
+}
+.summary .type-list {
+  font-size: 12px;
+  margin-top: 10px;
+}
+.summary .type-list span {
+  border: 1px solid;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.summary .type-list span:nth-child(1) {
+  border-color: #D80C18;
+  color: #D80C18;
+}
+.summary .type-list span:nth-child(2) {
+  border-color: #E7380F;
+  color: #E7380F;
+}
+.summary .type-list span:nth-child(3) {
+  border-color: #ED6C00;
+  color: #ED6C00;
+}
+.summary .type-list span:nth-child(4) {
+  border-color: #FF9550;
+  color: #FF9550;
+}
+.summary .type-list span:nth-child(5) {
+  border-color: #FFC286;
+  color: #FFC286;
+}
+.summary .type-list span:nth-child(6) {
+  border-color: #FCCA9E;
+  color: #FCCA9E;
+}
+.summary .footer {
+  font-size: 8px;
+  color: #8C8C8C;
+  margin-top: 6px;
+}
+.summary .footer i {
+  margin-right: 3px;
+}
+.summary .footer span:first-child {
+  margin-right: 14px;
+}
+
+.forecast-btn {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  font-size: 12px;
+  color: #D80C18;
+  width: 65px;
+  height: 40px;
+  border: 1px solid #D80C18;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+}
+.forecast-btn.active {
+  background-color: #D80C18;
+  color: #fff;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #000;
+  opacity: .6;
+}
+
+.search-modal {
+  position: absolute;
+  z-index: 3;
+  background-color: #D80C18;
+  top: 0;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  color: #fff;
+  font-size: 15px;
+  padding: 0 10px;
+}
+.search-modal input {
+  outline: none;
+  border-radius: 12px;
+  border: none;
+  padding: 5px 5px 5px 27px;
+  width: calc(100% - 95px);
+}
+.search-modal span {
+  margin-left: 10px;
+}
+.search-modal i {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+}

@@ -1,0 +1,29 @@
+allprojects {
+
+    thinkjoyCommonVersion = "0.1.83-SNAPSHOT"
+
+    thinkjoyCloudstackVersion = "0.0.34-SNAPSHOT"
+
+    thinkjoyUCMVersion = "1.0.0-SNAPSHOT"
+
+    jxProcotolCommonVersion = "0.0.136-SNAPSHOT"
+
+    freemarkerVersion = "2.3.20"
+
+    springVersion = "4.1.0.RELEASE"
+
+    jettyVersion = "6.1.26"
+
+    retrofitVersion = "1.9.0"
+
+    okhttpVersion = "2.1.0"
+
+    mockVersion = "1.0.3-SNAPSHOT"
+
+    jxCommonVersion = "0.0.9-SNAPSHOT"
+
+    k12systemVersion = "0.0.19-SNAPSHOT"
+
+    zgkSmsVersion = "0.0.3-SNAPSHOT"
+
+}

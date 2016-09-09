@@ -1,0 +1,192 @@
+header {
+  position: relative;
+  overflow: hidden;
+}
+header .header-title {
+  padding-left: 46px;
+}
+header .header-btn {
+  position: absolute;
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
+
+.container {
+  padding: 52px 26px;
+  color: #707070;
+  font-size: 14px;
+}
+.container .form-group {
+  margin-bottom: 23px;
+}
+.container .form-group label {
+  font-weight: bold;
+}
+.container .form-group .options {
+  display: flex;
+  margin-top: 7px;
+  height: 34px;
+  line-height: 34px;
+}
+.container .form-group .options span {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #979797;
+  border-radius: 3px;
+}
+.container .form-group .options span.active {
+  color: #fff;
+  background-color: #D80C18;
+  border-color: #D80C18;
+}
+.container .form-group .options span:first-child {
+  margin-right: 15px;
+}
+.container .form-group .input {
+  margin-top: 7px;
+}
+.container .form-group .input input {
+  width: 100%;
+  padding: 9px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #979797;
+  outline: none;
+}
+.container .calculate-btn {
+  width: 100%;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  background-color: #B81C22;
+  color: #fff;
+  margin-top: 54px;
+  border-radius: 3px;
+}
+.container .info {
+  font-size: 12px;
+  border-top: 1px solid #D8D8D8;
+  margin-top: 29px;
+  padding: 20px 12px;
+}
+
+.container-header {
+  padding: 22px 18px;
+  color: #707070;
+  font-size: 13px;
+  position: relative;
+}
+.container-header span {
+  color: #D80C18;
+}
+.container-header label:not(:first-child) {
+  margin-left: 16px;
+}
+.container-header .info {
+  margin-bottom: 11px;
+}
+.container-header .info:nth-child(3) {
+  display: flex;
+  align-items: center;
+}
+.container-header .more-school {
+  border: 1px solid #D80C18;
+  position: absolute;
+  width: 90px;
+  height: 33px;
+  right: 21px;
+  bottom: 31px;
+  line-height: 33px;
+  text-align: center;
+  color: #D80C18;
+  border-radius: 3px;
+}
+
+.hr {
+  text-align: center;
+  font-size: 12px;
+  color: #B4B4B4;
+  margin-top: 10px;
+  position: relative;
+}
+.hr span:after {
+  content: "";
+  width: 63px;
+  height: 1px;
+  display: block;
+  background-color: #B4B4B4;
+  position: absolute;
+  right: 25px;
+  top: 8px;
+  float: right;
+}
+.hr span:before {
+  content: "";
+  width: 63px;
+  height: 1px;
+  display: block;
+  background-color: #B4B4B4;
+  position: absolute;
+  top: 8px;
+  float: left;
+  left: 20px;
+}
+
+.container-content {
+  margin-top: 15px;
+  padding: 17px;
+  font-size: 12px;
+}
+.container-content .title {
+  color: #D80C18;
+}
+.container-content table {
+  border-collapse: collapse;
+  margin-top: 14px;
+  width: 100%;
+  color: #707070;
+}
+.container-content table thead {
+  border-collapse: collapse;
+  margin-top: 14px;
+  width: 100%;
+}
+.container-content table thead th {
+  color: #fff;
+  background-color: #D80C18;
+  border: 1px solid #D80C18;
+}
+.container-content table thead th:not(:last-child) {
+  border-right-color: #960810;
+}
+.container-content table th,
+.container-content table td {
+  padding: 5px 0;
+  text-align: center;
+}
+.container-content table tbody td {
+  border: 1px solid #CFCFCF;
+}
+
+.back {
+  border: 1px solid #D80C18;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: #D80C18;
+  border-radius: 3px;
+  margin: 0 auto;
+  margin-top: 30px;
+}

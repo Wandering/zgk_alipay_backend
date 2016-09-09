@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <title>11</title>
+    <style type="text/css">
+        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, button, input, select, textarea {
+            font: 12px arial, \5b8b\4f53, sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+        }
+
+        address, cite, dfn, em, var {
+            font-style: normal;
+        }
+
+        code, kbd, pre, samp {
+            font-family: courier new, courier, monospace;
+        }
+
+        small {
+            font-size: 12px;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        sup {
+            vertical-align: text-top;
+        }
+
+        sub {
+            vertical-align: text-bottom;
+        }
+
+        legend {
+            color: #000;
+        }
+
+        fieldset, img {
+            border: 0;
+        }
+
+        button, input, select, textarea {
+            font-size: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .col-main {
+            float: left;
+            width: 100%;
+            min-height: 1px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .invisible {
+            visibility: hidden;
+        }
+
+        .clear:after {
+            content: '\20';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .clear {
+            *zoom: 1;
+            font-size: 0;
+            clear: both;
+        }
+
+        a:link, a:visited {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #c00;
+            text-decoration: underline;
+        }
+
+        img {
+            border: 0;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        * html > body .clearfix {
+            display: inline-block;
+            width: 100%
+        }
+
+        * html .clearfix {
+            height: 1%;
+        }
+
+        * + html .clearfix {
+            min-height: 1%
+        }
+
+        body {
+            background: url('img/bg.jpg') no-repeat;
+            background-size: cover
+        }
+
+        .main {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            display: none;
+        }
+
+        .main .title {
+            height: 80px;
+            margin: 10px 0;
+            border-bottom: #CCCCCC 1px dashed;
+            background: url('img/xline.gif') 160px -15px no-repeat;
+        }
+
+        .main .title .l {
+            float: left;
+            text-align: center;
+        }
+
+        .main .title .r {
+            float: right;
+            padding: 16px 16px 0 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .main .title .r span {
+            color: #666666;
+        }
+
+        .main .title .r .n {
+            font-size: 24px;
+            color: #FF3232;
+            padding-top: 2px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .main .intro {
+            padding: 20px;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.5em;
+            color: #EC4E21;
+            text-indent: 2em;
+            position: relative;
+            top: 64px;
+        }
+
+        .main .intro span {
+            color: #FF3232;
+            font-size: 20px;
+        }
+
+        .main .start {
+            display: inline-block;
+            width: 220px;
+            height: 40px;
+            line-height: 40px;
+            margin: 10px 0;
+            letter-spacing: 4px;
+            background: #0077C4;
+            border-radius: 4px;
+            box-shadow: 0 4px #0368AA;
+            font-size: 18px;
+            color: #fff;
+            font-family: '微软雅黑';
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .main .pic {
+            text-align: center;
+            margin: 70px 5% 40px;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+
+        .main .pic span.name {
+            position: absolute;
+            left: 41px;
+            top: 66px;
+            width: 53px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            overflow: hidden;
+
+        }
+
+        .face {
+            width: 296px;
+            height: 251px;
+            margin: 32px auto 0 auto;
+        }
+
+        .loading {
+            padding: 124px 0 0 47px;
+            font-size: 0;
+        }
+
+        .loading .l {
+            width: 8px;
+            height: 17px;
+            background: url('img/loading.png') no-repeat;
+            background-size: 9px 89px;
+        }
+
+        .loading .r {
+            width: 9px;
+            height: 17px;
+            background: url('img/loading.png') 0 -72px no-repeat;
+            background-size: 9px 89px;
+        }
+
+        .loading .c {
+            height: 17px;
+            background: url('img/loading.png') 0 -54px repeat-x;
+            background-size: 9px 89px;
+        }
+
+        .loading .j1 {
+            float: left;
+            height: 17px;
+            background: url('img/loading.png') 0 -18px repeat-x;
+            background-size: 9px 89px;
+        }
+
+        .loading .j2 {
+            float: left;
+            width: 9px;
+            height: 17px;
+            background: url('img/loading.png') 0 -36px no-repeat;
+            background-size: 9px 89px;
+        }
+
+        .txt {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ED7705;
+            padding-top: 22px;
+        }
+
+        .share {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            line-height: 40px;
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .share .arron {
+            position: absolute;
+            top: 8px;
+            right: 25px;
+            width: 100px;
+            height: 100px;
+            background: url('img/arron.png') no-repeat;
+            background-size: 100px 100px;
+        }
+
+        .share p {
+            padding-top: 20%;
+        }
+
+        #rs a.left {
+            display: inline-block;
+            width: 70px;
+            padding: 15px 30px;
+            margin: 0 auto 80px;
+            background-color: #FC7652;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 35px;
+            box-shadow: 0 7px 0 0 #EC4E21;
+        }
+
+        #rs a.right {
+            display: inline-block;
+            width: 70px;
+            padding: 15px 30px;
+            margin: 0 auto 80px;
+            background-color: #FC7652;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 35px;
+            box-shadow: 0 7px 0 0 #EC4E21;
+        }
+
+        #schoolName {
+            font-size: 14px;
+        }
+
+        #text-content {
+            color: #fff;
+            font-size: 18px;
+            margin-top: 48px;
+        }
+    </style>
+    <script type="text/javascript">
+        var _czc = _czc || [];
+        _czc.push(["_setAccount", "1255715953"]);
+        var len = 0;
+        var atime;
+
+        window.onload = function () {
+            atime = setInterval(function () {
+                len += 1.3;
+                if (len < 178) {
+                    document.getElementById("j1").style.width = len + 'px';
+
+                } else {
+                    document.getElementById("txt").innerHTML = '正在进入结果页';
+                    clearInterval(atime);
+                    document.getElementById("face").style.display = 'none';
+                    document.getElementById("main").style.display = 'block';
+                }
+            }, 10)
+        }
+
+    </script>
+</head>
+<body>
+<div class="face" id="face">
+    <div class="loading">
+        <table width="203" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="8" headers="17">
+                    <div class="l"></div>
+                </td>
+                <td width="188">
+                    <div class="c">
+                        <div class="j1" id="j1"></div>
+                        <div class="j2"></div>
+                    </div>
+                </td>
+                <td width="9">
+                    <div class="r"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="txt" id="txt">正在加载中...</div>
+</div>
+<div id="share" class="share" onclick="document.getElementById('share').style.display='none';">
+    <div class="arron"></div>
+</div>
+<div id="share2" class="share" onclick="document.getElementById('share2').style.display='none';">
+    <div class="arron"></div>
+    <p>点击右上角<br/>【在浏览器中打开】<br/></p></div>
+
+<div class="main" id="main">
+    <div class="intro">经智高考坚定，你是玉树临风才高八斗的美少年，恭喜你将被<span id="schoolName"></span>录取！</div>
+    <div class="pic">
+        <span class="name" id="userName">你好</span><img id="introImg" src="" width="250"/>
+        <p id="text-content"></p>
+    </div>
+    <div id="rs" style="margin-top:20px;">
+        <a href="" class="left">报考外挂</a>
+        <a href="javascript:void(0);" class="right">不服来战</a>
+    </div>
+</div><!--/main-->
+<script src="../src/lib/jquery/jquery-2.2.2.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../src/lib/sha1/sha1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function GetLocationParam(param) {
+            var request = {
+                QueryString: function (val) {
+                    var uri = window.location.search;
+                    var re = new RegExp("" + val + "=([^&?]*)", "ig");
+                    return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
+                }
+            };
+            return request.QueryString(param);
+        }
+
+        $('#userName').text(GetLocationParam("nickname"));
+
+        var introTxtArr = [
+            '清华大学',
+            '北京大学',
+            '蓝翔高级技工学校',
+            '新东方烹饪学校'
+        ];
+
+        var textArr = [
+            '北大老，师大穷，唯有清华最通融',
+            '未名湖畔的容嬷嬷在等着你',
+            '挖掘机技术哪家强',
+            '找个新东方厨师就嫁了吧'
+        ];
+
+        var introImg = [
+            'img/school01.jpg',
+            'img/school04.jpg',
+            'img/school03.jpg',
+            'img/school02.jpg'
+        ];
+
+        function GetRandomNum(Min, Max) {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            return (Min + Math.round(Rand * Range));
+        }
+
+        var num = GetRandomNum(1, 4);
+//        alert(num);
+//        alert(introTxtArr[num]);
+//        alert(introImg[num]);
+
+        $('#schoolName').text(introTxtArr[num]);
+        $('#introImg').attr('src', introImg[num]);
+        $('#text-content').text(textArr[num]);
+
+//
+//
+//        wx.config({
+//            debug: false,
+//            appId: 'wx552f3800df25e964',
+//            timestamp: 1464917262,
+//            nonceStr: 'U5iQqjfV123NT5du',
+//            signature: getSign,
+//            jsApiList: [
+//                // 所有要调用的 API 都要加到这个列表中
+//                'checkJsApi',
+//                'onMenuShareTimeline',
+//                'onMenuShareAppMessage',
+//                'onMenuShareQQ',
+//                'onMenuShareWeibo',
+//                'hideMenuItems'
+//            ]
+//        });
+//        var title = "原来那个穿越到《花千骨》里是糖宝，异朽阁的灵虫，聪明伶俐惹人爱。";
+//        var desc = "你在花千骨里是谁？快来穿越吧！";
+//        var url = "http://mp.weixin.qq.com/s?__biz=MzAwMjA3NjAxMA==&mid=207997637&idx=1&sn=cb6777ed22cbd5dadf9dd29895eb0ab7#rd";
+//        var img = "http://share4.kaojin.com.cn/app/hqg/pic/8.jpg";
+//        wx.ready(function () {
+//            /*
+//             wx.hideMenuItems({
+//             menuList: ['menuItem:share:timeline','menuItem:exposeArticle'] // 要隐藏的菜单项，只能隐藏"传播类"和"保护类"按钮，所有menu项见附录3
+//             });
+//             */
+//            wx.onMenuShareAppMessage({
+//                title: title, // 分享标题
+//                desc: desc, // 分享描述
+//                link: url, // 分享链接
+//                imgUrl: img, // 分享图标
+//                type: '', // 分享类型,music、video或link，不填默认为link
+//                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//                success: function () {
+//                    // 用户确认分享后执行的回调函数
+//                    shareComplete();
+//                },
+//                cancel: function () {
+//                    // 用户取消分享后执行的回调函数
+//                }
+//            });
+//            wx.onMenuShareTimeline({
+//                title: title, // 分享标题
+//                desc: desc, // 分享描述
+//                link: url, // 分享链接
+//                imgUrl: img, // 分享图标
+//                type: '', // 分享类型,music、video或link，不填默认为link
+//                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//                success: function () {
+//                    // 用户确认分享后执行的回调函数
+//                    shareComplete();
+//                },
+//                cancel: function () {
+//                    // 用户取消分享后执行的回调函数
+//                }
+//            });
+//            wx.onMenuShareQQ({
+//                title: title, // 分享标题
+//                desc: desc, // 分享描述
+//                link: url, // 分享链接
+//                imgUrl: img, // 分享图标
+//                success: function () {
+//                    // 用户确认分享后执行的回调函数
+//                    shareComplete();
+//                },
+//                cancel: function () {
+//                    // 用户取消分享后执行的回调函数
+//                }
+//            });
+//            wx.onMenuShareWeibo({
+//                title: title, // 分享标题
+//                desc: desc, // 分享描述
+//                link: url, // 分享链接
+//                imgUrl: img, // 分享图标
+//                success: function () {
+//                    // 用户确认分享后执行的回调函数
+//                    shareComplete();
+//                },
+//                cancel: function () {
+//                    // 用户取消分享后执行的回调函数
+//                }
+//            });
+//        });
+//        function shareComplete(){
+//            document.getElementById('share').style.display='none';
+//        }
+        /***************************自定义二维码*************************************/
+
+        var timestamp = parseInt(new Date().getTime() / 1000);
+
+        var noncestr = 'U5iQqjfV123NT5du';
+
+        var urls = window.location.href;
+
+        var title = '高考【VIP购买】邀请';
+        var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧；智高考，智慧填报专家';
+        var logo = 'http://zgkser.zhigaokao.cn/static/dist/img/logo.jpg';
+
+        function getSign() {
+            $.ajaxSettings.async = false;
+            var signStr = '';
+            $.getJSON(window.location.host + '/pay/getAccessToken', function (res) {
+                alert(res)
+                if (res.rtnCode == "0000000") {
+                    var ticket = res.bizData.ticket;
+                    var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=" + window.location.href;
+                    var sign = CryptoJS.SHA1(string1);
+                    signStr = sign.toString();
+                    alert(signStr)
+                }
+            });
+            $.ajaxSettings.async = true;
+            return signStr;
+        }
+
+        wx.config({
+            debug: true,
+            appId: 'wx552f3800df25e964',
+            timestamp: timestamp,
+            nonceStr: noncestr,
+            signature: getSign(),
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+        wx.ready(function () {
+            wx.checkJsApi({
+                jsApiList: [
+                    'getNetworkType',
+                    'previewImage'
+                ],
+                success: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title: title,
+                desc: desc,
+                //link: window.location.href,//分享链接
+                link: urls,//分享链接
+                imgUrl: logo, // 分享图标
+                trigger: function (res) {
+                    alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    alert('已分享');
+                    shareComplete();
+                },
+                cancel: function (res) {
+                    alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+
+            wx.onMenuShareTimeline({
+                title: title,
+                desc: desc,
+//                link: window.location.href,//分享链接
+                link: urls,//分享链接
+                imgUrl: logo, // 分享图标
+                trigger: function (res) {
+                    alert('用户点击分享到朋友圈');
+                },
+                success: function (res) {
+                    alert('已分享');
+                    shareComplete();
+                },
+                cancel: function (res) {
+                    alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            alert(res.errMsg);
+        });
+        function shareComplete() {
+            document.getElementById('share').style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>

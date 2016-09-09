@@ -1,0 +1,273 @@
+@import "common";
+body {
+    background-color: #efefef;
+}
+// 成绩分析公用部分
+.result-section {
+    margin: 15px auto;
+    background-color: #fff;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    .section-title {
+        line-height: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 15px;
+        &:before {
+            content: '';
+            color: $mainRed;
+            width: 4px;
+            height: 15px;
+            line-height: 20px;
+            display: inline-block;
+            background-color: $mainRed;
+            position: relative;
+            top: 1px;
+        }
+        .intro-txt {
+            color: #575757;
+            font-size: 14px;
+            margin: 15px 2px;
+            font-weight: normal;
+        }
+    }
+}
+// 我的成绩
+.analyse-base-info {
+    .img-avatar {
+        position: relative;
+    }
+    .img-total-score {
+        position: absolute;
+        bottom: 8px;
+        color: #fff;
+        left: 18px;
+        font-size: 18px;
+        i {
+            font-style: normal;
+            font-size: 8px;
+            position: relative;
+            top: -2px;
+        }
+    }
+    .analyse-legend {
+        margin-right: 15px;
+        width: 73px;
+        height: 94px;
+        border: none;
+        background-color: #f1f1f1;
+    }
+    .analyse-info {
+        font-weight: bold;
+        margin-bottom: 10px;
+        .subject-type {
+            margin-right: 15px;
+        }
+    }
+    .anlyse-subject {
+        overflow: hidden;
+        .col-1 {
+            float: left;
+            font-size: 14px;
+            color: #4a4a4a;
+            min-width: 80px;
+            margin-bottom: 5px;
+            .list-score {}
+            .list-subjct {
+                min-width: 50px;
+            }
+        }
+    }
+    .analyse-infomation {
+        text-align: justify;
+        font-size: 10px;
+        font-weight: bold;
+        line-height: 15px;
+        .over-num,
+        .over-percent,
+        .rank-num-text {
+            color: $mainRed;
+        }
+    }
+}
+// 成绩统计
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table tbody tr td,
+table thead tr th {
+    border: 1px solid #f1f1f1;
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+table thead tr th {
+    background: #f5f5f5;
+    border-bottom: none;
+}
+.sub-small-title {
+    color: #575757;
+    font-size: 14px;
+    margin: 15px 2px;
+    &:before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: $mainRed;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        top: -1px;
+        left: -2px;
+    }
+    .intro-txt {
+        margin-top: 10px;
+    }
+}
+.chart-tab {
+    $yellowColor: #f88432;
+    margin: 0 8%;
+    .tab {
+        cursor: pointer;
+        font-size: 12px;
+        border: 1px solid $yellowColor;
+        border-radius: 2px;
+        height: 24px;
+        line-height: 24px;
+        min-width: 110px;
+        text-align: center;
+        color: $yellowColor;
+    }
+    .mrP3 {
+        margin-right: 4%;
+    }
+}
+.recommond-school {
+    table {
+        color: #575757;
+        font-size: 14px;
+        margin-bottom: 15px;
+        tbody tr td {
+            i {
+                position: relative;
+                top: 1px;
+                left: -3px;
+            }
+        }
+        th {
+            font-weight: normal;
+        }
+        .type-0 {
+            color: #44C5A8;
+        }
+        .type-1 {
+            color: #4A90E2;
+        }
+        .type-2 {
+            color: #F58023;
+        }
+    }
+}
+.prompt-txt {
+    font-size: 12px;
+    line-height: 16px;
+    color: #8b8b8b;
+}
+.select-itme {
+    font-size: 12px;
+    .input-school {
+        width: 100%;
+        padding: 2px 10px;
+        border-radius: 2px;
+        height: 26px;
+        line-height: 26px;
+        box-sizing: border-box;
+    }
+    .on-input {
+        border: 1px solid #ccc;
+        border-top: none;
+        padding: 0 10px;
+        position: absolute;
+        top: 25px;
+        li {
+            line-height: 20px;
+        }
+    }
+    .select-batch {
+        position: relative;
+        color: #555;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        margin: 0 20px;
+        .icon-bottom-arrow-0 {
+            position: absolute;
+            top: 8px;
+            right: 5px;
+            background-size: 45px 198px!important;
+        }
+        select {
+            background: #fff;
+            background-color: #fff;
+            border: none;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            display: block;
+            width: 100%;
+            height: 28px;
+            line-height: 28px;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+    }
+    .btn-confirm {
+        width: 100%;
+        background-color: $mainRed;
+        text-align: center;
+        height: 31px;
+        line-height: 31px;
+        color: #fff;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+}
+.how-dream-result {
+    margin: 10px 0;
+    .icon-gcmj {
+        min-width: 65px;
+        margin-right: 10px;
+    }
+    .dream-batch,
+    .dream-school-name,
+    .live-up,
+    .over-height {
+        color: $mainRed;
+        font-size: 14px;
+    }
+    .dream-school-name {
+        cursor: pointer;
+        margin-right: 20px;
+        text-decoration: underline;
+    }
+    .dream-txt {
+        font-weight: bold;
+        font-size: 12px;
+        margin: 10px 0;
+        line-height: 18px;
+    }
+    .dream-tips {
+        font-size: 12px;
+    }
+}
+.instructions-text {
+    font-size: 12px;
+    line-height: 16px;
+    color: #8b8b8b;
+}
+.mb0 {
+    margin-bottom: 0;
+}

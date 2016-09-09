@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.zgk.market.dao.ex.IPayExDAO">
+
+    <!-- 根据用户ID获取用户总收益 -->
+    <select id="getAllIncomeByUserId" parameterType="map" resultType="Double">
+        select
+            sum(price)
+        from
+            zgk_split_price
+        where
+        type = 1
+        and user_id = #{userId}
+    </select>
+
+    <!-- 根据用户ID获取用户提现总额 -->
+    <select id="getTotalWithdrawalsByUserId" parameterType="map" resultType="Double">
+        select
+            sum(money)
+        from
+            zgk_user_withdraw_record
+        where
+            userId = #{userId}
+    </select>
+
+
+    <!-- 根据用户ID查询用户收益详情 -->
+    <select id="queryUserIncomeDetailByUserId" parameterType="map" resultType="map">
+        SELECT
+            t0.price/100 as rewardMoney,
+            t0.create_time as createDate,
+            t2.name as userName
+        FROM
+            zgk_split_price t0 ,
+            zgk_order t1,
+            zgk_user_info t2
+        WHERE
+            t0.order_no = t1.order_no
+        and t1.user_id = t2.id
+        AND t0.user_id = #{userId}
+        ORDER BY t0.create_time desc
+        limit #{index},#{pageSize}
+    </select>
+
+    <select id="selectSplitPriceList" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        split.user_id as userId,user_phone as userPhone,info.name as fromUserName,
+        split.price,split.order_no as orderNo,split.type,split.status,split.create_time as createTime
+        from zgk_split_price split
+        left join zgk_order ord on split.order_no=ord.order_no
+        left join zgk_user_info info on ord.user_id=info.id
+        <where>
+            <if test="userId!=null">
+                split.user_id=#{userId,jdbcType=INTEGER}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

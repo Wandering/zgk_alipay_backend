@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <description>cs dubbo 服务消费配置 </description>
+    
+    <!-- 账号dubbo -->
+    <dubbo:reference id="agentService" interface="cn.thinkjoy.zgk.zgksystem.AgentService" check="false" retries="0" timeout="600000" />
+    <dubbo:reference id="deparmentApiService" interface="cn.thinkjoy.zgk.zgksystem.DeparmentApiService" check="false" retries="0" timeout="600000" />
+
+    <!-- 智高考专有短信服务 -->
+    <dubbo:reference id="zgkSmsService" interface="cn.thinkjoy.sms.api.SMSService" check="false" retries="0" timeout="600000" />
+
+</beans>

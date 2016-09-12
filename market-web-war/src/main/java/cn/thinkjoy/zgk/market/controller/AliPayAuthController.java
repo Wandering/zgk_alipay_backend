@@ -62,7 +62,7 @@ public class AliPayAuthController
     public String authPage()
         throws Exception
     {
-        String redirectUrl = "http%3A%2F%2Fali.zhigaokao.cn%2FalipayAuth%2FgetUserId";
+        String redirectUrl = "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetUserId";
         StringBuffer baseAuthURL = new StringBuffer(baseAuthUrl);
         baseAuthURL.append("app_id=").append(AlipayConfig.APP_ID);
         baseAuthURL.append("&scope=").append("auth_base");
@@ -96,7 +96,7 @@ public class AliPayAuthController
         Map<String, Object> userInfoMap = userAccountExService.findUserInfoByAlipayId(aliUserId);
         if (null == userInfoMap || userInfoMap.isEmpty())
         {
-            String redirectUrl = "http%3A%2F%2Fali.zhigaokao.cn%2FalipayAuth%2FgetAuthToken";
+            String redirectUrl = "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetAuthToken";
             StringBuffer userInfoAuthURL = new StringBuffer(baseAuthUrl);
             userInfoAuthURL.append("app_id=").append(AlipayConfig.APP_ID);
             userInfoAuthURL.append("&scope=").append("auth_userinfo");

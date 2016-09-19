@@ -44,7 +44,7 @@ public class AliPayAuthController
 
     private AlipayClient alipayClient = new DefaultAlipayClient(userInfoUrl,
         AlipayConfig.APP_ID, AlipayConfig.APP_PRIVATE_KEY, "json",
-        "GBK", AlipayConfig.ALIPAY_PUBLIC_KEY);
+        "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY);
 
     AlipayClient alipayClientDev = new DefaultAlipayClient(userInfoDevUrl,
         AlipayConfig.APP_DEV_ID, AlipayConfig.APP_DEV_PRIVATE_KEY, "json",
@@ -213,7 +213,7 @@ public class AliPayAuthController
         req.setAttribute("text_img_edu");
         req.setTamplate_id("1003");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602");
+        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -222,7 +222,7 @@ public class AliPayAuthController
         sceneData.setIcon("https://t.alipayobjects.com/images/publichome/T1xyFtXalbXXaCwpjX.png");
         sceneData.setSend_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         sceneData.setContent(
-            "昨天(23日)上午，习近平总书记来到青海省海东市互助土族自治县五十镇班彦村，考察易地扶贫搬迁新村建设情况。在新村建设工地，习近平冒着蒙蒙细雨，走过尚未完工的泥泞道路，来到村民吕有章的新家，察看房屋格局，了解施工进展，关心火炕取暖效果。");
+            "图片消息");
         sceneData.setImg1_source_url(imgSrc);
         sceneData.setTarget_url("https://www.baidu.com");
         req.setScene_data(sceneData);
@@ -235,7 +235,8 @@ public class AliPayAuthController
         AlipayEcoCmsCdataUploadResponse response;
         try
         {
-            response = alipayClientDev.execute(request);
+//            response = alipayClientDev.execute(request);
+            response = alipayClient.execute(request);
         }
         catch (AlipayApiException e)
         {
@@ -262,7 +263,7 @@ public class AliPayAuthController
         req.setAttribute("text_edu");
         req.setTamplate_id("1004");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602");
+        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -283,7 +284,8 @@ public class AliPayAuthController
         AlipayEcoCmsCdataUploadResponse response;
         try
         {
-            response = alipayClientDev.execute(request);
+//            response = alipayClientDev.execute(request);
+            response = alipayClient.execute(request);
         }
         catch (AlipayApiException e)
         {
@@ -310,7 +312,7 @@ public class AliPayAuthController
         req.setAttribute("link_edu");
         req.setTamplate_id("1005");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602");
+        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -320,7 +322,7 @@ public class AliPayAuthController
         sceneData.setSend_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         sceneData.setSource("新浪网");
         sceneData.setContent(
-            "昨天(23日)上午，习近平总书记来到青海省海东市互助土族自治县五十镇班彦村，考察易地扶贫搬迁新村建设情况。在新村建设工地，习近平冒着蒙蒙细雨，走过尚未完工的泥泞道路，来到村民吕有章的新家，察看房屋格局，了解施工进展，关心火炕取暖效果。");
+            "链接消息");
         sceneData.setLink_img_url("https://t.alipayobjects.com/images/publichome/T1xyFtXalbXXaCwpjX.png");
         sceneData.setTarget_url("https://www.baidu.com");
         req.setScene_data(sceneData);
@@ -333,7 +335,8 @@ public class AliPayAuthController
         AlipayEcoCmsCdataUploadResponse response;
         try
         {
-            response = alipayClientDev.execute(request);
+//            response = alipayClientDev.execute(request);
+            response = alipayClient.execute(request);
         }
         catch (AlipayApiException e)
         {

@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: cn.thinkjoy.common:thinkjoy-protocol-common:0.1.83-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-protocol-common/0.1.83-SNAPSHOT/a9ff8434024e522b8333a4c5ed256e0a4cb6a82a/thinkjoy-protocol-common-0.1.83-SNAPSHOT.jar!/" />
+      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-protocol-common/0.1.83-SNAPSHOT/a9ff8434024e522b8333a4c5ed256e0a4cb6a82a/thinkjoy-protocol-common-0.1.83-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-protocol-common/0.1.83-SNAPSHOT/c04c7826aff885d8fc1dd717608bfb17b576a40e/thinkjoy-protocol-common-0.1.83-SNAPSHOT-sources.jar!/" />
+      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-protocol-common/0.1.83-SNAPSHOT/c04c7826aff885d8fc1dd717608bfb17b576a40e/thinkjoy-protocol-common-0.1.83-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

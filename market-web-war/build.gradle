@@ -27,4 +27,6 @@ dependencies {
     compile name: 'alipay-sdk-java-DEV20160822105354'
 
     compile name: 'industrydata-common-service-facade-1.0.2'
+
+    compile group: 'net.gplatform', name: 'Sdk4J', version: '2.0'
 }

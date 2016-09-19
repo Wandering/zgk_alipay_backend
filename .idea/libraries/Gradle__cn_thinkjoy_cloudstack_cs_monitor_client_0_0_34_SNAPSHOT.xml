@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: cn.thinkjoy.cloudstack:cs-monitor-client:0.0.34-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-monitor-client/0.0.34-SNAPSHOT/1c6ba2cc50e81242dfbb8890ddb210c49152000d/cs-monitor-client-0.0.34-SNAPSHOT.jar!/" />
+      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-monitor-client/0.0.34-SNAPSHOT/1c6ba2cc50e81242dfbb8890ddb210c49152000d/cs-monitor-client-0.0.34-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-monitor-client/0.0.34-SNAPSHOT/33b92cc60b85932caddcae79a04c50bc0c59a4b/cs-monitor-client-0.0.34-SNAPSHOT-sources.jar!/" />
+      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-monitor-client/0.0.34-SNAPSHOT/33b92cc60b85932caddcae79a04c50bc0c59a4b/cs-monitor-client-0.0.34-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

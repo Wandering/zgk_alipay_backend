@@ -5,8 +5,6 @@
     <title>智高考</title>
 </head>
 <body>
-<script>
-    window.location.href="/index";
-</script>
+<a href="/qqAuth/authPage.do">请使用你的QQ账号登陆</a>
 </body>
 </html>

@@ -37,6 +37,8 @@ public class UserAccount extends BaseDomain<Long> {
 
 	private String avatar;
 
+	private long userId;
+
 	public String getAvatar()
 	{
 		return avatar;
@@ -144,6 +146,14 @@ public class UserAccount extends BaseDomain<Long> {
 
 	public void setLastModDate(Long lastModDate) {
 		this.lastModDate = lastModDate;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public String toString() {

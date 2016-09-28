@@ -4,6 +4,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.alipay.*;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.common.TimeUtil;
+import cn.thinkjoy.zgk.market.common.ZgkAlipayClient;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.service.IProvinceService;
@@ -42,11 +43,11 @@ public class AliPayAuthController
 
     private String userInfoDevUrl = "http://openapi.stable.dl.alipaydev.com/gateway.do";
 
-    private AlipayClient alipayClient = new DefaultAlipayClient(userInfoUrl,
+    private AlipayClient alipayClient = new ZgkAlipayClient(userInfoUrl,
         AlipayConfig.APP_ID, AlipayConfig.APP_PRIVATE_KEY, "json",
         "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY);
 
-    AlipayClient alipayClientDev = new DefaultAlipayClient(userInfoDevUrl,
+    AlipayClient alipayClientDev = new ZgkAlipayClient(userInfoDevUrl,
         AlipayConfig.APP_DEV_ID, AlipayConfig.APP_DEV_PRIVATE_KEY, "json",
         "UTF-8", AlipayConfig.ALIPAY_DEV_PUBLIC_KEY);
 

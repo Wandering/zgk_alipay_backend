@@ -194,7 +194,13 @@ public class AliPayAuthController
         }
         catch (AlipayApiException e)
         {
-            throw new BizException(e.getErrCode(), e.getMessage());
+            //throw new BizException(e.getErrCode(), e.getMessage());
+            try {
+                oauthTokenResponse = alipayClient.execute(request);
+            } catch (AlipayApiException e1) {
+                oauthTokenResponse = new AlipaySystemOauthTokenResponse();
+            }
+
         }
         return oauthTokenResponse;
     }

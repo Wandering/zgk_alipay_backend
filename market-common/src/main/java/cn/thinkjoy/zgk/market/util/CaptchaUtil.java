@@ -9,11 +9,9 @@ import java.util.Random;
 
 public class CaptchaUtil {
     /**
-     * 绘制字符串
      */
     public static String getRandomString(BufferedImage image){
         Random random = new Random();
-        //产生Image对象的Graphics对象,改对象可以在图像上进行各种绘制操作
         Graphics g = image.getGraphics();
         g.fillRect(0, 0, image.getWidth(),image.getHeight());
 //        g.setFont(CaptchaConst.FIXEDSYS);
@@ -22,17 +20,14 @@ public class CaptchaUtil {
 
         g.setColor(CaptchaConst.PURPLE_COLOR);
 
-        // 画边框
 		g.drawRect(0, 0, CaptchaConst.PIC_WIDTH- 1, CaptchaConst.PIC_HEIGHT - 1);
         int red = 0, green = 0, blue = 0;
-        //绘制随机字符
         StringBuffer randomString = new StringBuffer("");
         String rand = null;
 //        int stringPoint = CaptchaConst.TRANSLATE_START*random.nextInt(3);
         for(int i=1;i<=CaptchaConst.RANDOM_STRING_NUM;i++){
             rand = String.valueOf(CaptchaConst.RAND_STRING.charAt(random.nextInt(CaptchaConst.RAND_STRING.length()-1)));
             randomString.append(rand);
-            // 产生随机的颜色分量来构造颜色值，这样输出的每位数字的颜色值都将不同。
             red = random.nextInt(255);
             green = random.nextInt(255);
             blue = random.nextInt(255);
@@ -50,7 +45,6 @@ public class CaptchaUtil {
         return randomString.toString();
     }
     /**
-     * 生成随机字符串
      */
     public static String getRandomString(){
         Random random = new Random();
@@ -64,7 +58,6 @@ public class CaptchaUtil {
     }
 
     /**
-     * 生成随机字符串
      */
     public static String getRandomString(int randomLength){
         Random random = new Random();
@@ -78,7 +71,6 @@ public class CaptchaUtil {
     }
 
     /**
-     * 生成随机数字字符串
      */
     public static String getRandomNumString(int randomLength){
         Random random = new Random();

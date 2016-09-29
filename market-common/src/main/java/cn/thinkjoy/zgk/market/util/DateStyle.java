@@ -19,10 +19,10 @@ public enum DateStyle {
 	YYYY_MM_DD_HH_MM_EN("yyyy-MM-dd HH:mm", false),
 	YYYY_MM_DD_HH_MM_SS_EN("yyyy-MM-dd HH:mm:ss", false),
 
-	YYYY_MM_CN("yyyyÄêMMÔÂ", false), 
-	YYYY_MM_DD_CN("yyyyÄêMMÔÂddÈÕ", false), 
-	YYYY_MM_DD_HH_MM_CN("yyyyÄêMMÔÂddÈÕ HH:mm", false),
-	YYYY_MM_DD_HH_MM_SS_CN("yyyyÄêMMÔÂddÈÕ HH:mm:ss", false),
+//	YYYY_MM_CN("yyyyï¿½ï¿½MMï¿½ï¿½", false),
+//	YYYY_MM_DD_CN("yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½ï¿½", false),
+//	YYYY_MM_DD_HH_MM_CN("yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½ï¿½ HH:mm", false),
+//	YYYY_MM_DD_HH_MM_SS_CN("yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½ï¿½ HH:mm:ss", false),
 	
 	HH("HH", true), 
 	HH_MM("HH:mm", true), 
@@ -34,11 +34,11 @@ public enum DateStyle {
 
 	MM_DD_EN("MM-dd", true),
 	MM_DD_HH_MM_EN("MM-dd HH:mm", true),
-	MM_DD_HH_MM_SS_EN("MM-dd HH:mm:ss", true),
+	MM_DD_HH_MM_SS_EN("MM-dd HH:mm:ss", true);
 
-	MM_DD_CN("MMÔÂddÈÕ", true),
-	MM_DD_HH_MM_CN("MMÔÂddÈÕ HH:mm", true),
-	MM_DD_HH_MM_SS_CN("MMÔÂddÈÕ HH:mm:ss", true);
+//	MM_DD_CN("MMï¿½ï¿½ddï¿½ï¿½", true),
+//	MM_DD_HH_MM_CN("MMï¿½ï¿½ddï¿½ï¿½ HH:mm", true),
+//	MM_DD_HH_MM_SS_CN("MMï¿½ï¿½ddï¿½ï¿½ HH:mm:ss", true);
 
 	private String value;
 

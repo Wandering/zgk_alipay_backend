@@ -12,7 +12,6 @@ import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayEcoCmsCdataUploadRequest;
 import com.alipay.api.request.AlipaySystemOauthTokenRequest;
 import com.alipay.api.request.AlipayUserUserinfoShareRequest;
@@ -20,6 +19,8 @@ import com.alipay.api.response.AlipayEcoCmsCdataUploadResponse;
 import com.alipay.api.response.AlipaySystemOauthTokenResponse;
 import com.alipay.api.response.AlipayUserUserinfoShareResponse;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,8 @@ import java.util.UUID;
 @Scope("prototype")
 public class AliPayAuthController
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AliPayAuthController.class);
+
     private String userInfoUrl = "https://openapi.alipay.com/gateway.do";
 
     private String userInfoDevUrl = "http://openapi.stable.dl.alipaydev.com/gateway.do";
@@ -195,9 +198,12 @@ public class AliPayAuthController
         catch (AlipayApiException e)
         {
             //throw new BizException(e.getErrCode(), e.getMessage());
+            LOGGER.error("first alipay auth authCode error : authCode = "+authCode);
             try {
+                LOGGER.info("alipay auth again : authCode = "+authCode);
                 oauthTokenResponse = alipayClient.execute(request);
             } catch (AlipayApiException e1) {
+                LOGGER.error("second alipay auth authCode error : authCode = "+authCode);
                 oauthTokenResponse = new AlipaySystemOauthTokenResponse();
             }
 

@@ -5,8 +5,10 @@ dependencies {
 
     compile "cn.thinkjoy.cloudstack:cs-spring-redis:$thinkjoyCloudstackVersion"
 
-    compile "org.apache.poi:poi-ooxml:3.9"
-    compile "org.apache.poi:poi:3.9"
+    compile 'commons-codec:commons-codec:1.9'
+//    compile ("org.apache.poi:poi:3.9"){
+//        exclude group: 'commons-codec'
+//    }
     compile "commons-io:commons-io:2.4"
     compile "com.google.zxing:core:3.2.1"
     compile ("cn.thinkjoy:microschool-core:1.4.7"){
@@ -14,7 +16,10 @@ dependencies {
         exclude group: 'org.springframework'
         exclude group: 'org.codehaus.jackson'
         exclude group: 'net.sf.json-lib'
+        exclude group: 'commons-codec'
     }
 
-    compile group: "org.apache.httpcomponents", name: "httpclient", version: "4.2.2"
+    compile (group: "org.apache.httpcomponents", name: "httpclient", version: "4.2.2"){
+        exclude group: 'commons-codec'
+    }
 }

@@ -129,6 +129,7 @@ subprojects{
     }
 
     dependencies{
+        compile 'commons-codec:commons-codec:1.9'
         //都会依赖bizcommon
         compile group: "cn.thinkjoy.common", name: "thinkjoy-domain-common", version: "$thinkjoyCommonVersion", changing: true
     }

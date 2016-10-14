@@ -2,10 +2,12 @@
   <library name="Gradle: cn.thinkjoy.cloudstack:cs-dynconfig-client:0.0.34-SNAPSHOT">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.34-SNAPSHOT/16c9f9a15509a58aad96aeb2ee6647036d9786d8/cs-dynconfig-client-0.0.34-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.34-SNAPSHOT/16c9f9a15509a58aad96aeb2ee6647036d9786d8/cs-dynconfig-client-0.0.34-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.34-SNAPSHOT/d43b7c200c3e12841fcb117a50ae0e0498797175/cs-dynconfig-client-0.0.34-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.34-SNAPSHOT/d43b7c200c3e12841fcb117a50ae0e0498797175/cs-dynconfig-client-0.0.34-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

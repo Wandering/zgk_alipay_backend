@@ -2,10 +2,12 @@
   <library name="Gradle: cn.thinkjoy.utils:core:0.0.3-SNAPSHOT">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.utils/core/0.0.3-SNAPSHOT/6a0ba5036cac075d56c6632750d48246075026ef/core-0.0.3-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.utils/core/0.0.3-SNAPSHOT/6a0ba5036cac075d56c6632750d48246075026ef/core-0.0.3-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.utils/core/0.0.3-SNAPSHOT/7131ea16e91e2aa2190b304cd1f46956d4406730/core-0.0.3-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.utils/core/0.0.3-SNAPSHOT/7131ea16e91e2aa2190b304cd1f46956d4406730/core-0.0.3-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

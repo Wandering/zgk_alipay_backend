@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.zgk.market.dao.ex.IScoreAnalysisDAO">
+
+    <!--获取用户测评条数-->
+    <select id="queryScoreCount" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        from zgk_score_base
+        WHERE user_id = #{userId}
+    </select>
+
+    <!--获取用户年级-->
+    <select id="queryUserGradeInfo" resultType="java.lang.String">
+        SELECT
+        gradeInfo
+        from zgk_user_info
+        WHERE id = #{userId} limit 1
+    </select>
+
+</mapper>
+

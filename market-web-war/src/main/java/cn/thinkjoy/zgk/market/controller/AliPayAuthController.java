@@ -8,6 +8,7 @@ import cn.thinkjoy.zgk.market.common.ZgkAlipayClient;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.service.IProvinceService;
+import cn.thinkjoy.zgk.market.service.IScoreAnalysisService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
@@ -40,7 +41,12 @@ import java.util.UUID;
 @Scope("prototype")
 public class AliPayAuthController
 {
+    @Autowired
+    private IScoreAnalysisService scoreAnalysisService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AliPayAuthController.class);
+    private static final String ZJ_AREA = "330000";
+    private static final String JS_AREA = "320000";
 
     private String userInfoUrl = "https://openapi.alipay.com/gateway.do";
 
@@ -114,7 +120,32 @@ public class AliPayAuthController
 
     private String getRedirectUrl(String userId, String areaId)
     {
-        return "redirect:http://alipay.zhigaokao.cn/welcome.html?userId=" + userId + "&areaId=" + areaId;
+
+        String baseUrl = "redirect:http://alipay.zhigaokao.cn/";
+        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId;
+
+        if (scoreAnalysisService.queryUserIsFirst(Long.valueOf(userId))==0){
+            baseUrl+="is-new.html";
+            baseUrl+=baseUrlEnd;
+            return baseUrl;
+        }
+
+        switch (areaId){
+            case ZJ_AREA:
+                baseUrl+="is-old-zj.html";
+                baseUrl+=baseUrlEnd;
+                break;
+            case JS_AREA:
+                baseUrl+="is-old-js.html";
+                baseUrl+=baseUrlEnd;
+                break;
+            default:
+                baseUrl+="is-old.html";
+                baseUrl+=baseUrlEnd;
+                break;
+
+        }
+        return baseUrl;
     }
 
     private String getResult(String accessToken)

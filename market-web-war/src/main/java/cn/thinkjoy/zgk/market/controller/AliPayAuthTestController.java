@@ -37,12 +37,12 @@ public class AliPayAuthTestController extends AliPayAuthController
 
     protected String getAuthPageUrl()
     {
-        return "http%3A%2F%2Falipaybackend.test.zhigaokao.cn%2FalipayAuth%2FgetUserId";
+        return "http%3A%2F%2Falipaybackend.test.zhigaokao.cn%2FalipayAuthTest%2FgetUserId";
     }
 
     protected String getUserIdUrl()
     {
-        return "http%3A%2F%2Falipaybackend.test.zhigaokao.cn%2FalipayAuth%2FgetAuthToken";
+        return "http%3A%2F%2Falipaybackend.test.zhigaokao.cn%2FalipayAuthTest%2FgetAuthToken";
     }
 
     protected ZgkAlipayClient getClient()

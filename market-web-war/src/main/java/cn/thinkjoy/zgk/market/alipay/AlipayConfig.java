@@ -29,6 +29,8 @@ public class AlipayConfig
 
     public static String APP_DEV_ID = "2015122300879608";
 
+    public static String APP_TEST_ID = "2016072400105463";
+
     public static String APP_PRIVATE_KEY =  "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALDgDVND5HC4c6Et" +
                                             "VaARFO+zfC+rtWNkxY8NH64eyQHoshlYRSpg2u0bSugaxVG9CxQBcqakyW8yWEil" +
                                             "IaTP+jeh8PixX/nAkB9wQr5K+Q8U2z+wFHAJ8zwMx2LWX6klZ+jJ78y2XG6iARMc" +
@@ -46,12 +48,29 @@ public class AlipayConfig
 
     public static String APP_DEV_PRIVATE_KEY = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKK0PXoLKnBkgtOl0kvyc9X2tUUdh/lRZr9RE1frjr2ZtAulZ+Moz9VJZFew1UZIzeK0478obY/DjHmD3GMfqJoTguVqJ2MEg+mJ8hJKWelvKLgfFBNliAw+/9O6Jah9Q3mRzCD8pABDEHY7BM54W7aLcuGpIIOa/qShO8dbXn+FAgMBAAECgYA8+nQ380taiDEIBZPFZv7G6AmT97doV3u8pDQttVjv8lUqMDm5RyhtdW4n91xXVR3ko4rfr9UwFkflmufUNp9HU9bHIVQS+HWLsPv9GypdTSNNp+nDn4JExUtAakJxZmGhCu/WjHIUzCoBCn6viernVC2L37NL1N4zrR73lSCk2QJBAPb/UOmtSx+PnA/mimqnFMMP3SX6cQmnynz9+63JlLjXD8rowRD2Z03U41Qfy+RED3yANZXCrE1V6vghYVmASYsCQQCoomZpeNxAKuUJZp+VaWi4WQeMW1KCK3aljaKLMZ57yb5Bsu+P3odyBk1AvYIPvdajAJiiikRdIDmi58dqfN0vAkEAjFX8LwjbCg+aaB5gvsA3t6ynxhBJcWb4UZQtD0zdRzhKLMuaBn05rKssjnuSaRuSgPaHe5OkOjx6yIiOuz98iQJAXIDpSMYhm5lsFiITPDScWzOLLnUR55HL/biaB1zqoODj2so7G2JoTiYiznamF9h9GuFC2TablbINq80U2NcxxQJBAMhw06Ha/U7qTjtAmr2qAuWSWvHU4ANu2h0RxYlKTpmWgO0f47jCOQhdC3T/RK7f38c7q8uPyi35eZ7S1e/PznY=";
 
+    public static String APP_TEST_PRIVATE_KEY = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALxmp1piG1Jy27ZN" +
+                                                "CHnIv7Ws0FQrFZkGLLkvkrQy9fjdNPPSXWuJfeb5wWPFA7gM7GAC3C8MEQXgUYOv" +
+                                                "t0ZNLdrkMb7XiCalYJg9VoYCXNOMk3g6rsU6oN3TVTjKo9qms/5HCJdjsFF0nYd7" +
+                                                "Bd/CXGePSDE5pWJcKl8zQZs4MeO5AgMBAAECgYBic2ZKpe/PIvRLjG+8bDo6Lsdi" +
+                                                "5GzR3Vcron+QKP0+giH0s95bnqqrM6Jqh36NBDvVZEk5UJ3oqzMNlJo6Y4Rs8sMc" +
+                                                "YO31qSUgNFLe4nd6LYjGyaqL/56hspjQG11lir6rEz2zSxXk3yHEShgzbUwJBHUh" +
+                                                "c6MI9h24MSaFGoIHrQJBAPED6Cu/8WWANs/z12NdaRVjNvL0lj7sAJ1P4d/iakrU" +
+                                                "bdOuj0I7VuZq8clFzuONmRttwVs0l9/wZklanySfzC8CQQDIHVFI76ooz1WwIVF2" +
+                                                "ugMdWl4KhMLt5xoYFEjTOkonDXhhpRPtkiHI3WzYCqQiOteCOg8qSXABY/FXpYA2" +
+                                                "tcyXAkEAsTPXKvuIB8G6CzFURplyXqhAyWbtZLvuQ7ts7kgxMG15hm7Mo7yvSuCM" +
+                                                "fxiVYZdFX/ZVeLJ1i8/b1MkNQ0c+PwJAVxy0Es0JxMQk6AxI+ycUTgXVpDyQ4qFU" +
+                                                "saC65wCb4Q4zFkaXOzb+8AK76/wN4Ty+Ldl6Wo0nbeOE3wOTob1YNwJBANtecdOm" +
+                                                "/ywFjjuw5fiqXw/JrajP1IGqf8BNKZBL80VNMjlCfdKAaLiuHG8HaS7HrSURNMje";
+
     public static String APP_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCw4A1TQ+RwuHOhLVWgERTvs3wvq7VjZMWPDR+uHskB6LIZWEUqYNrtG0roGsVRvQsUAXKmpMlvMlhIpSGkz/o3ofD4sV/5wJAfcEK+SvkPFNs/sBRwCfM8DMdi1l+pJWfoye/MtlxuogETHNIolFi1aAa1REcyqIxISPhX1+HyZwIDAQAB";
 
     public static String APP_DEV_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCitD16CypwZILTpdJL8nPV9rVFHYf5UWa/URNX6469mbQLpWfjKM/VSWRXsNVGSM3itOO/KG2Pw4x5g9xjH6iaE4LlaidjBIPpifISSlnpbyi4HxQTZYgMPv/TuiWofUN5kcwg/KQAQxB2OwTOeFu2i3LhqSCDmv6koTvHW15/hQIDAQAB";
 
-    public static String ALIPAY_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
+    public static String APP_TEST_PUBLIC_KEY ="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8ZqdaYhtSctu2TQh5yL+1rNBUKxWZBiy5L5K0MvX43TTz0l1riX3m+cFjxQO4DOxgAtwvDBEF4FGDr7dGTS3a5DG+14gmpWCYPVaGAlzTjJN4Oq7FOqDd01U4yqPaprP+RwiXY7BRdJ2HewXfwlxnj0gxOaViXCpfM0GbODHjuQIDAQAB";
 
-    public static String ALIPAY_DEV_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIgHnOn7LLILlKETd6BFRJ0GqgS2Y3mn1wMQmyh9zEyWlz5p1zrahRahbXAfCfSqshSNfqOmAQzSHRVjCqjsAw1jyqrXaPdKBmr90DIpIxmIyKXv4GGAkPyJ/6FTFY99uhpiq0qadD/uSzQsefWo0aTvP/65zi3eof7TcZ32oWpwIDAQAB";
+    public static String ALIPAY_PUBLIC_KEY      = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
 
+    public static String ALIPAY_DEV_PUBLIC_KEY  = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIgHnOn7LLILlKETd6BFRJ0GqgS2Y3mn1wMQmyh9zEyWlz5p1zrahRahbXAfCfSqshSNfqOmAQzSHRVjCqjsAw1jyqrXaPdKBmr90DIpIxmIyKXv4GGAkPyJ/6FTFY99uhpiq0qadD/uSzQsefWo0aTvP/65zi3eof7TcZ32oWpwIDAQAB";
+
+    public static String ALIPAY_TEST_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIgHnOn7LLILlKETd6BFRJ0GqgS2Y3mn1wMQmyh9zEyWlz5p1zrahRahbXAfCfSqshSNfqOmAQzSHRVjCqjsAw1jyqrXaPdKBmr90DIpIxmIyKXv4GGAkPyJ/6FTFY99uhpiq0qadD/uSzQsefWo0aTvP/65zi3eof7TcZ32oWpwIDAQAB";
 }

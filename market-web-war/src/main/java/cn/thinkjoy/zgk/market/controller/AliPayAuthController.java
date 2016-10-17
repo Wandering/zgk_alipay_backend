@@ -50,16 +50,6 @@ public class AliPayAuthController
 
     protected String userInfoUrl = "https://openapi.alipay.com/gateway.do";
 
-    protected String userInfoDevUrl = "http://openapi.stable.dl.alipaydev.com/gateway.do";
-
-    protected AlipayClient alipayClient;
-
-    AlipayClient alipayClientDev = new ZgkAlipayClient(userInfoDevUrl,
-        AlipayConfig.APP_DEV_ID, AlipayConfig.APP_DEV_PRIVATE_KEY, "json",
-        "UTF-8", AlipayConfig.ALIPAY_DEV_PUBLIC_KEY);
-
-    protected String baseAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
-
     @Autowired
     private IUserAccountExService userAccountExService;
 
@@ -71,7 +61,7 @@ public class AliPayAuthController
         throws Exception
     {
         String redirectUrl = getAuthPageUrl();
-        StringBuffer baseAuthURL = new StringBuffer(baseAuthUrl);
+        StringBuffer baseAuthURL = new StringBuffer(getBaseAuthUrl());
         baseAuthURL.append("app_id=").append(getAppId());
         baseAuthURL.append("&scope=").append("auth_base");
         baseAuthURL.append("&redirect_uri=").append(redirectUrl);
@@ -105,7 +95,7 @@ public class AliPayAuthController
         if (null == userInfoMap || userInfoMap.isEmpty())
         {
             String redirectUrl = getUserIdUrl();
-            StringBuffer userInfoAuthURL = new StringBuffer(baseAuthUrl);
+            StringBuffer userInfoAuthURL = new StringBuffer(getBaseAuthUrl());
             userInfoAuthURL.append("app_id=").append(getAppId());
             userInfoAuthURL.append("&scope=").append("auth_userinfo");
             userInfoAuthURL.append("&redirect_uri=").append(redirectUrl);
@@ -260,6 +250,11 @@ public class AliPayAuthController
     protected String getAppId()
     {
         return AlipayConfig.APP_ID;
+    }
+
+    protected String getBaseAuthUrl()
+    {
+        return  "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
     }
 
     @RequestMapping(value = "/picNotify", produces = "application/json; charset=utf-8")

@@ -56,4 +56,9 @@ public class AliPayAuthTestController extends AliPayAuthController
     {
         return AlipayConfig.APP_TEST_ID;
     }
+
+    protected String getBaseAuthUrl()
+    {
+        return "https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm";
+    }
 }

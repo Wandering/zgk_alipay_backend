@@ -2,6 +2,7 @@
   <library name="Gradle: cn.thinkjoy.sms:sms-api:0.0.3-SNAPSHOT">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.sms/sms-api/0.0.3-SNAPSHOT/6ac5237fcf1500f78b0e929bc2909b8731c4def5/sms-api-0.0.3-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.sms/sms-api/0.0.3-SNAPSHOT/6ac5237fcf1500f78b0e929bc2909b8731c4def5/sms-api-0.0.3-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -2,10 +2,12 @@
   <library name="Gradle: cn.thinkjoy.cloudstack:cs-spring-zkconfig:0.0.34-SNAPSHOT">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.34-SNAPSHOT/86b2a7d2afc427994fb5aca3db27782849be3b93/cs-spring-zkconfig-0.0.34-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.34-SNAPSHOT/86b2a7d2afc427994fb5aca3db27782849be3b93/cs-spring-zkconfig-0.0.34-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.34-SNAPSHOT/86a5be86066ca612d979fce63fe4341228615c6a/cs-spring-zkconfig-0.0.34-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.34-SNAPSHOT/86a5be86066ca612d979fce63fe4341228615c6a/cs-spring-zkconfig-0.0.34-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

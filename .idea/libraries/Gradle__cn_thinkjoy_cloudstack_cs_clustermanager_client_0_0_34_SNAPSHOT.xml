@@ -2,10 +2,12 @@
   <library name="Gradle: cn.thinkjoy.cloudstack:cs-clustermanager-client:0.0.34-SNAPSHOT">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-clustermanager-client/0.0.34-SNAPSHOT/796bca70b0291cebf83f714c3dbb2599bfa1fab/cs-clustermanager-client-0.0.34-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-clustermanager-client/0.0.34-SNAPSHOT/796bca70b0291cebf83f714c3dbb2599bfa1fab/cs-clustermanager-client-0.0.34-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-clustermanager-client/0.0.34-SNAPSHOT/d3cd77763ea95c4051e125beedfb4bdbb3bf2e13/cs-clustermanager-client-0.0.34-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-clustermanager-client/0.0.34-SNAPSHOT/d3cd77763ea95c4051e125beedfb4bdbb3bf2e13/cs-clustermanager-client-0.0.34-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

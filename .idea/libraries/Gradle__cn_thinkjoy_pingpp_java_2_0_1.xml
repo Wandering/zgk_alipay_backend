@@ -2,6 +2,7 @@
   <library name="Gradle: cn.thinkjoy:pingpp-java:2.0.1">
     <CLASSES>
       <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy/pingpp-java/2.0.1/bb5aab9ba0bf4d5a8b4801174f2a713521754099/pingpp-java-2.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy/pingpp-java/2.0.1/bb5aab9ba0bf4d5a8b4801174f2a713521754099/pingpp-java-2.0.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

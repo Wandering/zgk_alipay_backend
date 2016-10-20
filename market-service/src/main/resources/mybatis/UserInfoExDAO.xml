@@ -32,7 +32,8 @@
         provinceId,
         cityId,
         countyId,
-        alipayUserId
+        alipayUserId,
+        qqUserId
         ) VALUES (
         #{id},
         #{token},
@@ -47,7 +48,8 @@
         #{provinceId},
         #{cityId},
         #{countyId},
-        #{alipayUserId}
+        #{alipayUserId},
+        #{qqUserId}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID

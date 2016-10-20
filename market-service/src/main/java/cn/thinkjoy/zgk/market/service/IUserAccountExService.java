@@ -29,5 +29,5 @@ public interface IUserAccountExService {
      * @param openId
      * @return
      */
-    long checkUserHasInfo(String openId);
+    Map<String,Object> checkUserHasInfo(String openId);
 }

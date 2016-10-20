@@ -10,16 +10,16 @@
     </select>
 
     <!-- 根据qq用户openId检测用户是否已完善信息 -->
-    <select id="checkUserHasInfo" parameterType="long" resultType="Long">
+    <select id="checkUserHasInfo" parameterType="long" resultType="map">
         SELECT
-            t0.id
+            t0.id as userId,
+            t1.account as account
         FROM
             zgk_user_info t0,
             zgk_user_account t1
         WHERE
             t0.id = t1.id
         AND t0.qqUserId = #{openId}
-        AND t1.account != #{openId}
     </select>
 </mapper>
 

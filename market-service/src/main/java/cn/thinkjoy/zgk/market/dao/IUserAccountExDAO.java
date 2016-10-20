@@ -21,7 +21,7 @@ public interface IUserAccountExDAO {
      * @param openId
      * @return
      */
-    Long checkUserHasInfo(
+    Map<String,Object> checkUserHasInfo(
             @Param("openId") String openId
     );
 }

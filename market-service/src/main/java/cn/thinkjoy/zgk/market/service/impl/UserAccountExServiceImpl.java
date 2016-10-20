@@ -153,8 +153,8 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     }
 
     @Override
-    public long checkUserHasInfo(String openId) {
-        Long userId = userAccountExDAO.checkUserHasInfo(openId);
-        return userId == null?0:userId;
+    public Map<String,Object> checkUserHasInfo(String openId) {
+        Map<String,Object> resultMap = userAccountExDAO.checkUserHasInfo(openId);
+        return resultMap;
     }
 }

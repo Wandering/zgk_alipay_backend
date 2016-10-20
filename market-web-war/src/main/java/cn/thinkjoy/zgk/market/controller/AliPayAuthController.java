@@ -8,6 +8,7 @@ import cn.thinkjoy.zgk.market.common.ZgkAlipayClient;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.service.IProvinceService;
+import cn.thinkjoy.zgk.market.service.IScoreAnalysisService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
@@ -40,21 +41,14 @@ import java.util.UUID;
 @Scope("prototype")
 public class AliPayAuthController
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AliPayAuthController.class);
+    @Autowired
+    protected IScoreAnalysisService scoreAnalysisService;
 
-    private String userInfoUrl = "https://openapi.alipay.com/gateway.do";
+    protected static final Logger LOGGER = LoggerFactory.getLogger(AliPayAuthController.class);
+    protected static final String ZJ_AREA = "330000";
+    protected static final String JS_AREA = "320000";
 
-    private String userInfoDevUrl = "http://openapi.stable.dl.alipaydev.com/gateway.do";
-
-    private AlipayClient alipayClient = new ZgkAlipayClient(userInfoUrl,
-        AlipayConfig.APP_ID, AlipayConfig.APP_PRIVATE_KEY, "json",
-        "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY);
-
-    AlipayClient alipayClientDev = new ZgkAlipayClient(userInfoDevUrl,
-        AlipayConfig.APP_DEV_ID, AlipayConfig.APP_DEV_PRIVATE_KEY, "json",
-        "UTF-8", AlipayConfig.ALIPAY_DEV_PUBLIC_KEY);
-
-    private String baseAuthUrl = "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
+    protected String userInfoUrl = "https://openapi.alipay.com/gateway.do";
 
     @Autowired
     private IUserAccountExService userAccountExService;
@@ -66,9 +60,9 @@ public class AliPayAuthController
     public String authPage()
         throws Exception
     {
-        String redirectUrl = "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetUserId";
-        StringBuffer baseAuthURL = new StringBuffer(baseAuthUrl);
-        baseAuthURL.append("app_id=").append(AlipayConfig.APP_ID);
+        String redirectUrl = getAuthPageUrl();
+        StringBuffer baseAuthURL = new StringBuffer(getBaseAuthUrl());
+        baseAuthURL.append("app_id=").append(getAppId());
         baseAuthURL.append("&scope=").append("auth_base");
         baseAuthURL.append("&redirect_uri=").append(redirectUrl);
         return "redirect:" + baseAuthURL;
@@ -100,9 +94,9 @@ public class AliPayAuthController
         Map<String, Object> userInfoMap = userAccountExService.findUserInfoByAlipayId(aliUserId);
         if (null == userInfoMap || userInfoMap.isEmpty())
         {
-            String redirectUrl = "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetAuthToken";
-            StringBuffer userInfoAuthURL = new StringBuffer(baseAuthUrl);
-            userInfoAuthURL.append("app_id=").append(AlipayConfig.APP_ID);
+            String redirectUrl = getUserIdUrl();
+            StringBuffer userInfoAuthURL = new StringBuffer(getBaseAuthUrl());
+            userInfoAuthURL.append("app_id=").append(getAppId());
             userInfoAuthURL.append("&scope=").append("auth_userinfo");
             userInfoAuthURL.append("&redirect_uri=").append(redirectUrl);
             return "redirect:" + userInfoAuthURL;
@@ -112,9 +106,34 @@ public class AliPayAuthController
         return getRedirectUrl(userId, areaId);
     }
 
-    private String getRedirectUrl(String userId, String areaId)
+    protected String getRedirectUrl(String userId, String areaId)
     {
-        return "redirect:http://alipay.zhigaokao.cn/welcome.html?userId=" + userId + "&areaId=" + areaId;
+
+        String baseUrl = "redirect:http://alipay.zhigaokao.cn/";
+        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId;
+
+        if (scoreAnalysisService.queryUserIsFirst(Long.valueOf(userId))==0){
+            baseUrl+="is-new.html";
+            baseUrl+=baseUrlEnd;
+            return baseUrl;
+        }
+
+        switch (areaId){
+            case ZJ_AREA:
+                baseUrl+="is-old-zj.html";
+                baseUrl+=baseUrlEnd;
+                break;
+            case JS_AREA:
+                baseUrl+="is-old-js.html";
+                baseUrl+=baseUrlEnd;
+                break;
+            default:
+                baseUrl+="is-old.html";
+                baseUrl+=baseUrlEnd;
+                break;
+
+        }
+        return baseUrl;
     }
 
     private String getResult(String accessToken)
@@ -124,7 +143,7 @@ public class AliPayAuthController
         AlipayUserUserinfoShareRequest request = new AlipayUserUserinfoShareRequest();
         try
         {
-            AlipayUserUserinfoShareResponse userinfoShareResponse = alipayClient.execute(request, accessToken);
+            AlipayUserUserinfoShareResponse userinfoShareResponse = getClient().execute(request, accessToken);
             String aliUserId = userinfoShareResponse.getAlipayUserId();
             String nickName = userinfoShareResponse.getNickName();
             String avatar = userinfoShareResponse.getAvatar();
@@ -193,7 +212,7 @@ public class AliPayAuthController
         request.setGrantType("authorization_code");
         try
         {
-            oauthTokenResponse = alipayClient.execute(request);
+            oauthTokenResponse = getClient().execute(request);
         }
         catch (AlipayApiException e)
         {
@@ -201,7 +220,7 @@ public class AliPayAuthController
             LOGGER.error("first alipay auth authCode error : authCode = "+authCode);
             try {
                 LOGGER.info("alipay auth again : authCode = "+authCode);
-                oauthTokenResponse = alipayClient.execute(request);
+                oauthTokenResponse = getClient().execute(request);
             } catch (AlipayApiException e1) {
                 LOGGER.error("second alipay auth authCode error : authCode = "+authCode);
                 oauthTokenResponse = new AlipaySystemOauthTokenResponse();
@@ -209,6 +228,33 @@ public class AliPayAuthController
 
         }
         return oauthTokenResponse;
+    }
+
+    protected String getAuthPageUrl()
+    {
+        return  "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetUserId";
+    }
+
+    protected String getUserIdUrl()
+    {
+        return "http%3A%2F%2Falipaybackend.zhigaokao.cn%2FalipayAuth%2FgetAuthToken";
+    }
+
+    protected ZgkAlipayClient getClient()
+    {
+       return new ZgkAlipayClient(userInfoUrl,
+            AlipayConfig.APP_ID, AlipayConfig.APP_PRIVATE_KEY, "json",
+            "UTF-8", AlipayConfig.ALIPAY_PUBLIC_KEY);
+    }
+
+    protected String getAppId()
+    {
+        return AlipayConfig.APP_ID;
+    }
+
+    protected String getBaseAuthUrl()
+    {
+        return  "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?";
     }
 
     @RequestMapping(value = "/picNotify", produces = "application/json; charset=utf-8")
@@ -249,7 +295,7 @@ public class AliPayAuthController
         try
         {
 //            response = alipayClientDev.execute(request);
-            response = alipayClient.execute(request);
+            response = getClient().execute(request);
         }
         catch (AlipayApiException e)
         {
@@ -298,7 +344,7 @@ public class AliPayAuthController
         try
         {
 //            response = alipayClientDev.execute(request);
-            response = alipayClient.execute(request);
+            response = getClient().execute(request);
         }
         catch (AlipayApiException e)
         {
@@ -349,7 +395,7 @@ public class AliPayAuthController
         try
         {
 //            response = alipayClientDev.execute(request);
-            response = alipayClient.execute(request);
+            response = getClient().execute(request);
         }
         catch (AlipayApiException e)
         {

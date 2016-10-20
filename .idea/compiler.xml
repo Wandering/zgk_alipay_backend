@@ -18,6 +18,19 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="market-api_main" target="1.7" />
+      <module name="market-api_test" target="1.7" />
+      <module name="market-common_main" target="1.7" />
+      <module name="market-common_test" target="1.7" />
+      <module name="market-domain_main" target="1.7" />
+      <module name="market-domain_test" target="1.7" />
+      <module name="market-service_main" target="1.7" />
+      <module name="market-service_test" target="1.7" />
+      <module name="market-web-war_main" target="1.7" />
+      <module name="market-web-war_test" target="1.7" />
+      <module name="zgk_alipay_backend_main" target="1.7" />
+      <module name="zgk_alipay_backend_test" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -17,6 +17,7 @@ import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
 
+import com.sun.jdi.LongValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -77,9 +79,12 @@ public class QQAuthController {
             String openId = openIDObj.getUserOpenID();
 
             // 根据openId检测用户是否已经完善信息
-            long userId = userAccountExService.checkUserHasInfo(openId);
-            if(userId != 0){
-                return getRedirectUrl("",openId,userId);
+            Map<String,Object> resultMap = userAccountExService.checkUserHasInfo(openId);
+            if(resultMap != null && openId.equals(resultMap.get("account").toString())){
+                return getRedirectUrl(
+                        "",
+                        openId,
+                        Long.valueOf(resultMap.get("userId").toString()));
             }
 
             // 获取用户信息

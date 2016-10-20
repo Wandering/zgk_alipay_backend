@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/market-api/market-api.iml" filepath="$PROJECT_DIR$/market-api/market-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/market-common/market-common.iml" filepath="$PROJECT_DIR$/market-common/market-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/market-domain/market-domain.iml" filepath="$PROJECT_DIR$/market-domain/market-domain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/market-service/market-service.iml" filepath="$PROJECT_DIR$/market-service/market-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/market-web-war/market-web-war.iml" filepath="$PROJECT_DIR$/market-web-war/market-web-war.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-api/market-api.iml" filepath="$PROJECT_DIR$/.idea/modules/market-api/market-api.iml" group="market-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-api/market-api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-api/market-api_main.iml" group="market-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-api/market-api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-api/market-api_test.iml" group="market-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-common/market-common.iml" filepath="$PROJECT_DIR$/.idea/modules/market-common/market-common.iml" group="market-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-common/market-common_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-common/market-common_main.iml" group="market-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-common/market-common_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-common/market-common_test.iml" group="market-common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-domain/market-domain.iml" filepath="$PROJECT_DIR$/.idea/modules/market-domain/market-domain.iml" group="market-domain" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-domain/market-domain_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-domain/market-domain_main.iml" group="market-domain" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-domain/market-domain_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-domain/market-domain_test.iml" group="market-domain" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-service/market-service.iml" filepath="$PROJECT_DIR$/.idea/modules/market-service/market-service.iml" group="market-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-service/market-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-service/market-service_main.iml" group="market-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-service/market-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-service/market-service_test.iml" group="market-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war.iml" filepath="$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war.iml" group="market-web-war" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_main.iml" group="market-web-war" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_test.iml" group="market-web-war" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/zgk_alipay_backend.iml" filepath="$PROJECT_DIR$/zgk_alipay_backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_main.iml" group="zgk_alipay_backend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_test.iml" group="zgk_alipay_backend" />
     </modules>
   </component>
 </project>

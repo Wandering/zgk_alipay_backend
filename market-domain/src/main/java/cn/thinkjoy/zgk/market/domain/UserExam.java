@@ -21,6 +21,8 @@ public class UserExam extends BaseDomain {
     private Integer isSurvey;
     private Integer isReported;
 
+    private Long userId;
+
 	public UserExam(){
 	}
     public void setScores(Integer value) {
@@ -54,7 +56,15 @@ public class UserExam extends BaseDomain {
         return this.isReported;
     }
 
-	public String toString() {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("Scores",getScores())

@@ -156,7 +156,7 @@ public class AliPayAuthController
             }
             try
             {
-                boolean flag = userAccountExService.insertUserAccount(userAccount, 0l, 0);
+                boolean flag = userAccountExService.insertUserAccount(userAccount,"ali");
                 if (!flag)
                 {
                     throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "账户注册失败");
@@ -276,7 +276,7 @@ public class AliPayAuthController
         req.setAttribute("text_edu");
         req.setTamplate_id("1004");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
+        req.setTarget_id("2088002104075250,2088302006371390,2088912958704463");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);

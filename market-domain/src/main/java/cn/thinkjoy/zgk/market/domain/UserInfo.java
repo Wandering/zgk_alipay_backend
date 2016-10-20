@@ -45,6 +45,10 @@ public class UserInfo extends BaseDomain {
 
     private String alipayUserId;
 
+    private Long userId;
+
+    private String qqUserId;
+
     public String getAlipayUserId()
     {
         return alipayUserId;
@@ -142,22 +146,40 @@ public class UserInfo extends BaseDomain {
         return this.qq;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getQqUserId() {
+        return qqUserId;
+    }
+
+    public void setQqUserId(String qqUserId) {
+        this.qqUserId = qqUserId;
+    }
+
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-                .append("Id",getId())
-                .append("Token",getToken())
-                .append("Name",getName())
-                .append("Icon",getIcon())
-                .append("ProvinceId",getProvinceId())
-                .append("CityId",getCityId())
-                .append("CountyId",getCountyId())
-                .append("SchoolName",getSchoolName())
-                .append("BirthdayDate",getBirthdayDate())
-                .append("Sex",getSex())
-                .append("SubjectType",getSubjectType())
-                .append("Mail",getMail())
-                .append("Qq",getQq())
-                .toString();
+        return "UserInfo{" +
+                "token='" + token + '\'' +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", provinceId='" + provinceId + '\'' +
+                ", cityId='" + cityId + '\'' +
+                ", countyId='" + countyId + '\'' +
+                ", schoolName='" + schoolName + '\'' +
+                ", birthdayDate=" + birthdayDate +
+                ", sex=" + sex +
+                ", subjectType=" + subjectType +
+                ", mail='" + mail + '\'' +
+                ", qq='" + qq + '\'' +
+                ", alipayUserId='" + alipayUserId + '\'' +
+                ", userId=" + userId +
+                ", qqUserId=" + qqUserId +
+                '}';
     }
 
     public int hashCode() {

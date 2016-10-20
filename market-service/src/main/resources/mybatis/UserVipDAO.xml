@@ -10,7 +10,8 @@
         createDate,
         lastModifier,
         lastModDate,
-        endDate
+        endDate,
+        userId
     </sql>
     <insert id="insert" parameterType="UserVip">
         INSERT INTO zgk_user_vip (
@@ -20,7 +21,8 @@
         createDate,
         lastModifier,
         lastModDate,
-        endDate
+        endDate,
+        userId
         ) VALUES (
         #{id},
         #{status},
@@ -28,7 +30,8 @@
         #{createDate},
         #{lastModifier},
         #{lastModDate},
-        #{endDate}
+        #{endDate},
+        #{userId}
         )
 
     </insert>

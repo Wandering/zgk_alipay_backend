@@ -19,6 +19,7 @@ public enum ErrorCode {
     SCHOOL_NO_EXIST("0100011", "学校不存在"),
     USER_NO_EXIST("0100012", "用户不存在"),
     AUTHENTICATION_FAIL("0100020", "鉴权失败"),
+    ACCOUNT_REGIST_FAIL("0100021", "账户注册失败"),
 
     /**
      * 登录

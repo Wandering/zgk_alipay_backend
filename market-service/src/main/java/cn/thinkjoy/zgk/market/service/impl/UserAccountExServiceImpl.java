@@ -48,9 +48,6 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     private IUserAccountDAO userAccountDAO;
 
     @Autowired
-    private IUserInfoDAO userInfoDAO;
-
-    @Autowired
     private IUserExamDAO userExamDAO;
 
     @Autowired
@@ -58,44 +55,17 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
 
     @Autowired
     private IUserVipDAO userVipDAO;
+
     @Autowired
     private IUserMarketDAO userMarketDAO;
 
     @Override
-    public UserAccountPojo findUserAccountPojoByToken(String token) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("token",token);
-        return userAccountExDAO.findUserAccountPojo(params);
-    }
-
-    @Override
-    public UserAccountPojo findUserAccountPojoById(Long id) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("id",id);
-        return userAccountExDAO.findUserAccountPojo(params);
-    }
-
-    @Override
-    public UserAccountPojo findUserAccountPojoByPhone(String account) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("account",account);
-        return  userAccountExDAO.findUserAccountPojo(params);
-
-    }
-
-    @Override
-    public int findUserAccountCountByPhone(String account) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("account",account);
-//        params.put("areaId",areaId);
-        return userAccountExDAO.findUserAccountCount(params);
-    }
-
-    @Override
-    public boolean insertUserAccount(UserAccount userAccount,Long sharerId,Integer sharerType) throws WriterException, IOException {
+    public boolean insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException {
         boolean flag;
         userAccountDAO.insert(userAccount);
         long id = userAccount.getId();
+        userAccount.setUserId(id);
+        userAccountDAO.update(userAccount);
         UserInfo userInfo = new UserInfo();
         userInfo.setId(id);
         String account = userAccount.getAccount();
@@ -110,39 +80,38 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
         {
             userInfo.setIcon(userAccount.getAvatar());
         }
-        userInfo.setAlipayUserId(account);
+        if("ali".equals(source)){
+            userInfo.setAlipayUserId(account);
+            userInfo.setProvinceId(userAccount.getProvinceId());
+            userInfo.setCityId(userAccount.getCityId());
+            userInfo.setCountyId(userAccount.getCountyId());
+        }else if ("qq".equals(source)){
+            userInfo.setQqUserId(account);
+        }
         userInfo.setToken(UUID.randomUUID().toString());
-        userInfo.setProvinceId(userAccount.getProvinceId());
-        userInfo.setCityId(userAccount.getCityId());
-        userInfo.setCountyId(userAccount.getCountyId());
+
         userInfoExDAO.insertUserInfo(userInfo);
         UserVip userVip = new UserVip();
         userVip.setId(id);
         userVip.setStatus(0);
+        userVip.setUserId(id);
         userVip.setCreateDate(System.currentTimeMillis());
         userVipDAO.insert(userVip);
         UserExam userExam = new UserExam();
         userExam.setId(id);
         userExam.setIsReported(0);
         userExam.setIsSurvey(0);
+        userExam.setUserId(id);
         userExamDAO.insert(userExam);
         UserMarket userMarket = new UserMarket();
         userMarket.setAccountId(id);
-        Integer agentLevel = 0;
-        if(sharerType == 0){//供货商
-            agentLevel =1;
-        }else if(sharerType == 1){//普通用户
-            UserMarket userMarket1 = (UserMarket)userMarketDAO.findOne("accountId", sharerId, null, null);
-            if(userMarket1 !=null){
-                agentLevel = userMarket1.getAgentLevel()+1;
-            }
-        }
-        userMarket.setSharerType(sharerType);
-        userMarket.setAgentLevel(agentLevel);
+        userMarket.setSharerType(1);
+        userMarket.setAgentLevel(0);
         userMarket.setCreateDate(System.currentTimeMillis());
         userMarket.setCreator(id);
+        userMarket.setUserId(id);
         userMarket.setFromType(1);//微信
-        userMarket.setSharerId(sharerId);
+        userMarket.setSharerId(0l);
         String uploadUrl = StaticSource.getSource("uploadUrl");
         String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1+"&state=user-detail";
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -176,31 +145,6 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     }
 
     @Override
-    public boolean updateUserAccount(UserAccount userAccount){
-        boolean flag = false;
-        userAccountDAO.update(userAccount);
-        flag = true;
-        return flag;
-    }
-
-    @Override
-    public UserAccount findUserAccountById(long id){
-        return userAccountDAO.fetch(id);
-    }
-
-    @Override
-    public UserInfoPojo getUserInfoPojoById(long id){
-        Map<String,Object> params = new HashMap<String, Object>();
-        params.put("id",id);
-        return userAccountExDAO.getUserInfoPojoById(params);
-    }
-
-    @Override
-    public List<Map<String, Object>> getUserRelListByUserId(Long aLong) {
-        return userAccountExDAO.getUserRelListByUserId(aLong);
-    }
-
-    @Override
     public Map<String, Object> findUserInfoByAlipayId(String alipayId)
     {
         Map<String, String> params = new HashMap<String,String>();
@@ -208,4 +152,9 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
         return userAccountExDAO.findUserInfoByAlipayId(params);
     }
 
+    @Override
+    public long checkUserHasInfo(String openId) {
+        Long userId = userAccountExDAO.checkUserHasInfo(openId);
+        return userId == null?0:userId;
+    }
 }

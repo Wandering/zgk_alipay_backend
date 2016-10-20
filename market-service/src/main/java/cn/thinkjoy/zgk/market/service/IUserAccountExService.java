@@ -19,23 +19,15 @@ import java.util.Map;
 
 public interface IUserAccountExService {
 
-    UserAccountPojo findUserAccountPojoByToken(String token);
-
-    UserAccountPojo findUserAccountPojoById(Long id);
-
-    UserAccountPojo findUserAccountPojoByPhone(String phone);
-
-    int findUserAccountCountByPhone(String phone);
-
-    boolean insertUserAccount(UserAccount userAccount,Long sharerId,Integer sharerType ) throws WriterException, IOException;
-
-    boolean updateUserAccount(UserAccount userAccount);
-
-    UserAccount findUserAccountById(long id);
-
-    UserInfoPojo getUserInfoPojoById(long id);
-
-    List<Map<String,Object>> getUserRelListByUserId(Long aLong);
+    boolean insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException;
 
     Map<String, Object> findUserInfoByAlipayId(String aliPayId);
+
+    /**
+     * 根据qq用户openId检测用户是否已完善信息
+     *
+     * @param openId
+     * @return
+     */
+    long checkUserHasInfo(String openId);
 }

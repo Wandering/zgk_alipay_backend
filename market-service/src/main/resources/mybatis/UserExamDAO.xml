@@ -28,7 +28,8 @@ selectList
         scores,
         ranking,
         isSurvey,
-        isReported
+        isReported,
+        userId
     </sql>
     <insert id="insert" parameterType="UserExam">
         INSERT INTO zgk_user_exam (
@@ -36,13 +37,15 @@ selectList
         scores,
         ranking,
         isSurvey,
-        isReported
+        isReported,
+        userId
         ) VALUES (
         #{id},
         #{scores},
         #{ranking},
         #{isSurvey},
-        #{isReported}
+        #{isReported},
+        #{userId}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
         SELECT LAST_INSERT_ID() AS ID

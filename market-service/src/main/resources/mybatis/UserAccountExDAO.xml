@@ -3,156 +3,23 @@
 
 <mapper namespace="cn.thinkjoy.zgk.market.dao.IUserAccountExDAO">
 
-    <select id="getUserInfoPojoById" resultType="UserInfoPojo">
-        SELECT
-        acc.id as id,
-        acc.account as account,
-        acc.password as password,
-        info.icon as icon,
-        exam.isReported as isReported,
-        exam.isSurvey as isSurvey,
-        info.name as name,
-        acc.status as status,
-        vip.status as vipStatus,
-        info.subjectType as subjectType,
-        info.sex as sex,
-        info.schoolName as schoolName,
-        info.provinceId as province,
-        info.cityId as city,
-        info.countyId as county,
-        pro.code as userKey,
-        vip.endDate as endDate,
-        vip.activeDate as activeDate,
-        market.qrcodeUrl as qrcodeUrl,
-        pro.name as proName,
-        city.name as cityName,
-        county.name as countyName
-        FROM zgk_user_account acc
-        left join zgk_user_vip vip on acc.id = vip.id
-        left join zgk_user_info info on acc.id = info.id
-        left join zgk_user_exam exam on acc.id = exam.id
-        left join zgk_province pro on pro.id = info.provinceId
-        left join zgk_user_market market on acc.id = market.accountId
-        left join zgk_city city on info.cityId = city.id
-        left join zgk_county county on info.countyId = county.id
-        <where>
-            acc.userType = 0
-            <if test="token!=null">
-                and info.token = #{token}
-            </if>
-            <if test="id!=null">
-                and acc.id = #{id}
-            </if>
-            <if test="account!=null">
-                and acc.account = #{account}
-            </if>
-            <if test="areaId!=null">
-                and acc.areaId = #{areaId}
-            </if>
-        </where>
-    </select>
-
-    <select id="findUserAccountPojo" resultType="UserAccountPojo">
-        SELECT
-        acc.id,
-        info.name,
-        info.icon,
-        acc.account,
-        acc.password,
-        acc.status,
-        acc.userType,
-        exam.isReported,
-        exam.isSurvey,
-        vip.status as vipStatus,
-        pro.code as userKey,
-        vip.endDate,
-        vip.activeDate,
-        market.qrcodeUrl,
-        pro.name as proName,
-        city.name as cityName,
-        county.name as countyName
-        FROM zgk_user_account acc
-        left join zgk_user_vip vip on acc.id = vip.id
-        left join zgk_user_info info on acc.id = info.id
-        left join zgk_user_exam exam on acc.id = exam.id
-        left join zgk_province pro on pro.id = info.provinceId
-        left join zgk_user_market market on acc.id = market.accountId
-        left join zgk_city city on info.cityId = city.id
-        left join zgk_county county on info.countyId = county.id
-        <where>
-            acc.userType = 0
-            <if test="token!=null">
-                and info.token = #{token}
-            </if>
-            <if test="id!=null">
-                and acc.id = #{id}
-            </if>
-            <if test="account!=null">
-                and acc.account = #{account}
-            </if>
-            <if test="areaId!=null">
-                and acc.areaId = #{areaId}
-            </if>
-        </where>
-        limit 1
-    </select>
-
-    <select id="findUserAccountCount" resultType="int">
-        SELECT
-          COUNT(acc.id)
-        FROM zgk_user_account acc
-        left join zgk_user_vip vip on acc.id = vip.id
-        left join zgk_user_info info on acc.id = info.id
-        <where>
-            acc.userType = 0
-            <if test="token!=null">
-                and info.token = #{token}
-            </if>
-            <if test="id!=null">
-                and acc.id = #{id}
-            </if>
-            <if test="account!=null">
-                and acc.account = #{account}
-            </if>
-            <if test="areaId!=null">
-                and acc.areaId = #{areaId}
-            </if>
-        </where>
-    </select>
-
-    <select id="getUserRelListByUserId" resultType="java.util.Map">
-
-
-       select * from(
-
-       select a.accountId,b.account,a.agentLevel from zgk_user_market a left join zgk_user_account b
-
-       on a.accountId=b.id  where a.accountId=#{userId}
-
-       UNION
-
-      select b.accountId ,c.account as phone , b.agentLevel from zgk_user_market a left join
-
-         zgk_user_market b on b.accountId=a.sharerId left join  zgk_user_account
-
-          c on c.id = b.accountId where  a.accountId=#{userId}
-
-         union
-
-          select c.accountId ,d.account as phone , c.agentLevel from zgk_user_market a left join
-
-         zgk_user_market b on b.accountId=a.sharerId left join  zgk_user_market c on
-
-         c.accountId=b.sharerId left join  zgk_user_account d on d.id=c.accountId where
-
-          a.accountId=#{userId} ) m where m.accountId is not null
-
-    </select>
-
     <select id="findUserInfoByAlipayId" parameterType="java.util.HashMap" resultType="java.util.HashMap">
         SELECT info.id, info.provinceId
         FROM zgk_user_info info
         WHERE info.alipayUserId=#{alipayUserId}
+    </select>
+
+    <!-- 根据qq用户openId检测用户是否已完善信息 -->
+    <select id="checkUserHasInfo" parameterType="long" resultType="Long">
+        SELECT
+            t0.id
+        FROM
+            zgk_user_info t0,
+            zgk_user_account t1
+        WHERE
+            t0.id = t1.id
+        AND t0.qqUserId = #{openId}
+        AND t1.account != #{openId}
     </select>
 </mapper>
 

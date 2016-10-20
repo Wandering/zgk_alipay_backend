@@ -19,6 +19,8 @@ public class UserVip extends CreateBaseDomain{
     private Long endDate;
     private Long activeDate;
 
+	private Long userId;
+
 	public UserVip(){
 	}
     public void setEndDate(Long value) {
@@ -35,6 +37,14 @@ public class UserVip extends CreateBaseDomain{
     public Long getActiveDate() {
         return this.activeDate;
     }
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

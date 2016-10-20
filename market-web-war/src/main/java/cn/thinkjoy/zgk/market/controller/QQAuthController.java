@@ -1,6 +1,12 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
+import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.ModelUtil;
+import cn.thinkjoy.zgk.market.domain.UserAccount;
+import cn.thinkjoy.zgk.market.edomain.ErrorCode;
+import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
 import com.qq.connect.api.qzone.PageFans;
@@ -13,6 +19,7 @@ import com.qq.connect.oauth.Oauth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +40,9 @@ public class QQAuthController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QQAuthController.class);
 
+    @Autowired
+    private IUserAccountExService userAccountExService;
+
     @RequestMapping(value = "/authPage",method = RequestMethod.GET)
     @ApiDesc(value = "将请求转发至qq授权页面",owner = "杨国荣")
     public void authPage(HttpServletRequest request, HttpServletResponse response){
@@ -47,50 +57,100 @@ public class QQAuthController {
 
     @RequestMapping(value = "/getAuthToken",method = RequestMethod.GET)
     @ApiDesc(value = "鉴权",owner = "杨国荣")
-    public void getAuthToken(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=utf-8");
-        PrintWriter out = response.getWriter();
-        try {
+    public String getAuthToken(HttpServletRequest request) {
 
+        try {
+            // 获取accessToken
             AccessToken tokenObj = (new Oauth()).getAccessTokenByRequest(request);
             if (tokenObj == null ||
                     tokenObj.getAccessToken() == null ||
                     tokenObj.getAccessToken().equals("")) {
-//                我们的网站被CSRF攻击了或者用户取消了授权
-//                做一些数据统计工作
-                // TODO
-                System.out.print("没有获取到响应参数");
-                return;
+
+                LOGGER.error("get the response parameters error ");
+                ModelUtil.throwException(ErrorCode.AUTHENTICATION_FAIL);
             }
 
             String accessToken = tokenObj.getAccessToken();
-            long  tokenExpireIn = tokenObj.getExpireIn();
 
-            // 利用获取到的accessToken 去获取当前用的openid -------- start
-            OpenID openIDObj =  new OpenID(accessToken);
-            String openID = openIDObj.getUserOpenID();
+            // 获取openId
+            OpenID openIDObj = new OpenID(accessToken);
+            String openId = openIDObj.getUserOpenID();
 
-            request.getSession().setAttribute("demo_access_token", accessToken);
-            request.getSession().setAttribute("demo_token_expirein", String.valueOf(tokenExpireIn));
-            request.getSession().setAttribute("demo_openid", openID);
-
-            UserInfo qzoneUserInfo = new UserInfo(accessToken, openID);
-            UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
-            if (userInfoBean.getRet() == 0) {
-                out.println(userInfoBean.getNickname() + "<br/>");
-                out.println(userInfoBean.getGender() + "<br/>");
-                out.println("黄钻等级： " + userInfoBean.getLevel() + "<br/>");
-                out.println("会员 : " + userInfoBean.isVip() + "<br/>");
-                out.println("黄钻会员： " + userInfoBean.isYellowYearVip() + "<br/>");
-                out.println("<image src=" + userInfoBean.getAvatar().getAvatarURL30() + "/><br/>");
-                out.println("<image src=" + userInfoBean.getAvatar().getAvatarURL50() + "/><br/>");
-                out.println("<image src=" + userInfoBean.getAvatar().getAvatarURL100() + "/><br/>");
-            } else {
-                out.println("很抱歉，我们没能正确获取到您的信息，原因是： " + userInfoBean.getMsg());
+            // 根据openId检测用户是否已经完善信息
+            long userId = userAccountExService.checkUserHasInfo(openId);
+            if(userId != 0){
+                return getRedirectUrl("",openId,userId);
             }
+
+            // 获取用户信息
+            UserInfo qqUserInfo = new UserInfo(accessToken, openId);
+            UserInfoBean userInfoBean = qqUserInfo.getUserInfo();
+            if (userInfoBean.getRet() != 0) {
+                LOGGER.error("get user info error ：" + userInfoBean.getMsg());
+                ModelUtil.throwException(
+                        ErrorCode.AUTHENTICATION_FAIL
+                );
+            }
+
+            String nickname = userInfoBean.getNickname();
+            insertUserAccount(openId,nickname);
+            return getRedirectUrl(nickname,openId,0l);
 
         } catch (QQConnectException e) {
             LOGGER.error("qq connect error : ",e);
+            ModelUtil.throwException(
+                    ErrorCode.AUTHENTICATION_FAIL
+            );
+        }
+
+        return null;
+    }
+
+    /**
+     * 新增用户账号
+     *
+     * @param openId
+     */
+    private void insertUserAccount(String openId,String nickName){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setAccount(openId);
+        userAccount.setNickName(nickName);
+        userAccount.setCreateDate(System.currentTimeMillis());
+        userAccount.setLastModDate(System.currentTimeMillis());
+        userAccount.setUserType(0);
+        userAccount.setStatus(0);
+        userAccount.setUserId(0l);
+        userAccount.setCanTargetSchool(true);
+        try {
+            boolean flag = userAccountExService.insertUserAccount(
+                    userAccount,
+                    "qq"
+            );
+
+            if (!flag) {
+                ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
+            }
+
+        } catch (Exception e) {
+            ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
         }
     }
+
+    /**
+     * 拼接重定向路径
+     *
+     * @param userName
+     * @param qqUserId
+     * @return
+     */
+    private String getRedirectUrl(String userName, String qqUserId,long userId){
+        StringBuffer redirectUrl = new StringBuffer("redirect:");
+        redirectUrl.append("http://sn.zhigaokao.cn/login-third-back.html");
+        redirectUrl.append("?userName=").append(userName);
+        redirectUrl.append("&qqUserId=").append(qqUserId);
+        redirectUrl.append("&userId=").append(userId);
+        redirectUrl.append("&type=qq");
+        return redirectUrl.toString();
+    }
+
 }

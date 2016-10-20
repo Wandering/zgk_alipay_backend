@@ -34,7 +34,8 @@ selectList
         createDate,
         updateDate,
         creator,
-        modifier
+        modifier,
+        userId
     </sql>
     <insert id="insert" parameterType="UserMarket">
         INSERT INTO zgk_user_market (
@@ -47,7 +48,8 @@ selectList
         createDate,
         updateDate,
         creator,
-        modifier
+        modifier,
+        userId
         ) VALUES (
         #{accountId},
         #{sharerId},
@@ -58,7 +60,8 @@ selectList
         #{createDate},
         #{updateDate},
         #{creator},
-        #{modifier}
+        #{modifier},
+        #{userId}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
         SELECT LAST_INSERT_ID() AS ID

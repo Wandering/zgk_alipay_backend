@@ -25,6 +25,8 @@ public class UserMarket extends CreateBaseDomain{
     private Long updateDate;
     private Integer modifier;
 
+    private Long userId;
+
 	public UserMarket(){
 	}
     public void setAccountId(Long value) {
@@ -84,7 +86,15 @@ public class UserMarket extends CreateBaseDomain{
         return this.modifier;
     }
 
-	public String toString() {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("Id",getId())
 			.append("AccountId",getAccountId())

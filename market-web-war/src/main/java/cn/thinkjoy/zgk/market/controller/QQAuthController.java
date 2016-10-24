@@ -1,23 +1,17 @@
 package cn.thinkjoy.zgk.market.controller;
 
-import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
-import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
-import com.qq.connect.api.qzone.PageFans;
 import com.qq.connect.api.qzone.UserInfo;
 import com.qq.connect.javabeans.AccessToken;
-import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
-import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
 
-import com.sun.jdi.LongValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Map;
 
 

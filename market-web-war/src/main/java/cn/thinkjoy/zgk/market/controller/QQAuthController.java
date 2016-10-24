@@ -72,7 +72,7 @@ public class QQAuthController {
 
             // 根据openId检测用户是否已经完善信息
             Map<String,Object> resultMap = userAccountExService.checkUserHasInfo(openId);
-            if(resultMap != null && openId.equals(resultMap.get("account").toString())){
+            if(resultMap != null && !openId.equals(resultMap.get("account").toString())){
                 return getRedirectUrl(
                         "",
                         openId,

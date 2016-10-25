@@ -72,9 +72,14 @@ public class QQAuthController {
 
             // 根据openId检测用户是否已经完善信息
             Map<String,Object> resultMap = userAccountExService.checkUserHasInfo(openId);
-            if(resultMap != null && !openId.equals(resultMap.get("account").toString())){
+            if(resultMap != null && openId.equals(resultMap.get("account").toString())){
                 return getRedirectUrl(
-                        "",
+                        0,
+                        openId,
+                        Long.valueOf(resultMap.get("userId").toString()));
+            }else if(resultMap != null && !openId.equals(resultMap.get("account").toString())){
+                return getRedirectUrl(
+                        1,
                         openId,
                         Long.valueOf(resultMap.get("userId").toString()));
             }
@@ -89,9 +94,8 @@ public class QQAuthController {
                 );
             }
 
-            String nickname = userInfoBean.getNickname();
-            insertUserAccount(openId,nickname);
-            return getRedirectUrl(nickname,openId,0l);
+            insertUserAccount(openId,userInfoBean.getNickname());
+            return getRedirectUrl(0,openId,0l);
 
         } catch (QQConnectException e) {
             LOGGER.error("qq connect error : ",e);
@@ -136,14 +140,15 @@ public class QQAuthController {
     /**
      * 拼接重定向路径
      *
-     * @param userName
+     * @param state
      * @param qqUserId
      * @return
      */
-    private String getRedirectUrl(String userName, String qqUserId,long userId){
+    private String getRedirectUrl(int state, String qqUserId,long userId){
         StringBuffer redirectUrl = new StringBuffer("redirect:");
         redirectUrl.append("http://sn.zhigaokao.cn/login-third-back.html");
-        redirectUrl.append("?userName=").append(userName);
+        // state 是否已完善信息 0:未完善  1:已完善
+        redirectUrl.append("?state=").append(state);
         redirectUrl.append("&qqUserId=").append(qqUserId);
         redirectUrl.append("&userId=").append(userId);
         redirectUrl.append("&type=qq");

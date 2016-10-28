@@ -155,6 +155,7 @@ public class AliPayAuthController
             userAccount.setUserType(0);
             userAccount.setStatus(0);
             userAccount.setCanTargetSchool(true);
+            userAccount.setUserId(0L);
             if (StringUtils.isNotBlank(nickName))
             {
                 userAccount.setNickName(nickName);

@@ -10,7 +10,7 @@
     </select>
 
     <!-- 根据qq用户openId检测用户是否已完善信息 -->
-    <select id="checkUserHasInfo" parameterType="long" resultType="map">
+    <select id="checkUserHasInfo" parameterType="string" resultType="map">
         SELECT
             t0.id as userId,
             t1.account as account

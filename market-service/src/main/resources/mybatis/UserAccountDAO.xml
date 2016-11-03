@@ -88,6 +88,9 @@
             <if test="areaId!=null">
                 areaId = #{areaId},
             </if>
+            <if test="userId!=null">
+                userId = #{userId},
+            </if>
             <if test="canTargetSchool!=null">
                 canTargetSchool = #{canTargetSchool},
             </if>

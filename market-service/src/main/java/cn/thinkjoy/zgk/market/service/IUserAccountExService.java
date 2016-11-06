@@ -19,7 +19,7 @@ import java.util.Map;
 
 public interface IUserAccountExService {
 
-    boolean insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException;
+    long insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException;
 
     Map<String, Object> findUserInfoByAlipayId(String aliPayId);
 

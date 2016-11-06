@@ -60,8 +60,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     private IUserMarketDAO userMarketDAO;
 
     @Override
-    public boolean insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException {
-        boolean flag;
+    public long insertUserAccount(UserAccount userAccount,String source) throws WriterException, IOException {
         userAccountDAO.insert(userAccount);
         long id = userAccount.getId();
         userAccount.setUserId(id);
@@ -140,8 +139,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             file.delete();
         }
         userMarketDAO.insert(userMarket);
-        flag = true;
-        return flag;
+        return id;
     }
 
     @Override

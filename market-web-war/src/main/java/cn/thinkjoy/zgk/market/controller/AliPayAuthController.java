@@ -176,8 +176,8 @@ public class AliPayAuthController
             }
             try
             {
-                boolean flag = userAccountExService.insertUserAccount(userAccount,"ali");
-                if (!flag)
+                long tmpUserId = userAccountExService.insertUserAccount(userAccount,"ali");
+                if (tmpUserId == 0)
                 {
                     throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "账户注册失败");
                 }

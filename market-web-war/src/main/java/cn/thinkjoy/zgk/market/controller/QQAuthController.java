@@ -94,8 +94,8 @@ public class QQAuthController {
                 );
             }
 
-            insertUserAccount(openId,userInfoBean.getNickname());
-            return getRedirectUrl(0,openId,0l);
+            long userId = insertUserAccount(openId,userInfoBean.getNickname());
+            return getRedirectUrl(0,openId,userId);
 
         } catch (QQConnectException e) {
             LOGGER.error("qq connect error : ",e);
@@ -111,8 +111,11 @@ public class QQAuthController {
      * 新增用户账号
      *
      * @param openId
+     * @param nickName
+     * @return
      */
-    private void insertUserAccount(String openId,String nickName){
+    private long insertUserAccount(String openId,String nickName){
+        long userId= 0;
         UserAccount userAccount = new UserAccount();
         userAccount.setAccount(openId);
         userAccount.setNickName(nickName);
@@ -123,18 +126,19 @@ public class QQAuthController {
         userAccount.setUserId(0l);
         userAccount.setCanTargetSchool(true);
         try {
-            boolean flag = userAccountExService.insertUserAccount(
+            userId = userAccountExService.insertUserAccount(
                     userAccount,
                     "qq"
             );
 
-            if (!flag) {
+            if (userId == 0) {
                 ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
             }
 
         } catch (Exception e) {
             ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
         }
+        return userId;
     }
 
     /**

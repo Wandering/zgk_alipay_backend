@@ -150,7 +150,7 @@ public class QQAuthController {
      */
     private String getRedirectUrl(int state, String qqUserId,long userId){
         StringBuffer redirectUrl = new StringBuffer("redirect:");
-        redirectUrl.append("http://sn.test.zhigaokao.cn/login-third-back.html");
+        redirectUrl.append("http://sn.zhigaokao.cn/login-third-back.html");
         // state 是否已完善信息 0:未完善  1:已完善
         redirectUrl.append("?state=").append(state);
         redirectUrl.append("&qqUserId=").append(qqUserId);

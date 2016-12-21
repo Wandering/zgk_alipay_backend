@@ -44,7 +44,7 @@ public class WXConfig {
     /**
      *金山云URL
      */
-    protected final static String CLOUD_SERVER_URL="http://cs-pro.qtonecloud.com.cn/rest/v1/uploadFile";
+    protected final static String CLOUD_SERVER_URL="http://cs-dev.qtonecloud.cn/rest/v1/uploadFile";
 
 
     static Map<String, String> map = new HashMap<String, String>();

@@ -140,12 +140,11 @@ public class PredictController
         }
     }
 
-
-    @RequestMapping(value = "/getUniversityInfoByKeywords", method = RequestMethod.GET)
+    @RequestMapping(value = "/university", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,String> getUniversityInfoByKeywords(@RequestParam(value = "keywords") String keywords) {
+    public Map<String,String> getUniversityInfoByKeywords(@RequestParam(value = "name") String name) {
         Map<String,String> map = Maps.newHashMap();
-        List<Map<String, Object>> universities = scoreAnalysisService.getUniversityInfoByKeywords(keywords);
+        List<Map<String, Object>> universities = scoreAnalysisService.getUniversityInfoByKeywords(name);
         for(Map<String, Object> university : universities){
             map.put(university.get("id").toString(),university.get("name") + "");
         }

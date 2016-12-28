@@ -6,6 +6,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by yangyongping on 2016/10/13.
  */
@@ -37,5 +40,11 @@ public class ScoreAnalysisServiceImpl implements IScoreAnalysisService{
         }else {
             return 2;
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getUniversityInfoByKeywords(String keywords)
+    {
+        return scoreAnalysisDAO.getUniversityInfoByKeywords(keywords);
     }
 }

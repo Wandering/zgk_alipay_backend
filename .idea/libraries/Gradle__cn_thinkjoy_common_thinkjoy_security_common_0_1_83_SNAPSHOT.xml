@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: cn.thinkjoy.common:thinkjoy-security-common:0.1.83-SNAPSHOT">
     <CLASSES>
-      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-security-common/0.1.83-SNAPSHOT/634017676f6d92a390e9a78269bfb60c374470a3/thinkjoy-security-common-0.1.83-SNAPSHOT.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-security-common/0.1.83-SNAPSHOT/634017676f6d92a390e9a78269bfb60c374470a3/thinkjoy-security-common-0.1.83-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-security-common/0.1.83-SNAPSHOT/720b694825e25b379baeec23a320212a1292143f/thinkjoy-security-common-0.1.83-SNAPSHOT-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-security-common/0.1.83-SNAPSHOT/720b694825e25b379baeec23a320212a1292143f/thinkjoy-security-common-0.1.83-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>

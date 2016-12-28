@@ -19,5 +19,9 @@
         WHERE id = #{userId} limit 1
     </select>
 
+    <select id="getUniversityInfoByKeywords" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        SELECT id,name from zgk_university where name =#{keywords} union
+        select id,name from zgk_university where name like CONCAT('%',#{keywords},'%') LIMIT 5
+    </select>
 </mapper>
 

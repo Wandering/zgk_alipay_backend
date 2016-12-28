@@ -18,7 +18,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_main.iml" filepath="$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_main.iml" group="market-web-war" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_test.iml" filepath="$PROJECT_DIR$/.idea/modules/market-web-war/market-web-war_test.iml" group="market-web-war" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zgk_alipay_backend.iml" filepath="$PROJECT_DIR$/zgk_alipay_backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_main.iml" group="zgk_alipay_backend" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/zgk_alipay_backend_test.iml" group="zgk_alipay_backend" />
     </modules>

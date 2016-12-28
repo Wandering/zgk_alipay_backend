@@ -18,4 +18,6 @@
     <!-- 智高考专有短信服务 -->
     <dubbo:reference id="zgkSmsService" interface="cn.thinkjoy.sms.api.SMSService" check="false" retries="0" timeout="600000" />
 
+    <dubbo:reference id="remoteUniversityService" interface="cn.thinkjoy.zgk.remote.IUniversityService" check="false"
+                     timeout="60000"/>
 </beans>

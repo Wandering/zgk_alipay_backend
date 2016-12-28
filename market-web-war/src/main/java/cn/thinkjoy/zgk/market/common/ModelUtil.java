@@ -28,7 +28,7 @@ public class ModelUtil {
      *
      * @param errorCode
      */
-    public static void throwException(ErrorCode errorCode){
+    public static void throwException(ERRORCODE errorCode){
         throw new BizException(errorCode.getCode(),errorCode.getMessage());
     }
 }

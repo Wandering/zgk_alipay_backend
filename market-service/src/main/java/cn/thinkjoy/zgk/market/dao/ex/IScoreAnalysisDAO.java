@@ -1,5 +1,10 @@
 package cn.thinkjoy.zgk.market.dao.ex;
 
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by yangyongping on 2016/10/13.
  */
@@ -17,4 +22,6 @@ public interface IScoreAnalysisDAO {
      * @return
      */
     Integer queryScoreCount(long userId);
+
+    List<Map<String,Object>> getUniversityInfoByKeywords(@Param("keywords") String keywords);
 }

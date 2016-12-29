@@ -1,6 +1,7 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
+import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.edomain.ErrorCode;
@@ -61,7 +62,7 @@ public class QQAuthController {
                     tokenObj.getAccessToken().equals("")) {
 
                 LOGGER.error("get the response parameters error ");
-                ModelUtil.throwException(ErrorCode.AUTHENTICATION_FAIL);
+                ModelUtil.throwException(ERRORCODE.AUTHENTICATION_FAIL);
             }
 
             String accessToken = tokenObj.getAccessToken();
@@ -90,7 +91,7 @@ public class QQAuthController {
             if (userInfoBean.getRet() != 0) {
                 LOGGER.error("get user info error ：" + userInfoBean.getMsg());
                 ModelUtil.throwException(
-                        ErrorCode.AUTHENTICATION_FAIL
+                    ERRORCODE.AUTHENTICATION_FAIL
                 );
             }
 
@@ -100,7 +101,7 @@ public class QQAuthController {
         } catch (QQConnectException e) {
             LOGGER.error("qq connect error : ",e);
             ModelUtil.throwException(
-                    ErrorCode.AUTHENTICATION_FAIL
+                ERRORCODE.AUTHENTICATION_FAIL
             );
         }
 
@@ -132,11 +133,11 @@ public class QQAuthController {
             );
 
             if (userId == 0) {
-                ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
+                ModelUtil.throwException(ERRORCODE.ACCOUNT_REGIST_FAIL);
             }
 
         } catch (Exception e) {
-            ModelUtil.throwException(ErrorCode.ACCOUNT_REGIST_FAIL);
+            ModelUtil.throwException(ERRORCODE.ACCOUNT_REGIST_FAIL);
         }
         return userId;
     }

@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: cn.thinkjoy.common:thinkjoy-mus-common:0.1.83-SNAPSHOT">
     <CLASSES>
-      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.83-SNAPSHOT/7b1fa54451b2442d9fc4a1e5c29b465bbbb5ba53/thinkjoy-mus-common-0.1.83-SNAPSHOT.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.83-SNAPSHOT/7b1fa54451b2442d9fc4a1e5c29b465bbbb5ba53/thinkjoy-mus-common-0.1.83-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar:///Applications/gradle-1.12/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.83-SNAPSHOT/37f1e1574d492a488cab8dfe4e22e0a8aa1e5125/thinkjoy-mus-common-0.1.83-SNAPSHOT-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-mus-common/0.1.83-SNAPSHOT/37f1e1574d492a488cab8dfe4e22e0a8aa1e5125/thinkjoy-mus-common-0.1.83-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>

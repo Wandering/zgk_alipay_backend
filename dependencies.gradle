@@ -26,4 +26,6 @@ allprojects {
 
     zgkSmsVersion = "0.0.3-SNAPSHOT"
 
+    gaokao360Version = "0.0.40-SNAPSHOT"
+
 }

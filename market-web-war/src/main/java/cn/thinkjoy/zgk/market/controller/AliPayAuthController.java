@@ -116,23 +116,26 @@ public class AliPayAuthController
             baseUrl+="is-new.html";
             baseUrl+=baseUrlEnd;
             return baseUrl;
+        }else {
+            baseUrl+="is-old.html";
+            baseUrl+=baseUrlEnd;
         }
 
-        switch (areaId){
-            case ZJ_AREA:
-                baseUrl+="is-old-zj.html";
-                baseUrl+=baseUrlEnd;
-                break;
-            case JS_AREA:
-                baseUrl+="is-old-js.html";
-                baseUrl+=baseUrlEnd;
-                break;
-            default:
-                baseUrl+="is-old.html";
-                baseUrl+=baseUrlEnd;
-                break;
-
-        }
+//        switch (areaId){
+//            case ZJ_AREA:
+//                baseUrl+="is-old-zj.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//            case JS_AREA:
+//                baseUrl+="is-old-js.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//            default:
+//                baseUrl+="is-old.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//
+//        }
         return baseUrl;
     }
 

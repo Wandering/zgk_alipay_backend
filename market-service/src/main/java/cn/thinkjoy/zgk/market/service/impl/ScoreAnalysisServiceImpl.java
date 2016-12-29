@@ -1,7 +1,7 @@
 package cn.thinkjoy.zgk.market.service.impl;
 
+import cn.thinkjoy.ReportUtil;
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.common.ReportUtil;
 import cn.thinkjoy.zgk.market.dao.ex.IScoreAnalysisDAO;
 import cn.thinkjoy.zgk.market.domain.*;
 import cn.thinkjoy.zgk.market.service.IScoreAnalysisService;

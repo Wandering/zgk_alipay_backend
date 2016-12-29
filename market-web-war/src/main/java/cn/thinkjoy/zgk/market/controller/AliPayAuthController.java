@@ -117,7 +117,7 @@ public class AliPayAuthController
             baseUrl+=baseUrlEnd;
             return baseUrl;
         }else {
-            baseUrl+="is-old.html";
+            baseUrl+="app.html";
             baseUrl+=baseUrlEnd;
         }
 

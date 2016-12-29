@@ -97,8 +97,8 @@
 
     <!--获取一分一段最大值及最小值-->
     <select id="selectMaxScore" resultMap="MaxMinResultMap" parameterType="java.util.Map">
-        select score,num,heigh_pre,low_pre,avg_pre
-        from zgk_data.`${tableName}` as scoreMapData limit 1
+        select max(scoreMapData.score) as maxScore,min(scoreMapData.score) as minScore
+        from zgk_data.`${tableName}` as scoreMapData
     </select>
 
 
@@ -119,7 +119,7 @@
     </resultMap>
 
     <select id="selectPrecedenceByScore" resultMap="ScoreResultMap" parameterType="java.util.Map">
-        select <include refid="Base_Column_List" /> from zgk_data.`${tableName}` as scoreMapData
+        select score,num,heigh_pre,low_pre,avg_pre from zgk_data.`${tableName}` as scoreMapData
         <where>
             <if test="score!=null">
                 and scoreMapData.score=#{score,jdbcType=INTEGER}

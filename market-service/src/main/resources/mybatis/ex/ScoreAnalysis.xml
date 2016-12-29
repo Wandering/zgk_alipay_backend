@@ -191,5 +191,11 @@
             limit 0, ${rows}
         </if>
     </select>
+
+    <select id="getProvince" resultType="java.lang.String">
+        SELECT code
+        from zgk_province
+        WHERE id = #{areaId} limit 1
+    </select>
 </mapper>
 

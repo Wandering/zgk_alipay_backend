@@ -188,10 +188,11 @@ public class PredictController
     public Map<String,Object> reportMain(
         @RequestParam(value = "batch") String batch,
         @RequestParam(value = "score") Integer score,
-        @RequestParam(value = "province") String province,
+        @RequestParam(value = "areaId") String areaId,
         @RequestParam(value = "categorie") Integer categorie,
         @RequestParam(value="uid") Integer uid) {
 
+        String province = scoreAnalysisService.getProvince(areaId);
         ReportForecastView reportForecastView = new ReportForecastView();
         reportForecastView.setBatch(ReportUtil.ConverOldBatch(batch));
         reportForecastView.setScore(score);

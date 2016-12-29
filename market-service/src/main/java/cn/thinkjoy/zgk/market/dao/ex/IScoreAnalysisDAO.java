@@ -61,4 +61,6 @@ public interface IScoreAnalysisDAO {
     List<Integer> selectPrecedence(Map map);
 
     List<UniversityInfoEnrolling> selectUniversityEnrolling(Map parmasMap);
+
+    String getProvince(@Param("areaId")String areaId);
 }

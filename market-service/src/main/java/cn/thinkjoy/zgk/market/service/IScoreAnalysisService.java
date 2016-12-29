@@ -25,4 +25,6 @@ public interface IScoreAnalysisService {
     Integer converScoreDiffByScore(ReportForecastView reportForecastView);
 
     String getEnrollingByForecast(ReportForecastView reportForecastView);
+
+    String getProvince(String areaId);
 }

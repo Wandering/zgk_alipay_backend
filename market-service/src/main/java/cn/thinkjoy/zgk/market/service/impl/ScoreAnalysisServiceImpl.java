@@ -108,6 +108,11 @@ public class ScoreAnalysisServiceImpl implements IScoreAnalysisService{
         return resultEnroll.toString();
     }
 
+    @Override
+    public String getProvince(String areaId)
+    {
+        return scoreAnalysisDAO.getProvince(areaId);
+    }
 
     public Integer converPrecedenceByScoreV2(Integer score,String proCode,Integer cate,String batch) {
         Map scoreMap = new HashMap();

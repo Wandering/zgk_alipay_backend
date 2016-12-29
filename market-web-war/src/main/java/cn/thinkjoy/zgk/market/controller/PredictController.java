@@ -4,7 +4,9 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.common.ModelUtil;
+import cn.thinkjoy.zgk.market.common.ReportUtil;
 import cn.thinkjoy.zgk.market.constant.SpringMVCConst;
+import cn.thinkjoy.zgk.market.domain.ReportForecastView;
 import cn.thinkjoy.zgk.market.service.IScoreAnalysisService;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
@@ -16,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by liusven on 2016/12/28.
@@ -34,7 +33,6 @@ public class PredictController
 
     @Autowired
     private IScoreAnalysisService scoreAnalysisService;
-
 
     /**
      * 录取难易预测接口
@@ -100,6 +98,11 @@ public class PredictController
         }
         resultMap.put("universityName", name);
         resultMap.put("score", score);
+        String url = scoreAnalysisService.getUniversityImage(name);
+        if(StringUtils.isNotEmpty(url))
+        {
+            resultMap.put("img", "http://123.59.12.77:8080" + url);
+        }
         return resultMap;
     }
 
@@ -148,6 +151,68 @@ public class PredictController
         for(Map<String, Object> university : universities){
             map.put(university.get("id").toString(),university.get("name") + "");
         }
+        return map;
+    }
+
+    /**
+     * 根据大学ID和省份ID查询相应的录取批次
+     * @return
+     */
+    @RequestMapping(value = "/batch",method = RequestMethod.GET)
+    @ResponseBody
+
+    public Object queryBatchsBySchoolIdAndAreaId(@RequestParam long areaId, @RequestParam long schoolId, Integer majorType){
+        List<Map<String, Object>> list = null;
+        Integer year = Integer.valueOf(getYear());
+        list = scoreAnalysisService.queryUnivsersityBatch(areaId, schoolId, year.toString(), majorType);
+        //尝试获取次年对应的录取批次,获取不到获取次年的录取批次
+        if (list == null || list.size() == 0) {
+            list = scoreAnalysisService.queryUnivsersityBatch(areaId, schoolId, (year - 1) + "", majorType);
+        }
+        return list;
+    }
+
+    public String getYear() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        if (month >= 7) {
+            return year + "";
+        } else {
+            return year - 1 + "";
+        }
+    }
+
+    @RequestMapping(value = "/forecast",method=RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> reportMain(
+        @RequestParam(value = "batch") String batch,
+        @RequestParam(value = "score") Integer score,
+        @RequestParam(value = "province") String province,
+        @RequestParam(value = "categorie") Integer categorie,
+        @RequestParam(value="uid") Integer uid) {
+
+        ReportForecastView reportForecastView = new ReportForecastView();
+        reportForecastView.setBatch(ReportUtil.ConverOldBatch(batch));
+        reportForecastView.setScore(score);
+        reportForecastView.setProvince(province);
+        reportForecastView.setCategorie(categorie);
+        reportForecastView.setUid(uid);
+
+        String parmasKey = ReportUtil.combSystemParmasKey(reportForecastView.getProvince(), ReportUtil.FORECAST_ENROLLING_LOGIC);
+
+        //是否走位次
+        boolean isPre = scoreAnalysisService.enrollingLogin(parmasKey, reportForecastView.getCategorie());
+
+        if (isPre)
+            reportForecastView.setPrecedence(scoreAnalysisService.converPreByScoreV2(reportForecastView, ReportUtil.FORECAST_ENROLLING_LOGIC));
+        reportForecastView.setScoreDiff(scoreAnalysisService.converScoreDiffByScore(reportForecastView));
+        reportForecastView.setJoin(false);
+
+
+        String enrolling = scoreAnalysisService.getEnrollingByForecast(reportForecastView);
+        Map map = new HashMap();
+        map.put("enrolling", enrolling);
         return map;
     }
 }

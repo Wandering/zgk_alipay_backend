@@ -13,8 +13,7 @@
 
     <!--获取用户年级-->
     <select id="queryUserGradeInfo" resultType="java.lang.String">
-        SELECT
-        gradeInfo
+        SELECT gradeInfo
         from zgk_user_info
         WHERE id = #{userId} limit 1
     </select>
@@ -22,6 +21,175 @@
     <select id="getUniversityInfoByKeywords" parameterType="java.util.HashMap" resultType="java.util.HashMap">
         SELECT id,name from zgk_university where name =#{keywords} union
         select id,name from zgk_university where name like CONCAT('%',#{keywords},'%') LIMIT 5
+    </select>
+
+    <select id="getUniversityImage" resultType="java.lang.String">
+        SELECT photo_url from zgk_university where name = #{name} limit 1
+    </select>
+
+    <select id="queryUnivsersityBatch" resultType="java.util.Map">
+        SELECT dictId,name FROM zgk_data_dict
+        WHERE type = 'BATCHTYPE2'
+        and dictId in
+        (SELECT batch from zgk_university_enrolling
+        WHERE areaId = #{areaId} and universityId = #{schooleId} and year = #{year}
+        <if test="majorType!=null">
+            and majorType = #{majorType}
+        </if>
+        GROUP BY batch);
+    </select>
+
+    <sql id="Base_Column_List">
+        id,province_code,config_key,config_value,major_type,year
+    </sql>
+    <resultMap id="BaseResultMap" type="cn.thinkjoy.zgk.market.domain.SystemParmas">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+        <result column="major_type" property="majorType" jdbcType="TINYINT"/>
+        <result column="config_key" property="configKey" jdbcType="VARCHAR" />
+        <result column="config_value" property="configValue" jdbcType="VARCHAR" />
+        <result column="year" property="year" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="selectModel" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT <include refid="Base_Column_List"  /> from zgk_system_parmas
+        <where>
+            <if test="id!=null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="provinceCode!=null">
+                and province_code=#{provinceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="configKey!=null">
+                and config_key=#{configKey,jdbcType=VARCHAR}
+            </if>
+            <if test="configValue!=null">
+                and config_value=#{configValue,jdbcType=VARCHAR}
+            </if>
+            <if test="majorType!=null">
+                and major_type=#{majorType,jdbcType=INTEGER}
+            </if>
+            and year =(select max(year) from zgk_system_parmas a
+            <where>
+                <if test="id!=null">
+                    and id=#{id,jdbcType=BIGINT}
+                </if>
+                <if test="provinceCode!=null">
+                    and province_code=#{provinceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="configKey!=null">
+                    and config_key=#{configKey,jdbcType=VARCHAR}
+                </if>
+                <if test="configValue!=null">
+                    and config_value=#{configValue,jdbcType=VARCHAR}
+                </if>
+                <if test="majorType!=null">
+                    and major_type=#{majorType,jdbcType=INTEGER}
+                </if>
+            </where>)
+        </where>
+    </select>
+
+
+    <resultMap id="MaxMinResultMap" type="cn.thinkjoy.zgk.market.domain.ScoreMaxMin">
+        <result column="maxScore" property="maxScore" jdbcType="INTEGER" />
+        <result column="minScore" property="minScore" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!--获取一分一段最大值及最小值-->
+    <select id="selectMaxScore" resultMap="MaxMinResultMap" parameterType="java.util.Map">
+        select score,num,heigh_pre,low_pre,avg_pre
+        from zgk_data.`${tableName}` as scoreMapData limit 1
+    </select>
+
+
+    <resultMap id="ScoreResultMap" type="cn.thinkjoy.zgk.market.domain.ScoreConverPrecedence">
+        <result column="score" property="score" jdbcType="INTEGER" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="heigh_pre" property="heighPre" jdbcType="INTEGER" />
+        <result column="low_pre" property="lowPre" jdbcType="INTEGER" />
+        <result column="avg_pre" property="avgPre" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="EnrollingMap" type="cn.thinkjoy.zgk.market.domain.UniversityInfoEnrolling">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="batch" property="batch" jdbcType="VARCHAR" />
+        <result column="universityId" property="universityId" jdbcType="BIGINT" />
+        <result column="universityName" property="universityName" jdbcType="VARCHAR" />
+        <result column="enrollRate" property="enrollRate" jdbcType="NUMERIC" />
+    </resultMap>
+
+    <select id="selectPrecedenceByScore" resultMap="ScoreResultMap" parameterType="java.util.Map">
+        select <include refid="Base_Column_List" /> from zgk_data.`${tableName}` as scoreMapData
+        <where>
+            <if test="score!=null">
+                and scoreMapData.score=#{score,jdbcType=INTEGER}
+            </if>
+            <if test="num!=null">
+                and scoreMapData.num=#{num,jdbcType=INTEGER}
+            </if>
+            <if test="heighPre!=null">
+                and scoreMapData.heigh_pre=#{heighPre,jdbcType=INTEGER}
+            </if>
+            <if test="lowPre!=null">
+                and scoreMapData.low_pre=#{lowPre,jdbcType=INTEGER}
+            </if>
+            <if test="avgPre!=null">
+                and scoreMapData.avg_pre=#{avgPre,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectPrecedence" resultType="java.lang.Integer"  parameterType="java.util.Map" >
+        (select distinct(precedence) from zgk_data.`${tableName}` where precedence&lt;=#{preceden,jdbcType=INTEGER} order by precedence desc limit 1) union
+        (select distinct(precedence) from zgk_data.`${tableName}` where precedence&gt;#{preceden,jdbcType=INTEGER} order by precedence asc limit 1)
+    </select>
+
+    <sql id="Enrolling_Column_JS">
+        <!--puid plan表的universityId-->
+        INNER JOIN (SELECT universityId as puid from zgk2.zgk_university_enrolling_plan
+        where
+        <foreach collection="xcRanks" separator="," item="xcRank" open="xcRank in (" close=")             AND">
+            #{xcRank}
+        </foreach>
+        year = #{year} AND majorType = #{majorType}
+        <if test="batchs!=null">
+            <foreach collection="batchs" separator="," item="batch" open="and batch in (" close=")">
+                #{batch}
+            </foreach>
+        </if>
+        ) jsplan
+        ON bData.universityId=jsplan.puid
+    </sql>
+
+    <select id="selectUniversityEnrolling" resultMap="EnrollingMap" parameterType="java.util.Map">
+        select id,batch,universityId,universityName,enrollRate from zgk_data.`${tableName}` as bData
+        <if test="isJoin==true">
+            <include refid="Enrolling_Column_JS" />
+        </if>
+        <where>
+            <if test="universityId!=null">
+                and universityId=#{universityId}
+            </if>
+            <if test="precedence!=null">
+                and precedence=#{precedence}
+            </if>
+            <if test="scoreDiff!=null">
+                and scoreDiff=#{scoreDiff}
+            </if>
+            <if test="enrollRateStart!=null">
+                AND universityId is not null
+                and enrollRate >=#{enrollRateStart}
+            </if>
+            <if test="enrollRateEnd!=null">
+                and enrollRate &lt;=#{enrollRateEnd}
+            </if>
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="rows != null">
+            limit 0, ${rows}
+        </if>
     </select>
 </mapper>
 

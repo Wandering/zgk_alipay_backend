@@ -44,12 +44,12 @@ public class BaseCommonController
     protected UserAccountPojo getUserAccountPojo(String userId)
     {
         String key = UserRedisConst.USER_KEY + userId;
-        Object userObj = RedisUtil.getInstance().get(key);
-        if (null == userObj)
+        boolean redisFlag = RedisUtil.getInstance().exists(key);
+        if (!redisFlag)
         {
             throw new BizException("1110000", "userId错误！");
         }
-        return JSON.parseObject(userObj.toString(), UserAccountPojo.class);
+        return JSON.parseObject(RedisUtil.getInstance().get(key).toString(), UserAccountPojo.class);
     }
 
     protected void setUserAccountPojo(UserAccountPojo userAccountBean, String userId)

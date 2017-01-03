@@ -110,7 +110,7 @@ public class AliPayAuthController extends BaseCommonController
 
     private void setAccountToRedis(String userId)
     {
-        UserAccountPojo userAccountBean = userAccountExService.findUserAccountPojoByPhone(userId);
+        UserAccountPojo userAccountBean = userAccountExService.findUserAccountPojoByUserId(userId);
         setUserAccountPojo(userAccountBean, userId);
     }
 

@@ -234,6 +234,12 @@ public class OrdersController extends BaseCommonController
             Map<String, Object> extraMap = new HashMap<>();
             extraMap.put("success_url", aliReturnUrl);
             chargeParams.put("extra", extraMap);
+        }else if("alipay_wap".equals(channel))
+        {
+            Map<String, String> extra = new HashMap<String, String>();
+            extra.put("success_url", aliReturnUrl);
+            extra.put("cancel_url", aliReturnUrl);
+            chargeParams.put("extra", extra);
         }
         createOrderStatement(paramMap, chargeParams, statemenstNo);
         return Charge.create(chargeParams);
@@ -288,7 +294,6 @@ public class OrdersController extends BaseCommonController
     public List<Map<String, Object>> getOrderList(@RequestParam(value = "userId", required = true)String userId,
                                                   @RequestParam(required = false)String more)
     {
-
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("userId", userId);
         if(more==null){

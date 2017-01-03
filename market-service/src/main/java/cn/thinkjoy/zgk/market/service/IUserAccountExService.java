@@ -27,7 +27,7 @@ public interface IUserAccountExService {
 
     UserAccountPojo findUserAccountPojoById(Long id);
 
-    UserAccountPojo findUserAccountPojoByPhone(String phone);
+    UserAccountPojo findUserAccountPojoByUserId(String phone);
 
     int findUserAccountCountByPhone(String phone, Long areaId);
 

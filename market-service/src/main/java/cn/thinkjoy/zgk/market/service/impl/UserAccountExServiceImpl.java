@@ -168,7 +168,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     }
 
     @Override
-    public UserAccountPojo findUserAccountPojoByPhone(String account) {
+    public UserAccountPojo findUserAccountPojoByUserId(String account) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id",account);
         return  userAccountExDAO.findUserAccountPojo(params);

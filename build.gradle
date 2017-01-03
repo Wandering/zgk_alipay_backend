@@ -48,7 +48,10 @@ allprojects {
     apply plugin: 'maven-publish-auth'
 
     repositories {
-        repositories { maven { url 'http://repo.qtonecloud.cn/content/groups/public/' } }
+        repositories {
+            maven { url 'http://repo.qtonecloud.cn/content/groups/public/' }
+            maven { url  "http://jcenter.bintray.com" }
+        }
         mavenLocal()
         mavenCentral()
     }

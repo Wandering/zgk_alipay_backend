@@ -101,11 +101,14 @@ public class OrdersController extends BaseCommonController
         //生成订单序号
         String orderNo = String.valueOf(System.currentTimeMillis()) + userId;
         //获取产品(状元及第/金榜题名)
-        String products = ordersQuery.getProducts();
+        String productId = ordersQuery.getProductId();
+        Product product = (Product)productService.fetch(productId);
+        if(null == product)
+        {
+            throw new BizException("1122000", "productId错误！");
+        }
         //获取商品信息
-        Order order = getOrder(userId, products);
-        //保存手机号码
-        order.setPhone(ordersQuery.getPhone());
+        Order order = getOrder(userId, product);
         Map<String, String> resultMap = new HashMap<>();
         try {
             resultMap.put("orderNo", order.getOrderNo());
@@ -164,7 +167,7 @@ public class OrdersController extends BaseCommonController
         return order;
     }
 
-    private Order getOrder(Long userId, String products) {
+    private Order getOrder(Long userId, Product product) {
         String orderNo= NumberGenUtil.genOrderNo();
         Order order=new Order();
         //来源:0微信,1web
@@ -173,29 +176,11 @@ public class OrdersController extends BaseCommonController
         order.setOrderNo(orderNo);
         order.setUserId(userId);
         order.setStatus(0);
-        JSONArray jsonArray = JSON.parseArray(products);
-        if(jsonArray.size() >= 1)
-        {
-            JSONObject obj = jsonArray.getJSONObject(0);
-            String productId = obj.getString("productId");
-            Product product = (Product) productService.findOne("id", productId);
-            if(null == product)
-            {
-                throw new BizException("0000007", "无效的产品code!");
-            }
-            order.setProductType(productId);
-            BigDecimal count = new BigDecimal(obj.getIntValue("productNum")).setScale(0, BigDecimal.ROUND_DOWN);
-            BigDecimal salePrice = new BigDecimal("1");
-            if(salePrice.toString().equals(BigDecimal.ZERO.toString()))
-            {
-               throw new BizException("1000111", "未找到匹配的产品类型!");
-            }
-            order.setUnitPrice(salePrice.toString());
-            order.setGoodsCount(count.intValue());
-            order.setProductPrice(salePrice.multiply(count).toString());
-        }else {
-            throw new BizException("1000112", "输入信息有误!");
-        }
+        order.setProductType(product.getName());
+        BigDecimal salePrice = new BigDecimal(product.getPrice());
+        order.setUnitPrice(salePrice.toString());
+        order.setGoodsCount(1);
+        order.setProductPrice(salePrice.toString());
         return order;
     }
 

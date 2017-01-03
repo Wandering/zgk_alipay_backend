@@ -23,7 +23,6 @@ public class ProductController
     @Autowired
     private ProductServiceImpl productService;
 
-
     @RequestMapping(value = "productList")
     @ResponseBody
     public List<Product> productList() throws Exception
@@ -41,7 +40,6 @@ public class ProductController
         p.setAction(null);
         p.setCreateDate(null);
         p.setLastModDate(null);
-        p.setId(null);
         p.setValidValue(null);
         p.setUnit(null);
         p.setCode(null);

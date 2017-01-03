@@ -9,10 +9,7 @@ public class OrdersQuery implements Serializable
 {
     private String userId;
     private String channel;
-    private String products;
-    private String extra;
-    //手机号 2.0需求新加参数
-    private String phone;
+    private String productId;
     private String returnUrl;
     public String getChannel() {
         return channel;
@@ -22,20 +19,14 @@ public class OrdersQuery implements Serializable
         this.channel = channel;
     }
 
-    public String getProducts() {
-        return products;
+    public String getProductId()
+    {
+        return productId;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
-    }
-
-    public String getExtra() {
-        return extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
+    public void setProductId(String productId)
+    {
+        this.productId = productId;
     }
 
     public String getReturnUrl() {
@@ -44,14 +35,6 @@ public class OrdersQuery implements Serializable
 
     public void setReturnUrl(String returnUrl) {
         this.returnUrl = returnUrl;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getUserId()

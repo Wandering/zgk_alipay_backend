@@ -14,12 +14,14 @@ dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
 
     compile "cn.thinkjoy.jx:jx-auth-common:$jxCommonVersion"
-    compile ("cn.thinkjoy.mock:mock-scan:$mockVersion"){
+    compile("cn.thinkjoy.mock:mock-scan:$mockVersion") {
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-web-common'
     }
     compile project(':market-service')
-    compile "cn.thinkjoy:pingpp-java:2.0.1"
+
+    compile 'Pingplusplus:pingpp-java:2.1.2'
+
     compile "com.google.code.gson:gson:2.6.2"
 
     compile group: 'com.github.penggle', name: 'kaptcha', version: '2.3.2'

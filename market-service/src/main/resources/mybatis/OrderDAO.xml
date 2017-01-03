@@ -25,20 +25,25 @@
     -->
     <sql id="Base_Column_List">
         id,
-        user_id,
-        status,
-        order_no,
-        channle,
-        create_date,
-        update_date,
-        state,
-        goods_address,
-        product_price,
-        department_code,
-        department_name,
-        department_phone,
-        goods_count,
-        handle_state
+        user_id as userId,
+        status as status,
+        order_no as orderNo,
+        channle as channle,
+        create_date as createDate,
+        update_date as updateDate,
+        state as state,
+        goods_address as goodsAddress,
+        product_price as productPrice,
+        product_type as productType,
+        department_code as departmentCode,
+        department_name as departmentName,
+        department_phone as departmentPhone,
+        goods_count as goodsCount,
+        handle_state as handleState,
+        channel as channel,
+        unit_price as unitPrice,
+        phone,
+        cardId
     </sql>
     <insert id="insert" parameterType="Order">
         INSERT INTO zgk_order (

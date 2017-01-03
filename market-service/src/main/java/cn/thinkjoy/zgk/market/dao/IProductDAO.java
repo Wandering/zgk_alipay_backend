@@ -12,6 +12,4 @@ import cn.thinkjoy.zgk.market.domain.Product;
 public interface IProductDAO extends IBaseDAO<Product>
 {
 	
-	Product findByCode(Long code);
-
 }

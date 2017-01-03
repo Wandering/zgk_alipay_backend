@@ -67,18 +67,12 @@ public class OrdersController extends BaseCommonController
     private IOrderService orderService;
 
     @Autowired
-    private SMSService smsService;
-
-    @Autowired
     private IOrderStatementsService orderStatementService;
     @Autowired
     private IUserAccountExService userAccountExService;
 
     @Autowired
     private IProductService productService;
-
-    @Autowired
-    private DeparmentApiService deparmentApiService;
 
     //订单过期时间间隔2小时
     private final long expireDuration = 2 * 60 * 60 * 1000;
@@ -91,7 +85,6 @@ public class OrdersController extends BaseCommonController
     @ResponseBody
     public Map<String, String> createOrder(OrdersQuery ordersQuery) throws Exception
     {
-
         if (ordersQuery == null) {
             LOGGER.error("====pay /orders/createOrders PARAM_ERROR ");
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), ERRORCODE.PARAM_ERROR.getMessage());

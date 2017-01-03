@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.zgk.market.dao.IProductDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id,
+        status,
+        createDate,
+        lastModDate,
+        code,
+        name,
+        type,
+        unit,
+        marketPrice,
+        price,
+        icon,
+        action,
+        intro,
+        validValue
+    </sql>
+    <insert id="insert" parameterType="Product">
+        INSERT INTO zgk_ali_product (
+        status,
+        createDate,
+        lastModDate,
+        code,
+        name,
+        type,
+        unit,
+        marketPrice,
+        price,
+        icon,
+        action,
+        intro,
+        validValue
+        ) VALUES (
+        #{status},
+        #{createDate},
+        #{lastModDate},
+        #{code},
+        #{name},
+        #{type},
+        #{unit},
+        #{marketPrice},
+        #{price},
+        #{icon},
+        #{action},
+        #{intro},
+        #{validValue}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="Product">
+        UPDATE zgk_ali_product
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="code!=null">
+                code = #{code},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="type!=null">
+                type = #{type},
+            </if>
+            <if test="unit!=null">
+                unit = #{unit},
+            </if>
+            <if test="marketPrice!=null">
+                marketPrice = #{marketPrice},
+            </if>
+            <if test="price!=null">
+                price = #{price},
+            </if>
+            <if test="icon!=null">
+                icon = #{icon},
+            </if>
+            <if test="action!=null">
+                action = #{action},
+            </if>
+            <if test="intro!=null">
+                intro = #{intro},
+            </if>
+            <if test="validValue!=null">
+                validValue = #{validValue},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE zgk_ali_product
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.code!=null">
+                code = #{map.code},
+            </if>
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.type!=null">
+                type = #{map.type},
+            </if>
+            <if test="map.unit!=null">
+                unit = #{map.unit},
+            </if>
+            <if test="map.marketPrice!=null">
+                marketPrice = #{map.marketPrice},
+            </if>
+            <if test="map.price!=null">
+                price = #{map.price},
+            </if>
+            <if test="map.icon!=null">
+                icon = #{map.icon},
+            </if>
+            <if test="map.action!=null">
+                action = #{map.action},
+            </if>
+            <if test="map.intro!=null">
+                intro = #{map.intro},
+            </if>
+            <if test="map.validValue!=null">
+                validValue = #{map.validValue},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE zgk_ali_product
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.code!=null">
+                code = #{update.code},
+            </if>
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.type!=null">
+                type = #{update.type},
+            </if>
+            <if test="update.unit!=null">
+                unit = #{update.unit},
+            </if>
+            <if test="update.marketPrice!=null">
+                marketPrice = #{update.marketPrice},
+            </if>
+            <if test="update.price!=null">
+                price = #{update.price},
+            </if>
+            <if test="update.icon!=null">
+                icon = #{update.icon},
+            </if>
+            <if test="update.action!=null">
+                action = #{update.action},
+            </if>
+            <if test="update.intro!=null">
+                intro = #{update.intro},
+            </if>
+            <if test="update.validValue!=null">
+                validValue = #{update.validValue},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
+            <if test="condition.unit!=null">
+                AND unit = #{condition.unit}
+            </if>
+            <if test="condition.marketPrice!=null">
+                AND marketPrice = #{condition.marketPrice}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.icon!=null">
+                AND icon = #{condition.icon}
+            </if>
+            <if test="condition.action!=null">
+                AND action = #{condition.action}
+            </if>
+            <if test="condition.intro!=null">
+                AND intro = #{condition.intro}
+            </if>
+            <if test="condition.validValue!=null">
+                AND validValue = #{condition.validValue}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO zgk_ali_product (
+                status,
+                createDate,
+                lastModDate,
+                code,
+                name,
+                type,
+                unit,
+                marketPrice,
+                price,
+                icon,
+                action,
+                intro,
+                validValue
+        ) VALUES (
+                    #{map.status},
+                    #{map.createDate},
+                    #{map.lastModDate},
+                    #{map.code},
+                    #{map.name},
+                    #{map.type},
+                    #{map.unit},
+                    #{map.marketPrice},
+                    #{map.price},
+                    #{map.icon},
+                    #{map.action},
+                    #{map.intro},
+                    #{map.validValue}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="Product">
+        UPDATE zgk_ali_product
+        <trim prefix="SET" suffixOverrides=",">
+            status = #{status},
+            createDate = #{createDate},
+            lastModDate = #{lastModDate},
+            code = #{code},
+            name = #{name},
+            type = #{type},
+            unit = #{unit},
+            marketPrice = #{marketPrice},
+            price = #{price},
+            icon = #{icon},
+            action = #{action},
+            intro = #{intro},
+            validValue = #{validValue},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="code!=null">
+                AND code = #{code}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="type!=null">
+                AND type = #{type}
+            </if>
+            <if test="unit!=null">
+                AND unit = #{unit}
+            </if>
+            <if test="marketPrice!=null">
+                AND marketPrice = #{marketPrice}
+            </if>
+            <if test="price!=null">
+                AND price = #{price}
+            </if>
+            <if test="icon!=null">
+                AND icon = #{icon}
+            </if>
+            <if test="action!=null">
+                AND action = #{action}
+            </if>
+            <if test="intro!=null">
+                AND intro = #{intro}
+            </if>
+            <if test="validValue!=null">
+                AND validValue = #{validValue}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM zgk_ali_product WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Long" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.code!=null">
+                ${condition.groupOp}   code  ${condition.code.op}  #{condition.code.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp}   type  ${condition.type.op}  #{condition.type.data}
+            </if>
+            <if test="condition.unit!=null">
+                ${condition.groupOp}   unit  ${condition.unit.op}  #{condition.unit.data}
+            </if>
+            <if test="condition.marketPrice!=null">
+                ${condition.groupOp}   marketPrice  ${condition.marketPrice.op}  #{condition.marketPrice.data}
+            </if>
+            <if test="condition.price!=null">
+                ${condition.groupOp}   price  ${condition.price.op}  #{condition.price.data}
+            </if>
+            <if test="condition.icon!=null">
+                ${condition.groupOp}   icon  ${condition.icon.op}  #{condition.icon.data}
+            </if>
+            <if test="condition.action!=null">
+                ${condition.groupOp}   action  ${condition.action.op}  #{condition.action.data}
+            </if>
+            <if test="condition.intro!=null">
+                ${condition.groupOp}   intro  ${condition.intro.op}  #{condition.intro.data}
+            </if>
+            <if test="condition.validValue!=null">
+                ${condition.groupOp}   validValue  ${condition.validValue.op}  #{condition.validValue.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="code!=null">
+                AND code like CONCAT('%', #{code} , '%')
+            </if>
+            <if test="name!=null">
+                AND name like CONCAT('%', #{name} , '%')
+            </if>
+            <if test="type!=null">
+                AND type like CONCAT('%', #{type} , '%')
+            </if>
+            <if test="unit!=null">
+                AND unit like CONCAT('%', #{unit} , '%')
+            </if>
+            <if test="marketPrice!=null">
+                AND marketPrice like CONCAT('%', #{marketPrice} , '%')
+            </if>
+            <if test="price!=null">
+                AND price like CONCAT('%', #{price} , '%')
+            </if>
+            <if test="icon!=null">
+                AND icon like CONCAT('%', #{icon} , '%')
+            </if>
+            <if test="action!=null">
+                AND action like CONCAT('%', #{action} , '%')
+            </if>
+            <if test="intro!=null">
+                AND intro like CONCAT('%', #{intro} , '%')
+            </if>
+            <if test="validValue!=null">
+                AND validValue like CONCAT('%', #{validValue} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
+            <if test="condition.unit!=null">
+                AND unit = #{condition.unit}
+            </if>
+            <if test="condition.marketPrice!=null">
+                AND marketPrice = #{condition.marketPrice}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.icon!=null">
+                AND icon = #{condition.icon}
+            </if>
+            <if test="condition.action!=null">
+                AND action = #{condition.action}
+            </if>
+            <if test="condition.intro!=null">
+                AND intro = #{condition.intro}
+            </if>
+            <if test="condition.validValue!=null">
+                AND validValue = #{condition.validValue}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="Product">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM zgk_ali_product
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="code!=null">
+                AND code = #{code}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="type!=null">
+                AND type = #{type}
+            </if>
+            <if test="unit!=null">
+                AND unit = #{unit}
+            </if>
+            <if test="marketPrice!=null">
+                AND marketPrice = #{marketPrice}
+            </if>
+            <if test="price!=null">
+                AND price = #{price}
+            </if>
+            <if test="icon!=null">
+                AND icon = #{icon}
+            </if>
+            <if test="action!=null">
+                AND action = #{action}
+            </if>
+            <if test="intro!=null">
+                AND intro = #{intro}
+            </if>
+            <if test="validValue!=null">
+                AND validValue = #{validValue}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM zgk_ali_product
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="code!=null">
+               ${groupOp} code ${code.op}  #{code.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} name ${name.op}  #{name.data}
+           </if>
+           <if test="type!=null">
+               ${groupOp} type ${type.op}  #{type.data}
+           </if>
+           <if test="unit!=null">
+               ${groupOp} unit ${unit.op}  #{unit.data}
+           </if>
+           <if test="marketPrice!=null">
+               ${groupOp} marketPrice ${marketPrice.op}  #{marketPrice.data}
+           </if>
+           <if test="price!=null">
+               ${groupOp} price ${price.op}  #{price.data}
+           </if>
+           <if test="icon!=null">
+               ${groupOp} icon ${icon.op}  #{icon.data}
+           </if>
+           <if test="action!=null">
+               ${groupOp} action ${action.op}  #{action.data}
+           </if>
+           <if test="intro!=null">
+               ${groupOp} intro ${intro.op}  #{intro.data}
+           </if>
+           <if test="validValue!=null">
+               ${groupOp} validValue ${validValue.op}  #{validValue.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM zgk_ali_product
+    </select>
+
+</mapper>
+

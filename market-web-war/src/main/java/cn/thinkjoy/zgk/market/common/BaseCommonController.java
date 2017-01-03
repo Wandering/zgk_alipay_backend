@@ -1,6 +1,6 @@
 package cn.thinkjoy.zgk.market.common;
 
-
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
@@ -18,72 +18,54 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class BaseCommonController {
+public class BaseCommonController
+{
 
-	protected HttpServletRequest request;
-	protected HttpServletResponse response;
-	protected HttpSession session;
+    protected HttpServletRequest request;
 
-	@Autowired
-	private IProvinceService provinceService;
-	private Map<String, Long> areaMap = new HashMap<>();
+    protected HttpServletResponse response;
 
-	private Map<String, Long> getAreaMap()
-	{
-		if(areaMap.isEmpty())
-		{
-			initAreaInfo();
-		}
-		return areaMap;
-	}
+    protected HttpSession session;
 
+    @ModelAttribute
+    public void setReqAndRes(HttpServletRequest request,
+        HttpServletResponse response)
+    {
+        this.request = request;
+        this.response = response;
+        this.session = request.getSession();
+    }
 
-	private void initAreaInfo()
-	{
-		List<Province> list =  provinceService.findAll();
-		for (Province province:list) {
-			areaMap.put(province.getCode(), Long.parseLong(String.valueOf(province.getId())));
-		}
-	}
+    /**
+     * 获取用户信息
+     *
+     * @return
+     */
+    protected UserAccountPojo getUserAccountPojo(String userId)
+    {
+        String key = UserRedisConst.USER_KEY + userId;
+        Object userObj = RedisUtil.getInstance().get(key);
+        if (null == userObj)
+        {
+            throw new BizException("1110000", "userId错误！");
+        }
+        return JSON.parseObject(userObj.toString(), UserAccountPojo.class);
+    }
 
-	@ModelAttribute
-	public void setReqAndRes(HttpServletRequest request,
-							 HttpServletResponse response) {
-		this.request = request;
-		this.response = response;
-		this.session = request.getSession();
-	}
-
-	/**
-	 * 获取用户信息
-	 * @return
-	 */
-	protected UserAccountPojo getUserAccountPojo(String userId) {
-		return JSON.parseObject(RedisUtil.getInstance().get(userId).toString(),UserAccountPojo.class);
-	}
-
-	protected void setUserAccountPojo(UserAccountPojo userAccountBean,String userId) {
-		if(null!=userAccountBean){
-			String key = UserRedisConst.USER_KEY + userId;
-			try{
-				RedisUtil.getInstance().set(key, JSON.toJSONString(userAccountBean), 4l, TimeUnit.HOURS);
-			}catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
-	/**
-	 * 获取省份ID
-	 * @return
-	 */
-	protected Long getAreaId(){
-		try{
-			return Long.valueOf(String.valueOf(getAreaMap().get(UserAreaContext.getCurrentUserArea())).toString());
-		}catch (Exception e){
-			return Long.valueOf(String.valueOf(getAreaMap().get("zj")).toString());
-		}
-	}
+    protected void setUserAccountPojo(UserAccountPojo userAccountBean, String userId)
+    {
+        if (null != userAccountBean)
+        {
+            String key = UserRedisConst.USER_KEY + userId;
+            try
+            {
+                RedisUtil.getInstance().set(key, JSON.toJSONString(userAccountBean), 4l, TimeUnit.HOURS);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

@@ -61,7 +61,6 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping(value = "/orders")
 public class OrdersController extends BaseCommonController
 {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(OrdersController.class);
 
     @Autowired
@@ -258,27 +257,21 @@ public class OrdersController extends BaseCommonController
         orderStatementService.insert(orderstatement);
     }
 
-    private boolean isValideAreaId(Object countyId) {
-        return null != countyId && !"00".equals(countyId) && String.valueOf(countyId).length() == 6;
-    }
-
     /**
      * 获取订单详情
-     * @param token
      * @return
      */
     @ResponseBody
     @RequestMapping(value="getOrderInfo")
     public Map<String, Object> getOrderDetail(@RequestParam(value = "orderNo", required = true)String orderNo,
-                                              @RequestParam(value = "token", required = true)String token)
+                                              @RequestParam(value = "userId", required = true)String userId)
     {
-        String userId = getAccoutId();
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("userId", userId);
         paramMap.put("orderNo", orderNo + "");
         List<Map<String, Object>> orderList = userAccountExService.getOrderList(paramMap);
         if (null == orderList || orderList.size()==0) {
-            throw new BizException("0000010", "订单号或token无效!");
+            throw new BizException("0000010", "订单号或userId无效!");
         }
         fixOrderList(orderList);
         return orderList.get(0);
@@ -287,16 +280,15 @@ public class OrdersController extends BaseCommonController
 
     /**
      * 获取订单列表
-     * @param token
      * @return
      */
     @ResponseBody
     @RequestMapping(value="getOrderList")
     @Deprecated
-    public List<Map<String, Object>> getOrderList(@RequestParam(value = "token", required = true)String token,@RequestParam(required = false)String more)
+    public List<Map<String, Object>> getOrderList(@RequestParam(value = "userId", required = true)String userId,
+                                                  @RequestParam(required = false)String more)
     {
 
-        String userId = getAccoutId();
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("userId", userId);
         if(more==null){
@@ -347,7 +339,7 @@ public class OrdersController extends BaseCommonController
     @ResponseBody
     @RequestMapping(value="removeOrder")
     public boolean removeOrder(@RequestParam(value = "userId", required = true)Long userId,
-                                                 @RequestParam(value = "orderNo", required = true)String orderNo)
+                               @RequestParam(value = "orderNo", required = true)String orderNo)
     {
         boolean result;
         Order order = (Order) orderService.findOne("order_no", orderNo);
@@ -361,9 +353,8 @@ public class OrdersController extends BaseCommonController
             orderService.update(order);
             result = true;
         }else {
-            throw new BizException("0000010", "token无效");
+            throw new BizException("0000010", "userId无效");
         }
         return result;
     }
-
 }

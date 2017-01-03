@@ -54,16 +54,6 @@ public class BaseCommonController {
 		this.session = request.getSession();
 	}
 
-
-	/**
-	 * 获取用户ID
-	 * @return
-     */
-	public String getAccoutId(){
-		Long uid=(Long)UserContext.getCurrentUser().getId();
-//		Long uid=17L;
-		return uid.toString();
-	}
 	/**
 	 * 获取用户信息
 	 * @return

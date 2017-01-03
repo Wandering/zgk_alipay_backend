@@ -161,13 +161,6 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     }
 
     @Override
-    public UserAccountPojo findUserAccountPojoByToken(String token) {
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("token",token);
-        return userAccountExDAO.findUserAccountPojo(params);
-    }
-
-    @Override
     public UserAccountPojo findUserAccountPojoById(Long id) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("id",id);

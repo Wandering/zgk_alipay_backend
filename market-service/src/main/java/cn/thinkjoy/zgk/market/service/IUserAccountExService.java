@@ -25,8 +25,6 @@ public interface IUserAccountExService {
 
     Map<String,Object> checkUserHasInfo(String openId);
 
-    UserAccountPojo findUserAccountPojoByToken(String token);
-
     UserAccountPojo findUserAccountPojoById(Long id);
 
     UserAccountPojo findUserAccountPojoByPhone(String phone);

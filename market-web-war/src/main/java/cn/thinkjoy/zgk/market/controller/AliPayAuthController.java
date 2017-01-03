@@ -49,7 +49,6 @@ public class AliPayAuthController extends BaseCommonController
     protected static final Logger LOGGER = LoggerFactory.getLogger(AliPayAuthController.class);
     protected static final String ZJ_AREA = "330000";
     protected static final String JS_AREA = "320000";
-
     protected String userInfoUrl = "https://openapi.alipay.com/gateway.do";
 
     @Autowired

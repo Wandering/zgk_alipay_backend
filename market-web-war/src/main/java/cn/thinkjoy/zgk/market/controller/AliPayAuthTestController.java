@@ -57,4 +57,36 @@ public class AliPayAuthTestController extends AliPayAuthController
         return AlipayConfig.APP_TEST_ID;
     }
 
+    protected String getRedirectUrl(String userId, String areaId)
+    {
+
+        String baseUrl = "redirect:http://alipay.test.zhigaokao.cn/";
+        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId;
+
+        if (scoreAnalysisService.queryUserIsFirst(Long.valueOf(userId))==0){
+            baseUrl+="is-new.html";
+            baseUrl+=baseUrlEnd;
+            return baseUrl;
+        }else {
+            baseUrl+="app.html";
+            baseUrl+=baseUrlEnd;
+        }
+
+//        switch (areaId){
+//            case ZJ_AREA:
+//                baseUrl+="is-old-zj.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//            case JS_AREA:
+//                baseUrl+="is-old-js.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//            default:
+//                baseUrl+="is-old.html";
+//                baseUrl+=baseUrlEnd;
+//                break;
+//
+//        }
+        return baseUrl;
+    }
 }

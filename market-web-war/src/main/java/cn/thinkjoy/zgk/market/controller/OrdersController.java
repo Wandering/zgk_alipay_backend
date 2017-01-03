@@ -176,7 +176,7 @@ public class OrdersController extends BaseCommonController
         order.setOrderNo(orderNo);
         order.setUserId(userId);
         order.setStatus(0);
-        order.setProductType(product.getName());
+        order.setProductType(product.getType()+ "");
         BigDecimal salePrice = new BigDecimal(product.getPrice());
         order.setUnitPrice(salePrice.toString());
         order.setGoodsCount(1);

@@ -21,5 +21,168 @@
             t0.id = t1.id
         AND t0.qqUserId = #{openId}
     </select>
+
+    <select id="getUserInfoPojoById" resultType="UserInfoPojo">
+        SELECT
+        acc.id as id,
+        acc.account as account,
+        acc.password as password,
+        info.icon as icon,
+        exam.isReported as isReported,
+        exam.isSurvey as isSurvey,
+        info.name as name,
+        acc.status as status,
+        vip.status as vipStatus,
+        info.subjectType as subjectType,
+        info.sex as sex,
+        info.schoolName as schoolName,
+        info.provinceId as province,
+        info.cityId as city,
+        info.countyId as county,
+        pro.code as userKey,
+        vip.endDate,
+        vip.activeDate,
+        market.accountId,
+        market.qrCodeUrl,
+        market.sharerId,
+        market.sharerType,
+        market.agentLevel,
+        card.productType as vipType,
+        acc.isRegisterXueTang as isRegisterXueTang
+        FROM zgk_user_account acc
+        left join zgk_user_vip vip on acc.userId = vip.userId
+        left join zgk_user_info info on acc.userId = info.id
+        left join zgk_user_exam exam on acc.userId = exam.userId
+        left join zgk_province pro on pro.id = info.provinceId
+        left join zgk_user_market market on acc.id=market.accountId
+        LEFT JOIN zgk_card card on card.userId=acc.id
+        <where>
+            acc.userType = 0
+            <if test="token!=null">
+                and info.token = #{token}
+            </if>
+            <if test="id!=null">
+                and acc.id = #{id}
+            </if>
+            <if test="account!=null">
+                and acc.account = #{account}
+            </if>
+            <if test="areaId!=null">
+                and acc.areaId = #{areaId}
+            </if>
+        </where>
+        limit 1
+    </select>
+
+    <select id="findUserAccountPojo" resultType="UserAccountPojo">
+        SELECT
+        acc.id,
+        info.name,
+        info.icon,
+        info.qqUserId,
+        acc.account,
+        acc.password,
+        acc.status,
+        acc.userType,
+        exam.isReported,
+        exam.isSurvey,
+        vip.status as vipStatus,
+        pro.code as userKey,
+        vip.endDate,
+        vip.activeDate,
+        market.accountId,
+        market.qrCodeUrl,
+        market.sharerId,
+        market.sharerType,
+        market.agentLevel
+        FROM zgk_user_account acc
+        left join zgk_user_vip vip on acc.userId = vip.userId
+        left join zgk_user_info info on acc.userId = info.id
+        left join zgk_user_exam exam on acc.userId = exam.userId
+        left join zgk_province pro on pro.id = info.provinceId
+        left join zgk_user_market market on acc.userId=market.userId
+        <where>
+            acc.userType = 0
+            <if test="token!=null">
+                and info.token = #{token}
+            </if>
+            <if test="id!=null">
+                and acc.id = #{id}
+            </if>
+            <if test="account!=null">
+                and acc.account = #{account}
+            </if>
+            <if test="areaId!=null">
+                and acc.areaId = #{areaId}
+            </if>
+        </where>
+        limit 1
+    </select>
+
+    <select id="findUserAccountCount" resultType="int">
+        SELECT
+        COUNT(acc.id)
+        FROM zgk_user_account acc
+        left join zgk_user_vip vip on acc.userId = vip.userId
+        left join zgk_user_info info on acc.userId = info.id
+        <where>
+            acc.userType = 0
+            <if test="token!=null">
+                and info.token = #{token}
+            </if>
+            <if test="id!=null">
+                and acc.id = #{id}
+            </if>
+            <if test="account!=null">
+                and acc.account = #{account}
+            </if>
+            <if test="areaId!=null">
+                and acc.areaId = #{areaId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findUserInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select acc.account,info.provinceId,info.cityId,info.countyId
+        from zgk_user_account acc
+        left join zgk_user_info info on acc.userId=info.id
+        where acc.id=#{accountId}
+        limit 0, 1
+    </select>
+
+    <select id="getOrderList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select
+        od.order_no as orderNo,
+        od.product_price as amount,
+        od.create_date as createDate,
+        od.status as payStatus,
+        od.goods_count as productNum,
+        od.product_type as productType,
+        od.unit_price as unitPrice,
+        pro.productName as productName,
+        od.handle_state as handleState,
+        address.receivingAddress as receivingAddress,
+        address.contactName as contactName,
+        address.contactPhone as contactPhone,
+        card.cardNumber as cardNumber,
+        card.password as password,
+        od.phone as phone
+        from zgk_order od
+        LEFT JOIN zgk_card card on od.cardId=card.id
+        LEFT JOIN zgk_system.zgk_sale_product pro on od.product_type=pro.type
+        LEFT JOIN zgk_user_goodsadress address on od.user_id=address.userId
+        where od.user_id=#{userId} and od.state!='Y'
+        <if test="orderNo!=null">
+            and od.order_no = #{orderNo}
+        </if>
+        order by od.create_date desc
+        <if test="limit!=null">
+            limit 0,${limit}
+        </if>
+    </select>
+
+    <update id="updateUserAccountRegistXueTang" parameterType="java.util.HashMap">
+        UPDATE zgk_user_account SET isRegisterXueTang=#{isRegisterXueTang} WHERE id=#{id}
+    </update>
 </mapper>
 

@@ -7,21 +7,30 @@
 package cn.thinkjoy.zgk.market.dao;
 
 
+import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
+import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IUserAccountExDAO {
 
     Map<String,Object> findUserInfoByAlipayId(Map<String, String> params);
 
-    /**
-     * 根据qq用户openId检测用户是否已完善信息
-     *
-     * @param openId
-     * @return
-     */
-    Map<String,Object> checkUserHasInfo(
-            @Param("openId") String openId
-    );
+    Map<String,Object> checkUserHasInfo(@Param("openId") String openId);
+
+    UserAccountPojo findUserAccountPojo(Map<String, Object> params);
+
+    int findUserAccountCount(Map<String, Object> params);
+
+    UserInfoPojo getUserInfoPojoById(Map<String, Object> params);
+
+    Map<String,Object> findUserInfo(Map<String, String> paramMap);
+
+
+    List<Map<String,Object>> getOrderList(Map<String, String> paramMap);
+
+    int updateUserAccountRegistXueTang(Map<String, Object> paramMap);
+
 }

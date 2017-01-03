@@ -2,11 +2,13 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.alipay.*;
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.common.TimeUtil;
 import cn.thinkjoy.zgk.market.common.ZgkAlipayClient;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
+import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.service.IProvinceService;
 import cn.thinkjoy.zgk.market.service.IScoreAnalysisService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -39,7 +41,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/alipayAuth")
 @Scope("prototype")
-public class AliPayAuthController
+public class AliPayAuthController extends BaseCommonController
 {
     @Autowired
     protected IScoreAnalysisService scoreAnalysisService;
@@ -103,7 +105,14 @@ public class AliPayAuthController
         }
         String userId = userInfoMap.get("id") + "";
         String areaId = userInfoMap.get("provinceId") + "";
+        setAccountToRedis(userId);
         return getRedirectUrl(userId, areaId);
+    }
+
+    private void setAccountToRedis(String userId)
+    {
+        UserAccountPojo userAccountBean = userAccountExService.findUserAccountPojoByPhone(userId);
+        setUserAccountPojo(userAccountBean, userId);
     }
 
     protected String getRedirectUrl(String userId, String areaId)
@@ -190,6 +199,7 @@ public class AliPayAuthController
                 throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "账户注册失败");
             }
             userId = userAccount.getId() + "";
+            setAccountToRedis(userId);
         }
         catch (AlipayApiException e)
         {

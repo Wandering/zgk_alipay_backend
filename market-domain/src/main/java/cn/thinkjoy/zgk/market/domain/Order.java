@@ -16,22 +16,26 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 public class Order extends BaseDomain{
-    private String state="N";
     private Long userId;
+    private Integer status;
     private String orderNo;
     private Integer channle;
-    private Integer status;
     private Long createDate;
     private Long updateDate;
-    private String goodsAddress;
-    private String productPrice;
+    private String state="N";
+    private String  goodsAddress;
+    private String  productPrice;
+    private String unitPrice;
+    private String  productType;
     private Long departmentCode;
-    private String departmentName;
+    private String  departmentName;
     private String departmentPhone;
     private Integer goodsCount;
-    private Integer handleState;
-    private Integer productType;
-    private String unitPrice;
+    private String handleState = "0";
+    private String channel;
+    //手机号 2.0需求新加参数
+    private String phone;
+    private Long cardId;
 
     public String getUnitPrice() {
         return unitPrice;
@@ -41,12 +45,12 @@ public class Order extends BaseDomain{
         this.unitPrice = unitPrice;
     }
 
-    public Integer getProductType() {
-        return productType;
+    public Integer getGoodsCount() {
+        return goodsCount;
     }
 
-    public void setProductType(Integer productType) {
-        this.productType = productType;
+    public void setGoodsCount(Integer goodsCount) {
+        this.goodsCount = goodsCount;
     }
 
     public Order(){
@@ -58,6 +62,15 @@ public class Order extends BaseDomain{
     public Long getUserId() {
         return this.userId;
     }
+
+    public String getGoodsAddress() {
+        return goodsAddress;
+    }
+
+    public void setGoodsAddress(String goodsAddress) {
+        this.goodsAddress = goodsAddress;
+    }
+
     public void setOrderNo(String value) {
         this.orderNo = value;
     }
@@ -93,55 +106,6 @@ public class Order extends BaseDomain{
     public String getState() {
         return this.state;
     }
-    public void setGoodsAddress(String value) {
-        this.goodsAddress = value;
-    }
-
-    public String getGoodsAddress() {
-        return this.goodsAddress;
-    }
-    public void setProductPrice(String value) {
-        this.productPrice = value;
-    }
-
-    public String getProductPrice() {
-        return this.productPrice;
-    }
-    public void setDepartmentCode(Long value) {
-        this.departmentCode = value;
-    }
-
-    public Long getDepartmentCode() {
-        return this.departmentCode;
-    }
-    public void setDepartmentName(String value) {
-        this.departmentName = value;
-    }
-
-    public String getDepartmentName() {
-        return this.departmentName;
-    }
-    public void setDepartmentPhone(String value) {
-        this.departmentPhone = value;
-    }
-
-    public String getDepartmentPhone() {
-        return this.departmentPhone;
-    }
-    public void setGoodsCount(Integer value) {
-        this.goodsCount = value;
-    }
-
-    public Integer getGoodsCount() {
-        return this.goodsCount;
-    }
-    public void setHandleState(Integer value) {
-        this.handleState = value;
-    }
-
-    public Integer getHandleState() {
-        return this.handleState;
-    }
 
     public Integer getStatus() {
         return status;
@@ -151,32 +115,84 @@ public class Order extends BaseDomain{
         this.status = status;
     }
 
-
-
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("Id",getId())
-                .append("UserId",getUserId())
-                .append("Status",getStatus())
-                .append("OrderNo",getOrderNo())
-                .append("Channle",getChannle())
-                .append("CreateDate",getCreateDate())
-                .append("UpdateDate",getUpdateDate())
-                .append("State",getState())
-                .append("GoodsAddress",getGoodsAddress())
-                .append("ProductPrice",getProductPrice())
-                .append("DepartmentCode",getDepartmentCode())
-                .append("DepartmentName",getDepartmentName())
-                .append("DepartmentPhone",getDepartmentPhone())
-                .append("GoodsCount",getGoodsCount())
-                .append("HandleState",getHandleState())
-                .toString();
-    }
-
     public int hashCode() {
         return new HashCodeBuilder()
-                .append(getId())
-                .toHashCode();
+            .append(getId())
+            .toHashCode();
+    }
+
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getDepartmentPhone() {
+        return departmentPhone;
+    }
+
+    public void setDepartmentPhone(String departmentPhone) {
+        this.departmentPhone = departmentPhone;
+    }
+
+    public Long getDepartmentCode() {
+        return departmentCode;
+    }
+
+    public void setDepartmentCode(Long departmentCode) {
+        this.departmentCode = departmentCode;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getHandleState() {
+        return handleState;
+    }
+
+    public void setHandleState(String handleState) {
+        this.handleState = handleState;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Long getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(Long cardId) {
+        this.cardId = cardId;
     }
 
     public boolean equals(Object obj) {
@@ -184,7 +200,7 @@ public class Order extends BaseDomain{
         if(this == obj) return true;
         Order other = (Order)obj;
         return new EqualsBuilder()
-                .append(getId(),other.getId())
-                .isEquals();
+            .append(getId(),other.getId())
+            .isEquals();
     }
 }

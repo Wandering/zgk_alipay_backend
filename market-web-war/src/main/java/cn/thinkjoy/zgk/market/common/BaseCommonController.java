@@ -68,13 +68,13 @@ public class BaseCommonController {
 	 * 获取用户信息
 	 * @return
 	 */
-	protected UserAccountPojo getUserAccountPojo() {
-		return UserContext.getCurrentUser();
+	protected UserAccountPojo getUserAccountPojo(String userId) {
+		return JSON.parseObject(RedisUtil.getInstance().get(userId).toString(),UserAccountPojo.class);
 	}
 
-	protected void setUserAccountPojo(UserAccountPojo userAccountBean,String token) throws Exception {
+	protected void setUserAccountPojo(UserAccountPojo userAccountBean,String userId) {
 		if(null!=userAccountBean){
-			String key = UserRedisConst.USER_KEY + token;
+			String key = UserRedisConst.USER_KEY + userId;
 			try{
 				RedisUtil.getInstance().set(key, JSON.toJSONString(userAccountBean), 4l, TimeUnit.HOURS);
 			}catch (Exception e)

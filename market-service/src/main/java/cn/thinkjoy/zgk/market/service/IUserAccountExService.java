@@ -23,11 +23,25 @@ public interface IUserAccountExService {
 
     Map<String, Object> findUserInfoByAlipayId(String aliPayId);
 
-    /**
-     * 根据qq用户openId检测用户是否已完善信息
-     *
-     * @param openId
-     * @return
-     */
     Map<String,Object> checkUserHasInfo(String openId);
+
+    UserAccountPojo findUserAccountPojoByToken(String token);
+
+    UserAccountPojo findUserAccountPojoById(Long id);
+
+    UserAccountPojo findUserAccountPojoByPhone(String phone);
+
+    int findUserAccountCountByPhone(String phone, Long areaId);
+
+    boolean insertUserMarketInfo(Long sharerId, Integer sharerType, long id) throws WriterException, IOException;
+
+    boolean updateUserAccount(UserAccount userAccount);
+
+    UserAccount findUserAccountById(long id);
+
+    UserInfoPojo getUserInfoPojoById(long id);
+
+    Map<String,Object> findUserInfo(Map<String, String> paramMap);
+
+    List<Map<String,Object>> getOrderList(Map<String, String> paramMap);
 }

@@ -184,5 +184,19 @@
     <update id="updateUserAccountRegistXueTang" parameterType="java.util.HashMap">
         UPDATE zgk_user_account SET isRegisterXueTang=#{isRegisterXueTang} WHERE id=#{id}
     </update>
+
+    <select id="getOrderDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select
+        od.order_no as orderNo,
+        od.status as payStatus,
+        od.goods_count as productNum,
+        od.product_type as productType,
+        od.unit_price as unitPrice,
+        pro.name as productName
+        from zgk_order od
+        LEFT JOIN zgk_ali_product pro on od.product_type=pro.type
+        where od.user_id=#{userId} and od.order_no = #{orderNo}
+    </select>
+
 </mapper>
 

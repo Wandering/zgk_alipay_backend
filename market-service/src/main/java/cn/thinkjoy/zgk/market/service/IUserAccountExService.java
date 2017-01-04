@@ -12,7 +12,6 @@ import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 import com.google.zxing.WriterException;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -42,4 +41,6 @@ public interface IUserAccountExService {
     Map<String,Object> findUserInfo(Map<String, String> paramMap);
 
     List<Map<String,Object>> getOrderList(Map<String, String> paramMap);
+
+    Map<String,Object> getOrderDetail(Map<String, String> paramMap);
 }

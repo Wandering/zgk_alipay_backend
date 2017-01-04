@@ -37,7 +37,7 @@ import java.util.Map;
 public class PayCallbackController extends BaseCommonController
 {
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(PayCallbackController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PayCallbackController.class);
 
     @Autowired
     private IOrderService orderService;
@@ -58,6 +58,7 @@ public class PayCallbackController extends BaseCommonController
             prop = names.nextElement();
             paramMap.put(prop, request.getParameter(prop));
         }
+        LOGGER.debug("支付回调==========：" + paramMap.toString());
         BufferedReader reader = null;
         try
         {

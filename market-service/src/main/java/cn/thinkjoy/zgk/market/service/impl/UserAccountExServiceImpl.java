@@ -266,4 +266,10 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     public List<Map<String, Object>> getOrderList(Map<String, String> paramMap) {
         return userAccountExDAO.getOrderList(paramMap);
     }
+
+    @Override
+    public Map<String, Object> getOrderDetail(Map<String, String> paramMap)
+    {
+        return userAccountExDAO.getOrderDetail(paramMap);
+    }
 }

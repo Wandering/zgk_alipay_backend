@@ -253,91 +253,10 @@ public class OrdersController extends BaseCommonController
         Map<String, String> paramMap = new HashMap<>();
         paramMap.put("userId", userId);
         paramMap.put("orderNo", orderNo + "");
-        List<Map<String, Object>> orderList = userAccountExService.getOrderList(paramMap);
-        if (null == orderList || orderList.size()==0) {
+        Map<String, Object> orderDetail = userAccountExService.getOrderDetail(paramMap);
+        if (null == orderDetail) {
             throw new BizException("0000010", "订单号或userId无效!");
         }
-        fixOrderList(orderList);
-        return orderList.get(0);
-    }
-
-
-    /**
-     * 获取订单列表
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value="getOrderList")
-    @Deprecated
-    public List<Map<String, Object>> getOrderList(@RequestParam(value = "userId", required = true)String userId,
-                                                  @RequestParam(required = false)String more)
-    {
-        Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("userId", userId);
-        if(more==null){
-            paramMap.put("limit", String.valueOf(5));
-        }
-        List<Map<String, Object>> orderList = userAccountExService.getOrderList(paramMap);
-        fixOrderList(orderList);
-        return orderList;
-    }
-
-    private void fixOrderList(List<Map<String, Object>> orderList) {
-        if(null != orderList && orderList.size()>0)
-        {
-            for (Map<String, Object> order: orderList) {
-                if("0".equals(order.get("payStatus")+""))
-                {
-                    String orderNo = order.get("orderNo") + "";
-                    Order ord = (Order) orderService.findOne("order_no", orderNo);
-                    if(null != ord)
-                    {
-                        checkExpire(ord);
-                        order.put("payStatus", ord.getStatus());
-                    }
-                }
-                //标示已发货状态
-                if("1".equals(order.get("payStatus") + "") && "1".equals(order.get("handleState") + ""))
-                {
-                    order.put("payStatus", "3");
-                }
-            }
-        }
-    }
-
-    private void checkExpire(Order order) {
-        long createDate = order.getCreateDate();
-        if("0".equals(order.getStatus()+"") && System.currentTimeMillis() -  createDate > expireDuration)
-        {
-            //订单过期
-            order.setStatus(PayEnum.PAY_TIME_OUT.getCode());
-            orderService.update(order);
-        }
-    }
-
-    /**
-     * 获取订单列表
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value="removeOrder")
-    public boolean removeOrder(@RequestParam(value = "userId", required = true)Long userId,
-                               @RequestParam(value = "orderNo", required = true)String orderNo)
-    {
-        boolean result;
-        Order order = (Order) orderService.findOne("order_no", orderNo);
-        if (null == order) {
-            throw new BizException("0000010", "订单号无效!");
-        }
-        if(userId == order.getUserId())
-        {
-            //逻辑删除订单
-            order.setState("Y");
-            orderService.update(order);
-            result = true;
-        }else {
-            throw new BizException("0000010", "userId无效");
-        }
-        return result;
+        return orderDetail;
     }
 }

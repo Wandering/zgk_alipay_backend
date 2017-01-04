@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -51,12 +53,21 @@ public class PayCallbackController extends BaseCommonController
     @RequestMapping(value = "aLiPayCallback", method = RequestMethod.POST)
     public String aLiPayCallback(HttpServletRequest request) {
         String returnUrl = "www.zhigaokao.cn";
-        Map<String, String> paramMap = Maps.newHashMap();
-        String prop;
-        Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements()) {
-            prop = names.nextElement();
-            paramMap.put(prop, request.getParameter(prop));
+        try
+        {
+            request.setCharacterEncoding("UTF-8");
+        }
+        catch (UnsupportedEncodingException e)
+        {
+        }
+        Map<String, String> paramMap = new HashMap<>();
+        //获取头部所有信息
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = request.getHeader(key);
+            System.out.println(key+" "+value);
+            paramMap.put(key, value);
         }
         LOGGER.debug("支付回调==========：" + paramMap.toString());
         BufferedReader reader = null;

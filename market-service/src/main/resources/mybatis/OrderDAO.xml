@@ -56,13 +56,16 @@
         state,
         goods_address,
         product_price,
+        product_type,
         department_code,
         department_name,
         department_phone,
         goods_count,
         handle_state,
+        channel,
         unit_price,
-        product_type
+        phone,
+        cardId
         ) VALUES (
         #{userId},
         #{status},
@@ -73,13 +76,16 @@
         #{state},
         #{goodsAddress},
         #{productPrice},
+        #{productType},
         #{departmentCode},
         #{departmentName},
         #{departmentPhone},
         #{goodsCount},
         #{handleState},
+        #{channel},
         #{unitPrice},
-        #{productType}
+        #{phone},
+        #{cardId}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID
@@ -111,14 +117,38 @@
             <if test="state!=null">
                 state = #{state},
             </if>
-            <if test="amount!=null">
-                amount = #{amount},
-            </if>
-            <if test="productNumber!=null">
-                product_number = #{productNumber},
+            <if test="goodsAddress!=null">
+                goods_address = #{goodsAddress},
             </if>
             <if test="productPrice!=null">
                 product_price = #{productPrice},
+            </if>
+            <if test="productType!=null">
+                product_type = #{productType},
+            </if>
+            <if test="departmentCode!=null">
+                department_code = #{departmentCode},
+            </if>
+            <if test="departmentName!=null">
+                department_name = #{departmentName},
+            </if>
+            <if test="departmentPhone!=null">
+                department_phone = #{departmentPhone},
+            </if>
+            <if test="goodsCount!=null">
+                goods_count = #{goodsCount},
+            </if>
+            <if test="handleState!=null">
+                handle_state = #{handleState},
+            </if>
+            <if test="channel!=null">
+                channel = #{channel},
+            </if>
+            <if test="phone!=null">
+                phone = #{phone},
+            </if>
+            <if test="cardId!=null">
+                cardId = #{cardId},
             </if>
         </trim>
         WHERE

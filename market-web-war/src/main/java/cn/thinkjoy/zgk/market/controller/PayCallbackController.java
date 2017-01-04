@@ -72,7 +72,7 @@ public class PayCallbackController extends BaseCommonController
             reader.close();
             // 解析异步通知数据
             Event event = Webhooks.eventParse(buffer.toString());
-            if ("charge.succeeded".equals(event.getType())) {
+            if (null != event && "charge.succeeded".equals(event.getType())) {
                 response.setStatus(200);
                 if(!paramMap.isEmpty()) {
                     String statementNo = paramMap.get("out_trade_no");
@@ -103,6 +103,7 @@ public class PayCallbackController extends BaseCommonController
         catch (IOException e)
         {
             LOGGER.error("error",e);
+            response.setStatus(500);
         }
         return "redirect:http://" + returnUrl;
     }

@@ -93,9 +93,6 @@
             <if test="userId!=null">
                 user_id = #{userId},
             </if>
-            <if test="productId!=null">
-                product_id = #{productId},
-            </if>
             <if test="status!=null">
                 status = #{status},
             </if>
@@ -133,9 +130,6 @@
         <trim prefix="SET" suffixOverrides=",">
             <if test="map.userId!=null">
                 user_id = #{map.userId},
-            </if>
-            <if test="map.productId!=null">
-                product_id = #{map.productId},
             </if>
             <if test="map.status!=null">
                 status = #{map.status},
@@ -175,9 +169,6 @@
             <if test="update.userId!=null">
                 user_id = #{update.userId},
             </if>
-            <if test="update.productId!=null">
-                product_id = #{update.productId},
-            </if>
             <if test="update.status!=null">
                 status = #{update.status},
             </if>
@@ -214,9 +205,6 @@
             <if test="condition.userId!=null">
                 AND user_id = #{condition.userId}
             </if>
-            <if test="condition.productId!=null">
-                AND product_id = #{condition.productId}
-            </if>
             <if test="condition.status!=null">
                 AND status = #{condition.status}
             </if>
@@ -250,7 +238,6 @@
     <insert id="insertMap" >
         INSERT INTO zgk_order (
         user_id,
-        product_id,
         status,
         order_no,
         channle,
@@ -280,7 +267,6 @@
         UPDATE zgk_order
         <trim prefix="SET" suffixOverrides=",">
             user_id = #{userId},
-            product_id = #{productId},
             status = #{status},
             order_no = #{orderNo},
             channle = #{channle},
@@ -312,9 +298,6 @@
             </if>
             <if test="userId!=null">
                 AND user_id = #{userId}
-            </if>
-            <if test="productId!=null">
-                AND product_id = #{productId}
             </if>
             <if test="status!=null">
                 AND status = #{status}
@@ -406,9 +389,6 @@
             <if test="condition.userId!=null">
                 ${condition.groupOp}   user_id  ${condition.user_id.op}  #{condition.user_id.data}
             </if>
-            <if test="condition.productId!=null">
-                ${condition.groupOp}   product_id  ${condition.product_id.op}  #{condition.product_id.data}
-            </if>
             <if test="condition.status!=null">
                 ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
             </if>
@@ -459,9 +439,6 @@
             <if test="userId!=null">
                 AND user_id like CONCAT('%', #{userId} , '%')
             </if>
-            <if test="productId!=null">
-                AND product_id like CONCAT('%', #{productId} , '%')
-            </if>
             <if test="status!=null">
                 AND status like CONCAT('%', #{status} , '%')
             </if>
@@ -507,9 +484,6 @@
             <if test="condition.userId!=null">
                 AND user_id = #{condition.userId}
             </if>
-            <if test="condition.productId!=null">
-                AND product_id = #{condition.productId}
-            </if>
             <if test="condition.status!=null">
                 AND status = #{condition.status}
             </if>
@@ -554,9 +528,6 @@
             <if test="condition.userId!=null">
                 AND user_id = #{condition.userId}
             </if>
-            <if test="condition.productId!=null">
-                AND product_id = #{condition.productId}
-            </if>
             <if test="condition.status!=null">
                 AND status = #{condition.status}
             </if>
@@ -596,9 +567,6 @@
             </if>
             <if test="userId!=null">
                 ${groupOp} user_id ${user_id.op}  #{user_id.data}
-            </if>
-            <if test="productId!=null">
-                ${groupOp} product_id ${product_id.op}  #{product_id.data}
             </if>
             <if test="status!=null">
                 ${groupOp} status ${status.op}  #{status.data}

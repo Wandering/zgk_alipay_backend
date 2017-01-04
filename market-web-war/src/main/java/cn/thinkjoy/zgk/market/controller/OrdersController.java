@@ -132,11 +132,11 @@ public class OrdersController extends BaseCommonController
     public Charge aliOrder(@RequestParam(value = "orderNo", required = true) String orderNo,
                            @RequestParam(value = "userId", required = true) String userId,
                            @RequestParam(value = "channel", required = false) String channel){
-        String payChannel = "alipay_pc_direct";
-        if(org.apache.commons.lang3.StringUtils.isNoneEmpty(channel))
-        {
-            payChannel = channel;
-        }
+        String payChannel = "alipay";
+//        if(org.apache.commons.lang3.StringUtils.isNotEmpty(channel))
+//        {
+//            payChannel = channel;
+//        }
         UserAccountPojo userAccountPojo = getUserAccountPojo(userId);
         if (userAccountPojo == null) {
             throw new BizException(ERRORCODE.NO_LOGIN.getCode(), ERRORCODE.NO_LOGIN.getMessage());

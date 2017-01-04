@@ -25,14 +25,16 @@
     -->
     <sql id="Base_Column_List">
         id,
-        order_no,
-        statement_no,
-        status,
-        create_date,
-        update_date,
-        creater_id,
-        state,
-        amount
+        order_no as orderNo,
+        statement_no as statementNo,
+        status as status,
+        create_date as createDate,
+        update_date as updateDate,
+        creater_id as createrId,
+        state as state,
+        amount as amount,
+        pay_json as payJson,
+        callback_json as callBackJson
     </sql>
     <insert id="insert" parameterType="OrderStatements">
         INSERT INTO zgk_order_statements (

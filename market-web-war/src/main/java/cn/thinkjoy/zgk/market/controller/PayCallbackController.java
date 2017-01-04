@@ -9,9 +9,11 @@ import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.pingplusplus.model.Event;
+import com.pingplusplus.model.PingppObject;
 import com.pingplusplus.model.Webhooks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,27 +55,9 @@ public class PayCallbackController extends BaseCommonController
     @RequestMapping(value = "aLiPayCallback", method = RequestMethod.POST)
     public String aLiPayCallback(HttpServletRequest request) {
         String returnUrl = "www.zhigaokao.cn";
-        try
-        {
-            request.setCharacterEncoding("UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-        }
-        Map<String, String> paramMap = new HashMap<>();
-        //获取头部所有信息
-        Enumeration headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String key = (String) headerNames.nextElement();
-            String value = request.getHeader(key);
-            System.out.println(key+" "+value);
-            paramMap.put(key, value);
-        }
-        LOGGER.debug("支付回调==========：" + paramMap.toString());
         BufferedReader reader = null;
         try
         {
-            request.setCharacterEncoding("UTF-8");
             reader = request.getReader();
             StringBuffer buffer = new StringBuffer();
             String string;
@@ -85,14 +69,17 @@ public class PayCallbackController extends BaseCommonController
             Event event = Webhooks.eventParse(buffer.toString());
             if (null != event && "charge.succeeded".equals(event.getType())) {
                 response.setStatus(200);
-                if(!paramMap.isEmpty()) {
-                    String statementNo = paramMap.get("out_trade_no");
+                PingppObject object = event.getData().getObject();
+                if(null != object) {
+                    Map<String, Object> paramMap  = JSON.parseObject(object.toString(), Map.class);
+                    String statementNo = paramMap.get("order_no") + "";
+                    String channel = paramMap.get("channel") + "";
                     OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
                     String orderNo = orderStatement.getOrderNo();
                     Order order = (Order) orderService.findOne("order_no", orderNo);
-                    if(order !=null && order.getStatus()==0){
+                    if(order !=null && order.getStatus() == 0){
                         order.setStatus(1);
-                        order.setChannel("alipay_pc_direct");
+                        order.setChannel(channel);
                         orderService.update(order);
                     }
                     long userId = order.getUserId();

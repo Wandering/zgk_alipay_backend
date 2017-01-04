@@ -8,6 +8,7 @@ import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
+import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +49,9 @@ public class PayCallbackController extends BaseCommonController
     private IOrderService orderService;
     @Autowired
     private IOrderStatementsService orderStatementService;
+
+    @Autowired
+    private IUserAccountExService accountExService;
     /**
      * 支付宝支付回调
      * @param request
@@ -81,6 +86,25 @@ public class PayCallbackController extends BaseCommonController
                         order.setStatus(1);
                         order.setChannel(channel);
                         orderService.update(order);
+                        long now = System.currentTimeMillis();
+                        Calendar c = Calendar.getInstance();
+                        c.setTimeInMillis(now);
+                        c.set(Calendar.HOUR, 0);
+                        c.set(Calendar.MINUTE, 0);
+                        c.set(Calendar.SECOND, 0);
+                        c.set(Calendar.MILLISECOND, 0);
+                        if("1".equals(order.getProductType()))
+                        {
+                            c.add(Calendar.MONTH,1);
+                        }else if("2".equals(order.getProductType()))
+                        {
+                            c.add(Calendar.YEAR,1);
+                        }
+                        Map<String, String> params = new HashMap<>();
+                        params.put("userId", order.getUserId() + "");
+                        params.put("aliActiveDate", now + "");
+                        params.put("aliEndDate", c.getTimeInMillis() + "");
+                        accountExService.updateAliVipStatus(params);
                     }
                     long userId = order.getUserId();
                     String urlKey = "pay_return_url_"+userId;

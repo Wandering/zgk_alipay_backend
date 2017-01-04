@@ -272,4 +272,10 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     {
         return userAccountExDAO.getOrderDetail(paramMap);
     }
+
+    @Override
+    public int updateAliVipStatus(Map<String, String> params)
+    {
+        return userAccountExDAO.updateAliVipStatus(params);
+    }
 }

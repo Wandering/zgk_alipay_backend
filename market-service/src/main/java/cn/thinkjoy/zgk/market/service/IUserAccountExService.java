@@ -43,4 +43,6 @@ public interface IUserAccountExService {
     List<Map<String,Object>> getOrderList(Map<String, String> paramMap);
 
     Map<String,Object> getOrderDetail(Map<String, String> paramMap);
+
+    int updateAliVipStatus(Map<String, String> params);
 }

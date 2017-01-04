@@ -34,4 +34,6 @@ public interface IUserAccountExDAO {
     int updateUserAccountRegistXueTang(Map<String, Object> paramMap);
 
     Map<String,Object> getOrderDetail(Map<String, String> paramMap);
+
+    int updateAliVipStatus(Map<String, String> params);
 }

@@ -29,10 +29,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
-import java.util.Calendar;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by svenlau on 2016/5/19.
@@ -89,7 +86,7 @@ public class PayCallbackController extends BaseCommonController
                         long now = System.currentTimeMillis();
                         Calendar c = Calendar.getInstance();
                         c.setTimeInMillis(now);
-                        c.set(Calendar.HOUR, 0);
+                        c.set(Calendar.HOUR_OF_DAY, 0);
                         c.set(Calendar.MINUTE, 0);
                         c.set(Calendar.SECOND, 0);
                         c.set(Calendar.MILLISECOND, 0);
@@ -128,5 +125,11 @@ public class PayCallbackController extends BaseCommonController
             response.setStatus(500);
         }
         return "redirect:http://" + returnUrl;
+    }
+
+    public static void main(String[] args)
+    {
+        System.out.println(new Date(1483520571392l));
+        System.out.println(new Date(1486180800000l));
     }
 }

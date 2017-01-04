@@ -48,7 +48,7 @@ public class PayCallbackController extends BaseCommonController
      * @param request
      * @return
      */
-    @RequestMapping(value = "aLiPayCallback", method = RequestMethod.GET)
+    @RequestMapping(value = "aLiPayCallback", method = RequestMethod.POST)
     public String aLiPayCallback(HttpServletRequest request) {
         String returnUrl = "www.zhigaokao.cn";
         Map<String, String> paramMap = Maps.newHashMap();

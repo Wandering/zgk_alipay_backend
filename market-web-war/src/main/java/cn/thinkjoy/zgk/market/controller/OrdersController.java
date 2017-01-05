@@ -189,6 +189,7 @@ public class OrdersController extends BaseCommonController
         Pingpp.apiKey = DynConfigClientFactory.getClient().getConfig("common", "apiKey");
         String appid = DynConfigClientFactory.getClient().getConfig("common", "appId");
         String aliReturnUrl = DynConfigClientFactory.getClient().getConfig("common", "aliReturnUrl");
+        String aliFailReturnUrl = DynConfigClientFactory.getClient().getConfig("common", "aliFailReturnUrl");
         Map<String, Object> chargeParams = new HashMap<>();
         String channel = paramMap.get("channel");
         String productType = paramMap.get("productType");

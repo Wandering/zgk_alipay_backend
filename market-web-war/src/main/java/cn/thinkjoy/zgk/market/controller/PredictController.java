@@ -45,8 +45,10 @@ public class PredictController
     @ResponseBody
     public Map<String, Object> predictProbability(@RequestParam(value = "universityName") String name,
         @RequestParam(value = "score") int score,
+        @RequestParam(value = "batch") int batch,
         @RequestParam(value = "type",required = false) String type,
-        @RequestParam(value = "areaId") long areaId)
+        @RequestParam(value = "areaId") long areaId,
+        @RequestParam(value = "userId") long userId)
     {
         if(score <= 0 || score > 999)
         {
@@ -84,8 +86,10 @@ public class PredictController
         Map<String, Object> params = new HashMap<>();
         params.put("universityName", name);
         params.put("score", score);
+        params.put("batch", batch);
+        params.put("userId", userId);
         if(!StringUtils.isBlank(type))
-            params.put("type", type);
+            params.put("majorType", type);
         params.put("areaId", areaId);
         Map<String, Object> resultMap = new HashMap<>();
         try {

@@ -57,73 +57,57 @@ public class PayCallbackController extends BaseCommonController
     @RequestMapping(value = "aLiPayCallback", method = { RequestMethod.GET, RequestMethod.POST })
     public String aLiPayCallback(HttpServletRequest request) {
         String returnUrl = "www.zhigaokao.cn";
-        BufferedReader reader = null;
-        try
-        {
-            reader = request.getReader();
-            StringBuffer buffer = new StringBuffer();
-            String string;
-            while ((string = reader.readLine()) != null) {
-                buffer.append(string);
-            }
-            reader.close();
-            // 解析异步通知数据
-            Event event = Webhooks.eventParse(buffer.toString());
-            if (null != event && "charge.succeeded".equals(event.getType())) {
-                response.setStatus(200);
-                PingppObject object = event.getData().getObject();
-                if(null != object) {
-                    Map<String, Object> paramMap  = JSON.parseObject(object.toString(), Map.class);
-                    String statementNo = paramMap.get("order_no") + "";
-                    String channel = paramMap.get("channel") + "";
-                    OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
-                    String orderNo = orderStatement.getOrderNo();
-                    Order order = (Order) orderService.findOne("order_no", orderNo);
-                    if(order !=null && order.getStatus() == 0){
-                        order.setStatus(1);
-                        order.setChannel(channel);
-                        orderService.update(order);
-                        long now = System.currentTimeMillis();
-                        Calendar c = Calendar.getInstance();
-                        c.setTimeInMillis(now);
-                        c.set(Calendar.HOUR_OF_DAY, 0);
-                        c.set(Calendar.MINUTE, 0);
-                        c.set(Calendar.SECOND, 0);
-                        c.set(Calendar.MILLISECOND, 0);
-                        if("1".equals(order.getProductType()))
-                        {
-                            c.add(Calendar.MONTH,1);
-                        }else if("2".equals(order.getProductType()))
-                        {
-                            c.add(Calendar.YEAR,1);
-                        }
-                        Map<String, String> params = new HashMap<>();
-                        params.put("userId", order.getUserId() + "");
-                        params.put("aliActiveDate", now + "");
-                        params.put("aliEndDate", c.getTimeInMillis() + "");
-                        accountExService.updateAliVipStatus(params);
-                    }
-                    long userId = order.getUserId();
-                    String urlKey = "pay_return_url_"+userId;
-                    //获取回调url
-                    if(RedisUtil.getInstance().exists(urlKey))
+        Map<String, String> paramMap = Maps.newHashMap();
+        String prop;
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            prop = names.nextElement();
+            paramMap.put(prop, request.getParameter(prop));
+        }
+        try {
+            request.setCharacterEncoding("UTF-8");
+            if(!paramMap.isEmpty()) {
+                String statementNo = paramMap.get("out_trade_no");
+                OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
+                String orderNo = orderStatement.getOrderNo();
+                Order order = (Order) orderService.findOne("order_no", orderNo);
+                if(order !=null&&order.getStatus()==0){
+                    order.setStatus(1);
+//                    order.setChannel(channel);
+                    orderService.update(order);
+                    long now = System.currentTimeMillis();
+                    Calendar c = Calendar.getInstance();
+                    c.setTimeInMillis(now);
+                    c.set(Calendar.HOUR_OF_DAY, 0);
+                    c.set(Calendar.MINUTE, 0);
+                    c.set(Calendar.SECOND, 0);
+                    c.set(Calendar.MILLISECOND, 0);
+                    if("1".equals(order.getProductType()))
                     {
-                        returnUrl = String.valueOf(RedisUtil.getInstance().get(urlKey));
-                        returnUrl = URLDecoder.decode(returnUrl, "UTF-8");
-                        RedisUtil.getInstance().del(urlKey);
+                        c.add(Calendar.MONTH,1);
+                    }else if("2".equals(order.getProductType()))
+                    {
+                        c.add(Calendar.YEAR,1);
                     }
+                    Map<String, String> params = new HashMap<>();
+                    params.put("userId", order.getUserId() + "");
+                    params.put("aliActiveDate", now + "");
+                    params.put("aliEndDate", c.getTimeInMillis() + "");
+                    accountExService.updateAliVipStatus(params);
                 }
-            } else if ("refund.succeeded".equals(event.getType())) {
-                response.setStatus(200);
-            } else {
-                response.setStatus(500);
+                long userId = order.getUserId();
+                String urlKey = "pay_return_url_"+userId;
+                //获取回调url
+                if(RedisUtil.getInstance().exists(urlKey))
+                {
+                    returnUrl = String.valueOf(RedisUtil.getInstance().get(urlKey));
+                    returnUrl = URLDecoder.decode(returnUrl, "UTF-8");
+                    RedisUtil.getInstance().del(urlKey);
+                }
             }
-        }
-        catch (IOException e)
-        {
+        } catch (Exception e) {
             LOGGER.error("error",e);
-            response.setStatus(500);
         }
-        return "redirect:http://" + returnUrl;
+        return "redirect:http://"+ returnUrl;
     }
 }

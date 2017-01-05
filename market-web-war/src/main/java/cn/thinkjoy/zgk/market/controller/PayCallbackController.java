@@ -54,7 +54,7 @@ public class PayCallbackController extends BaseCommonController
      * @param request
      * @return
      */
-    @RequestMapping(value = "aLiPayCallback", method = RequestMethod.POST)
+    @RequestMapping(value = "aLiPayCallback", method = { RequestMethod.GET, RequestMethod.POST })
     public String aLiPayCallback(HttpServletRequest request) {
         String returnUrl = "www.zhigaokao.cn";
         BufferedReader reader = null;
@@ -125,11 +125,5 @@ public class PayCallbackController extends BaseCommonController
             response.setStatus(500);
         }
         return "redirect:http://" + returnUrl;
-    }
-
-    public static void main(String[] args)
-    {
-        System.out.println(new Date(1483523472390l));
-        System.out.println(new Date(1514995200000l));
     }
 }

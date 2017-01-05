@@ -198,11 +198,16 @@
         where od.user_id=#{userId} and od.order_no = #{orderNo}
     </select>
 
-
     <update id="updateAliVipStatus" parameterType="java.util.HashMap">
         UPDATE zgk_user_vip SET
         aliActiveDate=#{aliActiveDate}, aliEndDate=#{aliEndDate}
         WHERE userId=#{userId}
     </update>
+
+    <select id="getVipInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select aliActiveDate,aliEndDate
+        from zgk_user_vip
+        where userId = #{userId}
+    </select>
 </mapper>
 

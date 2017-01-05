@@ -150,7 +150,7 @@ public class PayCallbackController extends BaseCommonController
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("error",e);
+            LOGGER.error("error", e);
         }
         return "redirect:"+ returnUrl +"?userId="+ userId + "&areaId=" + areaId;
     }

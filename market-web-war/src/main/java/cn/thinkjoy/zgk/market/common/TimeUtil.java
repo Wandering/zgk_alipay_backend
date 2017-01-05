@@ -23,4 +23,10 @@ public class TimeUtil
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.format(new Date(calendar.getTimeInMillis()));
     }
+
+    public static String getTimeStamp(String format, long time)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        return formatter.format(new Date(time));
+    }
 }

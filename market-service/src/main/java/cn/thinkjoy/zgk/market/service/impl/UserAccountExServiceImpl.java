@@ -278,4 +278,10 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     {
         return userAccountExDAO.updateAliVipStatus(params);
     }
+
+    @Override
+    public Map<String, Object> getVipInfo(Map<String, String> paramMap)
+    {
+        return userAccountExDAO.getVipInfo(paramMap);
+    }
 }

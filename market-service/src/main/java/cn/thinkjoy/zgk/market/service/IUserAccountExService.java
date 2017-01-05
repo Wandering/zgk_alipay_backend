@@ -45,4 +45,6 @@ public interface IUserAccountExService {
     Map<String,Object> getOrderDetail(Map<String, String> paramMap);
 
     int updateAliVipStatus(Map<String, String> params);
+
+    Map<String,Object> getVipInfo(Map<String, String> paramMap);
 }

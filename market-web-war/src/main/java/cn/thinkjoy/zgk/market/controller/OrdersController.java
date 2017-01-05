@@ -6,6 +6,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.sms.api.SMSService;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.TimeUtil;
 import cn.thinkjoy.zgk.market.constant.SpringMVCConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
@@ -259,5 +260,43 @@ public class OrdersController extends BaseCommonController
             throw new BizException("0000010", "订单号或userId无效!");
         }
         return orderDetail;
+    }
+
+    /**
+     * 获取订单详情
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="getVipInfo")
+    public Map<String, Object> getVipInfo(@RequestParam(value = "userId", required = true)String userId)
+    {
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("userId", userId);
+        Map<String, Object> vipInfo = userAccountExService.getVipInfo(paramMap);
+        Map<String, Object> map = new HashMap<>();
+        int vipstatus = 0;
+        String startDate = "";
+        String endDate = "";
+        if (null == vipInfo) {
+            vipstatus = 0;
+        }else
+        {
+            long start = Long.parseLong(vipInfo.get("aliActiveDate") + "");
+            long end = Long.parseLong(vipInfo.get("aliEndDate") + "");
+            long now = System.currentTimeMillis();
+            if(now >= start && now <end)
+            {
+                vipstatus = 1;
+            }
+            if(now >= end)
+            {
+                vipstatus = 2;
+            }
+            startDate = TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss", start);
+            endDate = TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss", end);
+            map.put("vipDateRange", startDate + "@@" + endDate);
+        }
+        map.put("vipstatus", vipstatus);
+        return map;
     }
 }

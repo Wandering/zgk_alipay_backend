@@ -84,7 +84,7 @@ public class PayCallbackController extends BaseCommonController
                 OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
                 String orderNo = orderStatement.getOrderNo();
                 Order order = (Order) orderService.findOne("order_no", orderNo);
-                if(order !=null&&order.getStatus()==0){
+                if(order != null){
                     order.setStatus(1);
                     order.setChannel("alipay_wap");
                     orderService.update(order);

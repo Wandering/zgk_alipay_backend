@@ -217,7 +217,7 @@ public class OrdersController extends BaseCommonController
         {
             Map<String, String> extra = new HashMap<String, String>();
             extra.put("success_url", aliReturnUrl);
-            extra.put("cancel_url", "");
+            extra.put("cancel_url", null);
             chargeParams.put("extra", extra);
         }
         createOrderStatement(paramMap, chargeParams, statemenstNo);

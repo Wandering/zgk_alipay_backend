@@ -101,7 +101,7 @@ public class PayCallbackController extends BaseCommonController
             }
         } catch (Exception e) {
             LOGGER.error("=================Update Vip fail!!! UserId="+ userId +"=================");
-            LOGGER.error("reason:" + e);
+            LOGGER.error("Update Vip fail reason:" + e);
         }
         return "redirect:"+ returnUrl;
     }

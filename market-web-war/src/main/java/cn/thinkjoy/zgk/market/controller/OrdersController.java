@@ -282,7 +282,6 @@ public class OrdersController extends BaseCommonController
         {
             long start = Long.parseLong(vipInfo.get("aliActiveDate") + "");
             long end = Long.parseLong(vipInfo.get("aliEndDate") + "");
-            end = end - 1000;
             long now = System.currentTimeMillis();
             if(now >= start && now <= end)
             {
@@ -298,5 +297,16 @@ public class OrdersController extends BaseCommonController
         }
         map.put("vipstatus", vipstatus);
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value="vipDateRange")
+    public String vipDateRange(@RequestParam(value = "type", required = true)String type)
+    {
+        long start = System.currentTimeMillis();
+        long end = TimeUtil.getEndDateByType(type, start).getTimeInMillis();
+        String startDate = TimeUtil.getTimeStamp("yyyy.MM.dd", start);
+        String endDate = TimeUtil.getTimeStamp("yyyy.MM.dd", end);
+        return startDate + "-" + endDate;
     }
 }

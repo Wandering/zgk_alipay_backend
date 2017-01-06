@@ -4,6 +4,7 @@ import cn.thinkjoy.cloudstack.dynconfig.DynConfigClientFactory;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.TimeUtil;
 import cn.thinkjoy.zgk.market.constant.SpringMVCConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
@@ -86,19 +87,7 @@ public class PayCallbackController extends BaseCommonController
                     order.setChannel("alipay_wap");
                     orderService.update(order);
                     long now = System.currentTimeMillis();
-                    Calendar c = Calendar.getInstance();
-                    c.setTimeInMillis(now);
-                    c.set(Calendar.HOUR_OF_DAY, 0);
-                    c.set(Calendar.MINUTE, 0);
-                    c.set(Calendar.SECOND, 0);
-                    c.set(Calendar.MILLISECOND, 0);
-                    if("1".equals(order.getProductType()))
-                    {
-                        c.add(Calendar.MONTH,1);
-                    }else if("2".equals(order.getProductType()))
-                    {
-                        c.add(Calendar.YEAR,1);
-                    }
+                    Calendar c = TimeUtil.getEndDateByType(order.getProductType(), now);
                     Map<String, String> params = new HashMap<>();
                     params.put("userId", order.getUserId() + "");
                     params.put("aliActiveDate", now + "");

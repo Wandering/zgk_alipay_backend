@@ -111,47 +111,4 @@ public class PayCallbackController extends BaseCommonController
         }
         return "redirect:"+ returnUrl;
     }
-
-    /**
-     * 支付宝支付成功回调
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "aLiPayFailCallback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String aLiPayFailCallback(HttpServletRequest request) {
-        String returnUrl = "http://alipaybackend.zhigaokao.cn/alipayAuth/authPage";
-        try
-        {
-            returnUrl = DynConfigClientFactory.getClient().getConfig("common", "aLiPayFailCallbackUrl");
-        }
-        catch (Exception e)
-        {
-        }
-        String userId= "";
-        String areaId = "";
-        Map<String, String> paramMap = Maps.newHashMap();
-        String prop;
-        Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements()) {
-            prop = names.nextElement();
-            paramMap.put(prop, request.getParameter(prop));
-        }
-        try {
-            request.setCharacterEncoding("UTF-8");
-            if(!paramMap.isEmpty()) {
-                String statementNo = paramMap.get("out_trade_no");
-                OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
-                String orderNo = orderStatement.getOrderNo();
-                Order order = (Order) orderService.findOne("order_no", orderNo);
-                if(order !=null&&order.getStatus()==0){
-                    userId = order.getUserId() + "";
-                    UserAccountPojo accountPojo = getUserAccountPojo(userId);
-                    areaId = accountPojo.getAreaId() + "";
-                }
-            }
-        } catch (Exception e) {
-            LOGGER.error("error", e);
-        }
-        return "redirect:"+ returnUrl +"?userId="+ userId + "&areaId=" + areaId;
-    }
 }

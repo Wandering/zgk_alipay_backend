@@ -283,12 +283,13 @@ public class OrdersController extends BaseCommonController
         {
             long start = Long.parseLong(vipInfo.get("aliActiveDate") + "");
             long end = Long.parseLong(vipInfo.get("aliEndDate") + "");
+            end = end - 1000;
             long now = System.currentTimeMillis();
-            if(now >= start && now <end)
+            if(now >= start && now <= end)
             {
                 vipstatus = 1;
             }
-            if(now >= end)
+            if(now > end)
             {
                 vipstatus = 2;
             }

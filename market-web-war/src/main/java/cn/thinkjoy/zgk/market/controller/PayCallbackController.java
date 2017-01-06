@@ -67,6 +67,7 @@ public class PayCallbackController extends BaseCommonController
         }
         catch (Exception e)
         {
+            LOGGER.error("=================Use default returnUrl=================");
         }
         Map<String, String> paramMap = Maps.newHashMap();
         String prop;
@@ -75,6 +76,7 @@ public class PayCallbackController extends BaseCommonController
             prop = names.nextElement();
             paramMap.put(prop, request.getParameter(prop));
         }
+        String userId = "";
         try {
             request.setCharacterEncoding("UTF-8");
             if(!paramMap.isEmpty()) {
@@ -86,6 +88,7 @@ public class PayCallbackController extends BaseCommonController
                     order.setStatus(1);
                     order.setChannel("alipay_wap");
                     orderService.update(order);
+                    userId = order.getUserId() + "";
                     long now = System.currentTimeMillis();
                     Calendar c = TimeUtil.getEndDateByType(order.getProductType(), now);
                     Map<String, String> params = new HashMap<>();
@@ -93,10 +96,12 @@ public class PayCallbackController extends BaseCommonController
                     params.put("aliActiveDate", now + "");
                     params.put("aliEndDate", c.getTimeInMillis() + "");
                     accountExService.updateAliVipStatus(params);
+                    LOGGER.error("=================Update Vip Success!!!=================");
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("error",e);
+            LOGGER.error("=================Update Vip fail!!! UserId="+ userId +"=================");
+            LOGGER.error("reason:" + e);
         }
         return "redirect:"+ returnUrl;
     }

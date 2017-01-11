@@ -148,7 +148,7 @@ public class MailController extends TextWebSocketHandler
             sendMassage(session, "url错误！！");
             return;
         }
-        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
+        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,20}){1,20}";
         Pattern emailer = Pattern.compile(regex);
         if(list.size() > 0)
         {
@@ -167,11 +167,15 @@ public class MailController extends TextWebSocketHandler
             StringBuffer emails = new StringBuffer();
             for (String email : emailSet)
             {
+                if("songsx@btbu.edu.cn".equals(email))
+                    continue;
                 emails.append(", "+ email);
             }
             if(emails.length()>0)
             {
                 emails.delete(0,1);
+            }else {
+                emails.append("无");
             }
             sendMassage(session, "来源url："+url1+ ", email地址：" + emails.toString());
         }

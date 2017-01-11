@@ -29,6 +29,7 @@
                 socket.onclose = function(){
                     setConnected(false);
                     console.log('Disconnecting connection');
+                    alert("断开服务器！")
                 }
 
                 socket.onmessage = function (evt)
@@ -51,7 +52,7 @@
         }
 
         function sendName() {
-            if(null == socket)
+            if(typeof(socket) == "undefined" || null == socket)
             {
                 alert("请先连接服务器！");
                 return;

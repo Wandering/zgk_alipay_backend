@@ -119,6 +119,15 @@ public class MailController extends TextWebSocketHandler
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         super.handleTextMessage(session, message);
         String url = parseMsg(message);
+        if(StringUtils.isEmpty(url))
+        {
+            sendMassage(session, "url不能为空！！");
+            return;
+        }
+        if(!url.startsWith("http://"))
+        {
+            url = "http://" + url;
+        }
         sendMassage(session, "开始解析Url:"+url);
         List<Map<String, String>> list = new LinkedList<>();
         try
@@ -193,12 +202,7 @@ public class MailController extends TextWebSocketHandler
         throws com.alibaba.dubbo.common.json.ParseException
     {
         Map<String, Object> map = JSON.parse(message.getPayload(), Map.class);
-        String msg = map.get("message") + "";
-        if(StringUtils.isEmpty(msg))
-        {
-            throw new BizException("1110000", "请求参数不能为空！！");
-        }
-        return msg;
+        return map.get("message") + "";
     }
 
     @Override

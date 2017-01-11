@@ -16,6 +16,7 @@ dependencies {
     compile 'org.springframework:spring-websocket:4.0.6.RELEASE'
     compile 'org.springframework:spring-messaging:4.0.6.RELEASE'
     compile group: 'org.apache.tomcat', name: 'tomcat-websocket-api', version: '7.0.63'
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-websocket', version: '7.0.63'
 
     compile 'jstl:jstl:1.2'
 

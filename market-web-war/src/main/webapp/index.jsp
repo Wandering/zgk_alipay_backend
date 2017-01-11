@@ -46,9 +46,16 @@
         function disconnect() {
             setConnected(false);
             console.log("Disconnected");
+            socket.close();
+            socket = null;
         }
 
         function sendName() {
+            if(null == socket)
+            {
+                alert("请先连接服务器！");
+                return;
+            }
             try {
                 var message = document.getElementById('message').value;
                 socket.send(JSON.stringify({ 'message': message }));
@@ -74,7 +81,7 @@
 
 <button id="connect" onclick="connect()">连接服务器</button>
 <button id="disconnect" onclick="disconnect()"/>断开服务器</button><br>
-<input id="message" value="" size="200"/>
+<input id="message" value="" size="100"/>
 <button onclick="sendName()">开始解析url</button>
 <div id="response"></div>
 </body>

@@ -44,7 +44,7 @@ public class MailController extends TextWebSocketHandler
         HttpClient client = new HttpClient();
         GetMethod method = new GetMethod(url);
         method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,
-            new DefaultHttpMethodRetryHandler(3, false));
+            new DefaultHttpMethodRetryHandler(1, false));
         try {
             int statusCode = client.executeMethod(method);
             if (statusCode != HttpStatus.SC_OK) {
@@ -156,7 +156,7 @@ public class MailController extends TextWebSocketHandler
             sendMassage(session, "url错误！！");
             return;
         }
-        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,20}){1,20}";
+        String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{1,20}){1,20}";
         Pattern emailer = Pattern.compile(regex);
         if(list.size() > 0)
         {

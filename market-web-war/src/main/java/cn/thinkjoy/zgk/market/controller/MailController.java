@@ -120,25 +120,33 @@ public class MailController extends TextWebSocketHandler
         super.handleTextMessage(session, message);
         String url = parseMsg(message);
         sendMassage(session, "开始解析Url:"+url);
-        String s = get(url);
-        Document queryDocument = Jsoup.parse(s);
-        Elements as = queryDocument.select("body a").select(".jslist");
-        String prefix = url.substring(0, url.lastIndexOf("/")+1);
         List<Map<String, String>> list = new LinkedList<>();
-        for (int i = 0; i < as.size(); i++)
+        try
         {
-            Element element = as.get(i);
-            String href = element.attr("href");
-            if(href.contains("../"))
+            String s = get(url);
+            Document queryDocument = Jsoup.parse(s);
+            Elements as = queryDocument.select("body a").select(".jslist");
+            String prefix = url.substring(0, url.lastIndexOf("/")+1);
+            for (int i = 0; i < as.size(); i++)
             {
-                continue;
-            }else
-            {
-                Map<String, String> map = new HashMap<>();
-                map.put("url", prefix + href);
-                map.put("name", element.html());
-                list.add(map);
+                Element element = as.get(i);
+                String href = element.attr("href");
+                if(href.contains("../"))
+                {
+                    continue;
+                }else
+                {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("url", prefix + href);
+                    map.put("name", element.html());
+                    list.add(map);
+                }
             }
+        }
+        catch (Exception e)
+        {
+            sendMassage(session, "url错误！！");
+            return;
         }
         String regex = "\\w+(\\.\\w)*@\\w+(\\.\\w{2,3}){1,3}";
         Pattern emailer = Pattern.compile(regex);

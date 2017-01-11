@@ -27,6 +27,7 @@
                 }
 
                 socket.onclose = function(){
+                    setConnected(false);
                     console.log('Disconnecting connection');
                 }
 
@@ -37,7 +38,6 @@
                     console.log('message received!');
                     showMessage(received_msg);
                 }
-
             } else {
                 console.log('Websocket not supported');
             }
@@ -49,8 +49,16 @@
         }
 
         function sendName() {
-            var message = document.getElementById('message').value;
-            socket.send(JSON.stringify({ 'message': message }));
+            try {
+                var message = document.getElementById('message').value;
+                socket.send(JSON.stringify({ 'message': message }));
+                var response = document.getElementById('response');
+                response.innerHTML = "";
+            }
+            catch(err) {
+                alert("请先连接服务器！");
+                setConnected(false);
+            }
         }
 
         function showMessage(message) {
@@ -60,21 +68,14 @@
             p.appendChild(document.createTextNode(message));
             response.appendChild(p);
         }
-
-        /*
-         1. new WebSocket('ws://localhost:8080//websocket')尝试与服务器建立连接;
-         2. 握手成功并建立连接后，socket.onopen被调用
-         3. 当接收来自服务器的消息，socket.onmessage被调用
-         4. socket.send()用来发送消息至服务端
-         */
     </script>
 </head>
 <body>
 
-<button id="connect" onclick="connect()">connect</button>
-<button id="disconnect" onclick="disconnect()"/>disconnect</button><br>
-<input id="message" value="send message"/>
-<button onclick="sendName()">发送消息</button>
+<button id="connect" onclick="connect()">连接服务器</button>
+<button id="disconnect" onclick="disconnect()"/>断开服务器</button><br>
+<input id="message" value="" size="200"/>
+<button onclick="sendName()">开始解析url</button>
 <div id="response"></div>
 </body>
 </html>

@@ -272,8 +272,7 @@ public class AliPayAuthController extends BaseCommonController
 
     @RequestMapping(value = "/picNotify", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String picNotify(String sender,String targetIds, String content, String img1Url,String img2Url,String img3Url,
-        String img4Url,String img5Url,String img6Url,String img7Url,String img8Url,String img9Url)
+    public String picNotify()
     {
         String uuid = UUID.randomUUID().toString();
         String imgSrc = "http://i8.qhmsg.com/t01b2a945701805d7f1.jpg";
@@ -285,7 +284,7 @@ public class AliPayAuthController extends BaseCommonController
         req.setAttribute("text_img_edu");
         req.setTamplate_id("1003");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
+        req.setTarget_id("");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -324,7 +323,7 @@ public class AliPayAuthController extends BaseCommonController
 
     @RequestMapping(value = "/textNotify", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String textNotify(String sender,String targetIds, String content)
+    public String textNotify()
     {
         String uuid = UUID.randomUUID().toString();
         AlipayEcoCmsCdataUploadRequest request = new AlipayEcoCmsCdataUploadRequest();
@@ -335,7 +334,7 @@ public class AliPayAuthController extends BaseCommonController
         req.setAttribute("text_edu");
         req.setTamplate_id("1004");
         req.setT_v("1");
-        req.setTarget_id("2088002104075250,2088302006371390,2088912958704463");
+        req.setTarget_id("");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -373,7 +372,7 @@ public class AliPayAuthController extends BaseCommonController
 
     @RequestMapping(value = "/linkNotify", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String linkNotify(String sender,String targetIds, String content, String source)
+    public String linkNotify()
     {
         String uuid = UUID.randomUUID().toString();
         AlipayEcoCmsCdataUploadRequest request = new AlipayEcoCmsCdataUploadRequest();
@@ -384,7 +383,7 @@ public class AliPayAuthController extends BaseCommonController
         req.setAttribute("link_edu");
         req.setTamplate_id("1005");
         req.setT_v("1");
-        req.setTarget_id("2088202906569241,2088202906569373,2088202906569263,2088202904822755,2088202896861602,2088802988528934");
+        req.setTarget_id("");
         req.setStart_time(TimeUtil.getTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setExp_time(TimeUtil.getEndTimeStamp("yyyy-MM-dd HH:mm:ss"));
         req.setSyn(false);
@@ -421,5 +420,4 @@ public class AliPayAuthController extends BaseCommonController
         }
         return result;
     }
-
 }

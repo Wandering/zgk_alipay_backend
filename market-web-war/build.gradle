@@ -10,6 +10,12 @@ dependencies {
     compile "org.freemarker:freemarker:$freemarkerVersion"
 
     compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+
+    compile 'com.fasterxml.jackson.core:jackson-core:2.1.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.1.0'
+    compile 'org.springframework:spring-websocket:4.0.6.RELEASE'
+    compile 'org.springframework:spring-messaging:4.0.6.RELEASE'
+
     compile 'jstl:jstl:1.2'
     providedCompile 'javax.servlet:servlet-api:2.5'
 
@@ -31,4 +37,8 @@ dependencies {
     compile name: 'industrydata-common-service-facade-1.0.2'
 
     compile group: 'net.gplatform', name: 'Sdk4J', version: '2.0'
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 }

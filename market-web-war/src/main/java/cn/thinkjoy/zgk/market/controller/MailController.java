@@ -1,6 +1,5 @@
 package cn.thinkjoy.zgk.market.controller;
 
-import cn.thinkjoy.common.exception.BizException;
 import com.alibaba.dubbo.common.json.JSON;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.httpclient.HttpClient;

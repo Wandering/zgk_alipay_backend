@@ -118,7 +118,7 @@ public class AliPayAuthController extends BaseCommonController
     {
 
         String baseUrl = "redirect:http://alipay.zhigaokao.cn/";
-        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId + "&userKey=" + areaId == null ? "" : areaMaps.getAreaCode(Long.valueOf(areaId));
+        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId + "&userKey=" + areaId == null ? "zj" : areaMaps.getAreaCode(Long.valueOf(areaId));
 
         if (scoreAnalysisService.queryUserIsFirst(Long.valueOf(userId))==0){
             baseUrl+="is-new.html";

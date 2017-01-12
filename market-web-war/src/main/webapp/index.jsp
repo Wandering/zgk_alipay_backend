@@ -17,7 +17,13 @@
         function connect() {
             if ('WebSocket' in window){
                 console.log('Websocket supported');
-                socket = new WebSocket('ws://localhost:8080/hello/websocket');
+                var url = "ws://" + window.location.host;
+                if(""==window.location.port)
+                {
+                    url = url + ":" + window.location.port
+                }
+                url = url + "/hello/websocket";
+                socket = new WebSocket(url);
 
                 console.log('Connection attempted');
 

@@ -4,6 +4,7 @@ import cn.thinkjoy.cloudstack.dynconfig.DynConfigClientFactory;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.TimeUtil;
 import cn.thinkjoy.zgk.market.constant.SpringMVCConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
@@ -66,6 +67,7 @@ public class PayCallbackController extends BaseCommonController
         }
         catch (Exception e)
         {
+            LOGGER.error("=================Use default returnUrl=================");
         }
         Map<String, String> paramMap = Maps.newHashMap();
         String prop;
@@ -74,6 +76,7 @@ public class PayCallbackController extends BaseCommonController
             prop = names.nextElement();
             paramMap.put(prop, request.getParameter(prop));
         }
+        String userId = "";
         try {
             request.setCharacterEncoding("UTF-8");
             if(!paramMap.isEmpty()) {
@@ -81,77 +84,25 @@ public class PayCallbackController extends BaseCommonController
                 OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
                 String orderNo = orderStatement.getOrderNo();
                 Order order = (Order) orderService.findOne("order_no", orderNo);
-                if(order !=null&&order.getStatus()==0){
+                if(order != null){
                     order.setStatus(1);
                     order.setChannel("alipay_wap");
                     orderService.update(order);
+                    userId = order.getUserId() + "";
                     long now = System.currentTimeMillis();
-                    Calendar c = Calendar.getInstance();
-                    c.setTimeInMillis(now);
-                    c.set(Calendar.HOUR_OF_DAY, 0);
-                    c.set(Calendar.MINUTE, 0);
-                    c.set(Calendar.SECOND, 0);
-                    c.set(Calendar.MILLISECOND, 0);
-                    if("1".equals(order.getProductType()))
-                    {
-                        c.add(Calendar.MONTH,1);
-                    }else if("2".equals(order.getProductType()))
-                    {
-                        c.add(Calendar.YEAR,1);
-                    }
+                    Calendar c = TimeUtil.getEndDateByType(order.getProductType(), now);
                     Map<String, String> params = new HashMap<>();
                     params.put("userId", order.getUserId() + "");
                     params.put("aliActiveDate", now + "");
                     params.put("aliEndDate", c.getTimeInMillis() + "");
                     accountExService.updateAliVipStatus(params);
+                    LOGGER.error("=================Update Vip Success!!!=================");
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("error",e);
+            LOGGER.error("=================Update Vip fail!!! UserId="+ userId +"=================");
+            LOGGER.error("Update Vip fail reason:" + e);
         }
         return "redirect:"+ returnUrl;
-    }
-
-    /**
-     * 支付宝支付成功回调
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "aLiPayFailCallback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String aLiPayFailCallback(HttpServletRequest request) {
-        String returnUrl = "http://alipaybackend.zhigaokao.cn/alipayAuth/authPage";
-        try
-        {
-            returnUrl = DynConfigClientFactory.getClient().getConfig("common", "aLiPayFailCallbackUrl");
-        }
-        catch (Exception e)
-        {
-        }
-        String userId= "";
-        String areaId = "";
-        Map<String, String> paramMap = Maps.newHashMap();
-        String prop;
-        Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements()) {
-            prop = names.nextElement();
-            paramMap.put(prop, request.getParameter(prop));
-        }
-        try {
-            request.setCharacterEncoding("UTF-8");
-            if(!paramMap.isEmpty()) {
-                String statementNo = paramMap.get("out_trade_no");
-                OrderStatements orderStatement =(OrderStatements) orderStatementService.findOne("statement_no", statementNo);
-                String orderNo = orderStatement.getOrderNo();
-                Order order = (Order) orderService.findOne("order_no", orderNo);
-                if(order !=null&&order.getStatus()==0){
-                    userId = order.getUserId() + "";
-                    UserAccountPojo accountPojo = getUserAccountPojo(userId);
-                    areaId = accountPojo.getAreaId() + "";
-                }
-            }
-        } catch (Exception e) {
-            LOGGER.error("error", e);
-        }
-        return "redirect:"+ returnUrl +"?userId="+ userId + "&areaId=" + areaId;
     }
 }

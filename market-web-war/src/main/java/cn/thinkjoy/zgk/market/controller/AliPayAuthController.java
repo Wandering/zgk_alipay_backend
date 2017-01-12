@@ -2,10 +2,7 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.alipay.*;
-import cn.thinkjoy.zgk.market.common.BaseCommonController;
-import cn.thinkjoy.zgk.market.common.ERRORCODE;
-import cn.thinkjoy.zgk.market.common.TimeUtil;
-import cn.thinkjoy.zgk.market.common.ZgkAlipayClient;
+import cn.thinkjoy.zgk.market.common.*;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
@@ -50,6 +47,9 @@ public class AliPayAuthController extends BaseCommonController
     protected static final String ZJ_AREA = "330000";
     protected static final String JS_AREA = "320000";
     protected String userInfoUrl = "https://openapi.alipay.com/gateway.do";
+
+    @Autowired
+    private AreaMaps areaMaps;
 
     @Autowired
     private IUserAccountExService userAccountExService;
@@ -118,7 +118,7 @@ public class AliPayAuthController extends BaseCommonController
     {
 
         String baseUrl = "redirect:http://alipay.zhigaokao.cn/";
-        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId;
+        String baseUrlEnd = "?userId=" + userId + "&areaId=" + areaId + "&userKey=" + areaId == null ? "" : areaMaps.getAreaCode(Long.valueOf(areaId));
 
         if (scoreAnalysisService.queryUserIsFirst(Long.valueOf(userId))==0){
             baseUrl+="is-new.html";

@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-
-
-
     <script type="text/javascript">
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
